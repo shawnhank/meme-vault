@@ -181,7 +181,11 @@ CSS courtesy of [Bootstrap](https://getbootstrap.com/)
 ## Future Improvements:
 
 [] Undo Delete Functionality
+
 [] User Auth (login/logout)
+
 [] Tagging/Comments/Ratings
+
 [] Dark mode UI option
+
 [] Add multiple image links (array vs string)
