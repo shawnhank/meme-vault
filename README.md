@@ -168,10 +168,12 @@ models/
 ## Attributions
 
 Hero image courtesy of [WACA](https://www.waca.or.jp/en/growthhacking/kithow-many-types-of-meme/)
+
 Meme Images and Descriptions courtesy of: 
 - [Giphy](https://giphy.com)
 - [Tenor](htttps://tenor.com)
 - [Know Your Meme](https://knowyourmeme.com/)
+
 CSS courtesy of [Bootstrap](https://getbootstrap.com/)
 
 ---
@@ -182,3 +184,4 @@ CSS courtesy of [Bootstrap](https://getbootstrap.com/)
 [] User Auth (login/logout)
 [] Tagging/Comments/Ratings
 [] Dark mode UI option
+[] Add multiple image links (array vs string)
