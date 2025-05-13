@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+<h1>All Memes</h1>
+  <!-- delete successful message appears above meme list if delete action is completed. -->
+  <% if (typeof query !== 'undefined' && query.deleted === 'true') { %>
+      <div class="alert alert-success">Meme deleted successfully.</div>
+  <% } %>
+<ul class="list-group">
+  <% memes.forEach(function(meme) { %>
+    <li class="list-group-item">
+      <h3>
+        <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
+      </h3>
+      <p style="white-space: pre-line;"><%= meme.description %></p>
+      <% if (meme.image) { %>
+        <a href="/memes/<%= meme._id %>">
+          <img src="<%= meme.image %>" alt="<%= meme.name %>" class="mb-3" style="max-height: 200px;" />
+        </a>
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>

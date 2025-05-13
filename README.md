@@ -1,63 +1,184 @@
-# Meme Vault
+# Memes App — Full CRUD Project with Styling
 
-A place for the memes. Your memes. The weird ones, the cursed ones, the ones that live rent-free in your brain.
+## Overview
 
-## What is this?
+This project is a full-stack web application using Node.js, Express, MongoDB, and EJS to
+manage a resource called "memes." It supports all CRUD operations (Create, Read, Update,
+Delete) and follows best practices in file organization, route design, and Bootstrap-based
+styling.
 
-A fully functional MEN Stack CRUD app (MongoDB + Express + Node.js) that lets users:
-	•	🖼️ Create and edit memes
-	•	🏷️ Tag them with moods like “relatable” or “chaotic good”
-	•	🌟 Review them like you’re rating fine wine
-	•	💥 Delete them when they stop being funny
+---
 
-All wrapped in a sweet, minimalist Pico.css UI that makes your memes look as good as they probably don’t deserve.
+## Technology Stack
 
-## Features
-	•	Full CRUD for Meme
-	•	One-to-many: each Meme gets Reviews
-	•	Many-to-many: Meme ↔ Tags
-	•	Partials for clean layouts and reusable forms
-	•	Stretch-ready for things like collections, favoriting, or GIF integrations
+* Node.js + Express.js
+* MongoDB + Mongoose
+* EJS (Embedded JavaScript Templates)
+* Bootstrap 5 (via CDN)
 
-## Folder Vibe
+---
 
-models/       → meme, tag, and review schemas
-views/        → memes, tags, reviews, partials, layout, 404
-public/       → styles (Pico!), scripts (probably empty)
-server.js     → flat file, full routes, no drama
-seed.js       → sample data for rapid testing
+## Folder Structure
 
-## How to Run It
+```
+views/
+├── index.ejs
+├── partials/
+│   ├── header.ejs
+│   └── footer.ejs
+├── memes/
+│   ├── index.ejs
+│   ├── new.ejs
+│   ├── edit.ejs
+│   └── show.ejs
+public/
+├── css/
+│   └── main.css
+models/
+├── meme.js
+```
 
-git clone this-meme-vault-repo
-cd memes_vault
-npm install
-nodemon
-mongoose
-morgan
-_will have more packages to add here_
+---
 
-Make sure you have a .env with:
+## CRUD Functionality Map
 
-DATABASE_URL=mongodb://localhost:27017/memevault
+| Action          | HTTP Method | Route             | View      | Description                            |
+| --------------- | ----------- | ----------------- | --------- | -------------------------------------- |
+| Create (Form)   | GET         | /memes/new       | new\.ejs  | Show form to add a new meme           |
+| Create (Submit) | POST        | /memes           | —         | Save new meme and redirect            |
+| Read (Index)    | GET         | /memes           | index.ejs | Show all memes                        |
+| Read (Show)     | GET         | /memes/\:id      | show\.ejs | Show one meme's details               |
+| Update (Form)   | GET         | /memes/\:id/edit | edit.ejs  | Show edit form with pre-filled data    |
+| Update (Submit) | PUT         | /memes/\:id      | —         | Update meme and redirect to show page |
+| Delete          | DELETE      | /memes/\:id      | —         | Delete meme and redirect to index     |
 
-Then visit: http://localhost:3000
+---
 
-## Why tho?
+## CRUD Functionality
 
-Because we needed a project.
-Because memes are a legitimate form of communication.
-Because CRUD shouldn’t be boring.
+### CREATE (POST)
 
-Credits
+* Route: `GET /memes/new`
+* View: `views/memes/new.ejs`
+* Form submits to: `POST /memes`
+* Action: Creates a new meme document in MongoDB and redirects to `/memes`
+* Includes Cancel button that links back to `/memes`
 
-Built by someone with opinions about spacing, alignment, and absurd humor.
+### READ (GET)
 
-⸻
+* List All Memes:
 
-Yes, this is a real app. No, it won’t judge your meme taste. But we might.
+  * Route: `GET /memes`
+  * View: `views/memes/index.ejs`
+  * Displays name and image of each meme using Bootstrap `list-group`
+  * Each name and image link to that meme’s show page
+
+* Show One Meme:
+
+  * Route: `GET /memes/:id`
+  * View: `views/memes/show.ejs`
+  * Displays full details of a single meme
+  * Includes Edit, Delete, and Back buttons
+
+### UPDATE (PUT)
+
+* Route: `GET /memes/:id/edit`
+* View: `views/memes/edit.ejs`
+* Form pre-filled with existing data
+* Submits to: `PUT /memes/:id`
+* Action: Updates the meme document and redirects to `/memes/:id`
+* Cancel button returns user to show page without saving changes
+
+### DELETE (DELETE)
+
+* Route: `DELETE /memes/:id`
+* Action: Deletes meme and redirects to `/memes`
+* Success feedback message shown conditionally using query string: `?deleted=true`
+
+---
+
+## Visual Styling Decisions
+
+### Global Layout
+
+* `main` element wrapped in Bootstrap `container` with `max-width: 900px`
+* Ensures content doesn’t stretch full width
+* Consistent margins and horizontal padding on all views
+* Layout remains fully responsive due to Bootstrap’s grid and container system
+
+### Navigation
+
+* Implemented using Bootstrap `navbar`
+* Aligned left using `justify-content-start` and `gap-3`
+* Nav items styled with `navbar-brand` and `nav-link`
+* Appears consistently on every page
+
+### Index View
+
+* Uses `ul.list-group` with `li.list-group-item` for clean framed entries
+* Links wrapped around both the name and image
+* Success message after delete styled with `alert alert-success`
+
+### Show View
+
+* Meme image shown at top*
+* Below image: buttons for Edit, Delete, and Back* grouped in a `d-flex gap-3` row
+* Description displayed using `white-space: pre-line` to preserve paragraphs
+* Entire content optionally wrapped in `bg-light border rounded p-4` card style
+
+### Forms (New / Edit)
+
+* Forms use Bootstrap `form-control`, `form-label`, and spacing classes
+* Description textarea uses `rows="15"` for better visibility
+* Submit and Cancel buttons grouped using `d-flex gap-2 mt-4`
+* Form does not stretch full-width due to container wrapper
+
+---
+
+## Final Touches
+
+* Hero section added to homepage with Unsplash image and proper attribution
+* Navigation buttons centered and cleanly grouped
+* All views use `partials/header` and `partials/footer` for consistency
+* Layout fully responsive across screen sizes using Bootstrap defaults
+
+---
+
+## Manual Testing Checklist
+
+* Add new meme from `/memes/new`
+* View all memes via `/memes`
+* View individual meme via `/memes/:id`
+* Edit meme via `/memes/:id/edit`
+* Cancel from Edit returns without changes
+* Delete meme via `/memes/:id`
+* After delete, success message appears
+
+---
+
+## Future Improvements
+
+* Undo delete feature (requires soft delete or flash logic)
+* Session-based flash messages instead of query strings
+* Dynamic sort/filter/search in index view
+* File upload support for custom meme images
+
+---
 
 ## Attributions
 
-[Water.css](https://github.com/kognise/water.css) [Water.css Docs](https://watercss.kognise.dev/#installation)
+Hero image courtesy of [WACA](https://www.waca.or.jp/en/growthhacking/kithow-many-types-of-meme/)
+Meme Images and Descriptions courtesy of: 
+- [Giphy](https://giphy.com)
+- [Tenor](htttps://tenor.com)
+- [Know Your Meme](https://knowyourmeme.com/)
+CSS courtesy of [Bootstrap](https://getbootstrap.com/)
 
+---
+
+## Future Improvements:
+
+[] Undo Delete Functionality
+[] User Auth (login/logout)
+[] Tagging/Comments/Ratings
+[] Dark mode UI option

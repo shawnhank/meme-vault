@@ -1,0 +1,7 @@
+/* for overrides of bootstrap css if needed */
+
+.navbar-brand:hover,
+.nav-link:hover {
+  text-decoration: underline !important;
+  text-decoration-color: #0d6efd !important; /* Bootstrap's primary blue */
+}
