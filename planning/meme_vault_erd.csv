@@ -1,0 +1,35 @@
+Entity,Field,Type
+User,username,string
+User,email,string
+User,passwordHash,string
+User,createdAt,Date
+User,updatedAt,Date
+Meme,title,string
+Meme,imageUrl,string
+Meme,caption,string
+Meme,rating,number
+Meme,notes,string
+Meme,isDraft,boolean
+Meme,user,ObjectId → User
+Meme,createdAt,Date
+Meme,updatedAt,Date
+Comment,content,string
+Comment,rating,number
+Comment,meme,ObjectId → Meme
+Comment,user,ObjectId → User
+Comment,createdAt,Date
+Comment,updatedAt,Date
+Rating,value,number
+Rating,meme,ObjectId → Meme
+Rating,user,ObjectId → User
+Rating,createdAt,Date
+Favorite,meme,ObjectId → Meme
+Favorite,user,ObjectId → User
+Favorite,createdAt,Date
+Tag,name,string
+Tag,createdAt,Date
+Tag,updatedAt,Date
+Community,name,string
+Community,description,string
+Community,createdAt,Date
+Community,updatedAt,Date
