@@ -1,0 +1,34 @@
+<!-- Include the site-wide header (logo, nav, etc) -->
+<%- include('../partials/header') %>
+
+<!-- Page title -->
+<h1>Sign In</h1>
+
+<!-- Show error message from flash if it exists -->
+<% if (locals.error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+<!-- Show success message from flash if it exists -->
+<% if (locals.success) { %>
+  <p class="success"><%= success %></p>
+<% } %>
+
+<!-- Login form -->
+<form action="/login" method="POST">
+  
+  <!-- Email input field -->
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" required>
+
+  <!-- Password input field -->
+  <label for="password">Password:</label>
+  <input type="password" name="password" id="password" required>
+
+  <!-- Submit button -->
+  <button type="submit">Log In</button>
+
+</form>
+
+<!-- site-wide footer (scripts, links, etc) -->
+<%- include('../partials/footer') %>
