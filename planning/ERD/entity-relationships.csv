@@ -1,0 +1,18 @@
+Source Entity,Destination Entity,Source Arrow,Destination Arrow
+Meme,TagAssignment,CFN ERD One Arrow,CFN ERD Many Arrow
+User,TagAssignment,CFN ERD One Arrow,CFN ERD Many Arrow
+Meme,User,CFN ERD One Arrow,CFN ERD Many Arrow
+Comment,User,CFN ERD One Arrow,CFN ERD Many Arrow
+Comment,Meme,CFN ERD One Arrow,CFN ERD Many Arrow
+Rating,User,CFN ERD One Arrow,CFN ERD Many Arrow
+Rating,Meme,CFN ERD One Arrow,CFN ERD Many Arrow
+Favorite,User,CFN ERD One Arrow,CFN ERD Many Arrow
+Membership,User,CFN ERD One Arrow,CFN ERD Many Arrow
+Comment,Meme,CFN ERD One Arrow,CFN ERD Many Arrow
+Meme Vault ERD,Meme Vault ERD,None,None
+Comment,Comment,CFN ERD Many Arrow,CFN ERD One Arrow
+Notifications,User,CFN ERD Many Arrow,CFN ERD One Arrow
+Notifications,User,CFN ERD One Arrow,CFN ERD Many Arrow
+Notifications,Meme,CFN ERD One Arrow,CFN ERD Many Arrow
+Notifications,Comment,CFN ERD One Arrow,CFN ERD Many Arrow
+,,,
