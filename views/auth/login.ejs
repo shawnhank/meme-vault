@@ -4,15 +4,7 @@
 <!-- Page title -->
 <h1>Sign In</h1>
 
-<!-- Show error message from flash if it exists -->
-<% if (locals.error) { %>
-  <p class="error"><%= error %></p>
-<% } %>
-
-<!-- Show success message from flash if it exists -->
-<% if (locals.success) { %>
-  <p class="success"><%= success %></p>
-<% } %>
+<%- include('../partials/flash') %>
 
 <!-- Login form -->
 <form action="/login" method="POST">

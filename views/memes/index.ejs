@@ -1,10 +1,9 @@
 <%- include('../partials/header') %>
 
+<%- include('../partials/flash') %>
+
 <h1>All Memes</h1>
-  <!-- delete successful message appears above meme list if delete action is completed. -->
-  <% if (typeof query !== 'undefined' && query.deleted === 'true') { %>
-      <div class="alert alert-success">Meme deleted successfully.</div>
-  <% } %>
+
 <ul class="list-group">
   <% memes.forEach(function(meme) { %>
     <li class="list-group-item">
