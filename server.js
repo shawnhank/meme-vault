@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session'); // store session data server-side
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const Meme = require('./models/meme');
@@ -9,8 +10,6 @@ const memeRoutes = require('./routes/memes');
 
 // create app listening port
 const port = process.env.PORT || 3000;
-
-
 
 // create express app
 const app = express();
@@ -28,11 +27,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
-// flash messaging middlware
+
+// Configure express-session
+// middleware provides cookie-based session store
+// comes before connect-flash so flash can use the session
+app.use(session({
+  // Secret string used to sign the session ID cookie
+  secret: process.env.SESSION_SECRET || 'memevaultsupersecret',
+
+  // resave: false = don't save session if nothing has changed
+  resave: false,
+
+  // saveUninitialized: false = don't create session until something is stored in it
+  saveUninitialized: false
+}));
+
+// Enable flash messaging (requires session to work)
+// Allows you to use req.flash('key', 'message') and store temporary messages
 app.use(flash());
+
+// Middleware to pass flash messages to all views
+// res.locals = data available to all EJS templates automatically
+// These get rendered by <%= success %> or <%= error %> in the views
 app.use((req, res, next) => {
-  res.locals.success = req.flash('success');
-  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');  // e.g. "Logged in successfully"
+  res.locals.error = req.flash('error');      // e.g. "Invalid password"
   next();
 });
 
