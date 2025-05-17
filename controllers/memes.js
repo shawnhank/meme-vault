@@ -37,8 +37,9 @@ async function update(req, res) {
 
 // DELETE /memes/:id → Remove a meme from the database
 async function destroy(req, res) {
-  await Meme.findByIdAndDelete(req.params.id);            // Delete the meme by ID
-  res.redirect('/memes?deleted=true');                    // Redirect back to index
+  await Meme.findByIdAndDelete(req.params.id);            // Delete meme by ID
+  req.flash('success', 'Meme deleted successfully.');     // Flash success message for feedback
+  res.redirect('/memes');                                 // Redirect back to index without query string
 }
 
 // Export all controller functions so routes can use them
