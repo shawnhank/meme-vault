@@ -1,0 +1,14 @@
+<!-- 
+  flash.ejs partial renders success or error messages from req.flash()
+  These messages are stored in res.locals.success and res.locals.error
+-->
+
+<!-- If a success message exists, display the first one -->
+<% if (success && success.length) { %>
+  <div class="flash success"><%= success[0] %></div>
+<% } %>
+
+<!-- If an error message exists, display the first one -->
+<% if (error && error.length) { %>
+  <div class="flash error"><%= error[0] %></div>
+<% } %>
