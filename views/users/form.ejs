@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>  <!-- Site-wide header -->
+
+<h1><%= isNew ? 'Create Account' : 'Edit Your Profile' %></h1>
+
+<!-- Show flash error message if exists -->
+<% if (error && error.length) { %>
+  <div class="flash error"><%= error[0] %></div>
+<% } %>
+
+<form action="<%= isNew ? '/register' : `/users/${user._id}?_method=PUT` %>" method="POST">
+  <!-- Public display name (username) -->
+  <label for="name">User Name *</label>
+  <input type="text" name="name" id="name" required value="<%= user?.name || '' %>">
+
+  <!-- Email address -->
+  <label for="email">Email Address *</label>
+  <input type="email" name="email" id="email" required value="<%= user?.email || '' %>">
+
+  
+  <% if (isNew) { %>
+    <!-- Password -->
+    <label for="password">Password *</label>
+    <input type="password" name="password" id="password" required>
+
+    <!-- Confirm Password -->
+    <label for="confirm">Confirm Password *</label>
+    <input type="password" name="confirm" id="confirm" required>
+  <% } %>
+    
+  <!-- Bio -->
+  <label for="bio">Bio</label>
+  <textarea name="bio" id="bio" rows="4"><%= user?.bio || '' %></textarea>
+
+  <!-- Social Links -->
+  <label for="instagram">Instagram URL</label>
+  <input type="url" name="instagram" id="instagram" value="<%= user?.social?.instagram || '' %>">
+
+  <label for="twitter">Twitter URL</label>
+  <input type="url" name="twitter" id="twitter" value="<%= user?.social?.twitter || '' %>">
+
+  <label for="facebook">Facebook URL</label>
+  <input type="url" name="facebook" id="facebook" value="<%= user?.social?.facebook || '' %>">
+
+  <label for="linkedin">LinkedIn URL</label>
+  <input type="url" name="linkedin" id="linkedin" value="<%= user?.social?.linkedin || '' %>">
+
+  <button type="submit">Create Account</button>
+</form>
+
+<%- include('../partials/footer') %>  <!-- Site-wide footer -->
