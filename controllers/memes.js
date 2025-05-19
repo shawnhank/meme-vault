@@ -11,11 +11,30 @@ function newForm(req, res) {
   res.render('memes/new');      // show the empty form to populate on new
 }
 
-// POST /memes → Handle submission of new meme
+
+// POST /memes → create new meme and save owner/creator info
 async function create(req, res) {
-  await Meme.create(req.body);      // Create a new meme using the form data
-  res.redirect('/memes');           // Redirect to index page after creation
+  try {
+    const user = req.session.user; // ✅ Get user from session
+
+    // Create a new meme using form data and user ID
+    await Meme.create({           // Create a new meme using the form data
+      name: req.body.name,
+      description: req.body.description,
+      image: req.body.image,
+      createdBy: user._id
+    });
+
+    req.flash('success', 'Meme created successfully.');
+    res.redirect('/memes');
+  } catch (err) {
+    console.log(err);
+    req.flash('error', 'Failed to create meme.');
+    res.redirect('/memes/new');   // Redirect to index page after creation
+  }
 }
+
+
 
 // GET /memes/:id → Show details of a single meme
 async function show(req, res) {
