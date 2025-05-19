@@ -3,6 +3,13 @@
 <!-- Show the user name profile -->
 <h1><%= user.name %>'s Profile</h1>
 
+<!-- Show "Edit Profile" button only if the signed-in visitor is
+ viewing their own profile (ownership check) -->
+
+<% if (user && currentUser && user._id.toString() === currentUser._id.toString()) { %>
+  <a href="/users/<%= user._id %>/edit" class="btn">Edit Profile</a>
+<% } %>
+
 <!-- Heading for the selected user profile -->
 <h2>Memes by <%= user.name %></h2>
 
