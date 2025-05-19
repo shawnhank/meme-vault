@@ -46,33 +46,55 @@ async function login(req, res) {
 // Handle registration POST request
 async function register(req, res) {
   try {
-    // Extract all expected fields from the form
-    const { name, email, password, confirm } = req.body;
+    // Extract all form inputs submitted from the registration page
+    const {
+      name,
+      email,
+      password,
+      confirm,
+      bio,
+      instagram,
+      twitter,
+      facebook,
+      linkedin
+    } = req.body;
 
-    // Validate required fields
+    // Check for required fields: name, email, password, confirm
     if (!name || !email || !password || !confirm) {
-      req.flash('error', 'All fields are required.');
+      req.flash('error', 'All fields marked with * are required.');
       return res.redirect('/register');
     }
 
-    // Validate password match
+    // Confirm that password and confirmation match
     if (password !== confirm) {
       req.flash('error', 'Passwords do not match.');
       return res.redirect('/register');
     }
 
-    // Create new user in the database (bcrypt hooks will hash password)
-    const user = await User.create({ name, email, password });
+    // Create a new user in the database using submitted fields
+    const user = await User.create({
+      name,
+      email,
+      password,
+      bio,
+      social: {
+        instagram,
+        twitter,
+        facebook,
+        linkedin
+      }
+    });
 
-    // Log the user in after creation
+    // Log the user in by saving their full user object in the session
     req.session.user = user;
 
-    // Flash success and redirect
+    // Flash success message and redirect to homepage
     req.flash('success', 'Account created successfully. You are now logged in.');
     res.redirect('/');
   } catch (err) {
+    // Log any database or validation errors and show generic message
     console.log(err);
-    req.flash('error', 'Registration failed. Try again.');
+    req.flash('error', 'Registration failed. Please try again.');
     res.redirect('/register');
   }
 }
