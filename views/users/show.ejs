@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+
+<!-- Show the user name profile -->
+<h1><%= user.name %>'s Profile</h1>
+
+<!-- Heading for the selected user profile -->
+<h2>Memes by <%= user.name %></h2>
+
+<ul>
+  <% memes.forEach(function(meme) { %>  <!-- Loop through all memes created by this user -->
+    <li>
+      <!-- Link to the individual meme's show page -->
+      <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>  <!-- Include site-wide footer -->
