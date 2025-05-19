@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>  <!-- Include the site-wide header -->
+
+<h1>Community</h1>
+
+<!-- Heading for the list of users -->
+<h2>All Users</h2>
+
+<ul>
+  <% users.forEach(function(user) { %>  <!-- Loop through each user -->
+    <li>
+      <!-- Link to this user's profile page -->
+      <a href="/users/<%= user._id %>"><%= user.name %></a>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>  <!-- Include the site-wide footer -->

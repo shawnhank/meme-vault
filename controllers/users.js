@@ -21,4 +21,22 @@ async function showProfile(req, res) {
   }
 }
 
-module.exports = { showProfile };
+// GET /community → Show list of all users
+async function listUsers(req, res) {
+  try {
+    // Get all users from the database
+    const users = await User.find();
+
+    // Render the community view and pass all users
+    res.render('users/community', { users });
+  } catch (err) {
+    console.log(err);
+    req.flash('error', 'Could not load user list.');
+    res.redirect('/');
+  }
+}
+
+module.exports = {
+  showProfile,
+  listUsers,
+};
