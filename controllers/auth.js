@@ -46,24 +46,32 @@ async function login(req, res) {
 // Handle registration POST request
 async function register(req, res) {
   try {
-    // Pull email and password from submitted form
-    const { email, password } = req.body;
+    // Extract all expected fields from the form
+    const { name, email, password, confirm } = req.body;
 
-    // Create new user in the database
-    const user = await User.create({ email, password });
+    // Validate required fields
+    if (!name || !email || !password || !confirm) {
+      req.flash('error', 'All fields are required.');
+      return res.redirect('/register');
+    }
 
-    // Save the full user object in the session
+    // Validate password match
+    if (password !== confirm) {
+      req.flash('error', 'Passwords do not match.');
+      return res.redirect('/register');
+    }
+
+    // Create new user in the database (bcrypt hooks will hash password)
+    const user = await User.create({ name, email, password });
+
+    // Log the user in after creation
     req.session.user = user;
 
-    // Flash a message confirming account creation
+    // Flash success and redirect
     req.flash('success', 'Account created successfully. You are now logged in.');
-
-    // Redirect to homepage
     res.redirect('/');
   } catch (err) {
     console.log(err);
-
-    // Flash a generic error message
     req.flash('error', 'Registration failed. Try again.');
     res.redirect('/register');
   }
