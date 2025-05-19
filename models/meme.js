@@ -9,11 +9,19 @@ const memeSchema = new mongoose.Schema({
   description: { type: String, required: true },
 
   // Image URL — optional (not required)
-  image: String
+  image: String,
+  
+  // User who created the meme
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 });
 
 // Create Meme model from the schema to access Meme.create(), Meme.find(), etc.
 const Meme = mongoose.model('Meme', memeSchema);
+
 
 // Export the model so it can be used in controllers/routes
 module.exports = Meme;
