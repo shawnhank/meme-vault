@@ -36,13 +36,28 @@ async function listUsers(req, res) {
   }
 }
 
-// GET /users/new → Show the new user creation form
-function showNewUserForm(req, res) {
-  res.render('users/form', { user: null, isNew: true });
+// GET /users/:id/edit → Show the profile edit form
+async function editProfileForm(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+
+    // Only allow if logged-in user is the profile owner
+    if (!user || !req.session.user || user._id.toString() !== req.session.user._id.toString()) {
+      req.flash('error', 'Not authorized.');
+      return res.redirect('/');
+    }
+
+    // Render form view with pre-filled user info
+    res.render('users/form', { user, isNew: false });
+  } catch (err) {
+    console.log(err);
+    req.flash('error', 'Failed to load edit form.');
+    res.redirect('/');
+  }
 }
 
 module.exports = {
   showProfile,
   listUsers,
-  showNewUserForm
+  editProfileForm
 };
