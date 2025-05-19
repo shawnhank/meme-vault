@@ -2,6 +2,10 @@ const express = require('express');                   // Import express library 
 const router = express.Router();                      // new router instance for auth-related routes
 const authCtrl = require('../controllers/auth');      // Import controller that has the login logic
 
+router.get('/register', authCtrl.showRegisterForm);   // GET /register → Show user sign-up form
+
+router.post('/register', authCtrl.register);          // POST /register → Handle registration form submission
+
 router.get('/login', authCtrl.showLoginForm);         // Route to show login form (GET /login)
 
 router.post('/login', authCtrl.login);                // Route to handle login form submission (POST /login)

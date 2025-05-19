@@ -99,10 +99,15 @@ async function register(req, res) {
   }
 }
 
+// Show the registration form view
+function showRegisterForm(req, res) {
+  res.render('auth/register');  // Render the signup form
+}
 
 // Export controller functions used in auth routes
 module.exports = {
   showLoginForm,
   login,
   register,
+  showRegisterForm,
 };
