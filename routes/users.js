@@ -8,6 +8,9 @@ router.get('/community', usersCtrl.listUsers);      // List all users with links
 // GET /users/:id/edit → Show profile edit form
 router.get('/:id/edit', usersCtrl.editProfileForm);
 
+// PUT /users/:id → Save profile edits
+router.put('/:id', usersCtrl.updateProfile);
+
 // GET /users/:id → Show a single user's profile and their memes
 router.get('/:id', usersCtrl.showProfile);          // Load selected user + their memes
 

@@ -56,8 +56,41 @@ async function editProfileForm(req, res) {
   }
 }
 
+// PUT /users/:id → Update profile info
+async function updateProfile(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+
+    // Ownership check
+    if (!user || !req.session.user || user._id.toString() !== req.session.user._id.toString()) {
+      req.flash('error', 'Not authorized.');
+      return res.redirect('/');
+    }
+
+    // Update editable fields
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.bio = req.body.bio;
+    user.social = {
+      instagram: req.body.instagram,
+      twitter: req.body.twitter,
+      facebook: req.body.facebook,
+      linkedin: req.body.linkedin
+    };
+
+    await user.save();
+    req.flash('success', 'Profile updated successfully.');
+    res.redirect(`/users/${user._id}`);
+  } catch (err) {
+    console.log(err);
+    req.flash('error', 'Profile update failed.');
+    res.redirect(`/users/${req.params.id}/edit`);
+  }
+}
+
 module.exports = {
   showProfile,
   listUsers,
-  editProfileForm
+  editProfileForm,
+  updateProfile
 };
