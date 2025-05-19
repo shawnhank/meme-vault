@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt');     // Bcrypt hashes passwords securely
 
 // Define the schema for a User
 const userSchema = new mongoose.Schema({
+  // Full name of the user
+  name: { type: String, required: true },
   // Email must be provided and must be unique in the database
   email: { type: String, required: true, unique: true },
-
   // Complex Password must be provided (will be validated to ensure it meets minimum requirements)
   password: {
     type: String,
@@ -19,6 +20,14 @@ const userSchema = new mongoose.Schema({
       message: 'Password must be at least 8 characters and include at least one letter and one number.'
     }
   },
+  // User bio (optional)
+  bio: { type: String },
+  social: {                                       // Social links
+  instagram: String,
+  twitter: String,
+  facebook: String,
+  linkedin: String
+  }
 });
 
 // Middleware hashes password before saving to database
