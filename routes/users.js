@@ -11,6 +11,9 @@ router.get('/:id/edit', usersCtrl.editProfileForm);
 // PUT /users/:id → Save profile edits
 router.put('/:id', usersCtrl.updateProfile);
 
+// GET /users/:id/change-password → Show change password form
+router.get('/:id/change-password', usersCtrl.showChangePasswordForm);
+
 // GET /users/:id → Show a single user's profile and their memes
 router.get('/:id', usersCtrl.showProfile);          // Load selected user + their memes
 
