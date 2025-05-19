@@ -36,7 +36,13 @@ async function listUsers(req, res) {
   }
 }
 
+// GET /users/new → Show the new user creation form
+function showNewUserForm(req, res) {
+  res.render('users/form', { user: null, isNew: true });
+}
+
 module.exports = {
   showProfile,
   listUsers,
+  showNewUserForm
 };
