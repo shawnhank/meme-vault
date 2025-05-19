@@ -13,7 +13,7 @@ async function isOwner(req, res, next) {
     }
 
     // Check if the logged-in user is the one who created the meme
-    if (!meme.createdBy.equals(req.session.user._id)) {
+    if (!meme.createdBy.equals(user._id)) {
       req.flash('error', 'Not authorized.');
       return res.redirect('/memes');  //redirect to the memes index (/memes)
     }
