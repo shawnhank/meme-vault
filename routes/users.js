@@ -14,6 +14,9 @@ router.put('/:id', usersCtrl.updateProfile);
 // GET /users/:id/change-password → Show change password form
 router.get('/:id/change-password', usersCtrl.showChangePasswordForm);
 
+// PUT /users/:id/change-password → Handle password update
+router.put('/:id/change-password', usersCtrl.updatePassword);
+
 // GET /users/:id → Show a single user's profile and their memes
 router.get('/:id', usersCtrl.showProfile);          // Load selected user + their memes
 

@@ -110,10 +110,44 @@ async function showChangePasswordForm(req, res) {
   }
 }
 
+// PUT /users/:id/change-password → Save new password
+async function updatePassword(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+
+    // Ownership check
+    if (!user || !req.session.user || user._id.toString() !== req.session.user._id.toString()) {
+      req.flash('error', 'Not authorized.');
+      return res.redirect('/');
+    }
+
+    const { password, confirm } = req.body;
+
+    // Validate password match
+    if (!password || !confirm || password !== confirm) {
+      req.flash('error', 'Passwords do not match.');
+      return res.redirect(`/users/${user._id}/change-password`);
+    }
+
+    // Update and hash via schema .pre('save')
+    user.password = password;
+    await user.save();
+
+    req.flash('success', 'Password updated successfully.');
+    res.redirect(`/users/${user._id}`);
+  } catch (err) {
+    console.log(err);
+    req.flash('error', 'Failed to update password.');
+    res.redirect(`/users/${req.params.id}/change-password`);
+  }
+}
+
+
 module.exports = {
   showProfile,
   listUsers,
   editProfileForm,
   updateProfile,
-  showChangePasswordForm
+  showChangePasswordForm,
+  updatePassword
 };
