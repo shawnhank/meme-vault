@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>  <!-- Site-wide header -->
+
+<h1>Sign Up</h1>
+
+<!-- Show flash error message if exists -->
+<% if (error && error.length) { %>
+  <div class="flash error"><%= error[0] %></div>
+<% } %>
+
+<form action="/register" method="POST">
+  <!-- Public display name (username) -->
+  <label for="name">User Name *</label>
+  <input type="text" name="name" id="name" required>
+
+  <!-- Email address -->
+  <label for="email">Email Address *</label>
+  <input type="email" name="email" id="email" required>
+
+  <!-- Password -->
+  <label for="password">Password *</label>
+  <input type="password" name="password" id="password" required>
+
+  <!-- Confirm Password -->
+  <label for="confirm">Confirm Password *</label>
+  <input type="password" name="confirm" id="confirm" required>
+
+  <!-- Bio -->
+  <label for="bio">Bio</label>
+  <textarea name="bio" id="bio" rows="4"></textarea>
+
+  <!-- Social Links -->
+  <label for="instagram">Instagram URL</label>
+  <input type="url" name="instagram" id="instagram">
+
+  <label for="twitter">Twitter URL</label>
+  <input type="url" name="twitter" id="twitter">
+
+  <label for="facebook">Facebook URL</label>
+  <input type="url" name="facebook" id="facebook">
+
+  <label for="linkedin">LinkedIn URL</label>
+  <input type="url" name="linkedin" id="linkedin">
+
+  <button type="submit">Create Account</button>
+</form>
+
+<%- include('../partials/footer') %>  <!-- Site-wide footer -->
