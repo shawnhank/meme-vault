@@ -94,8 +94,15 @@ async function register(req, res) {
   } catch (err) {
     // Log any database or validation errors and show generic message
     console.log(err);
-    req.flash('error', 'Registration failed. Please try again.');
-    res.redirect('/register');
+    // If it's a Mongoose validation error (like password rules)
+    if (err.name === 'ValidationError') {
+      req.flash('error', err.message);
+    } else if (err.code === 11000) {
+      req.flash('error', 'A user with that email already exists.');
+    } else {
+      req.flash('error', 'Unexpected error during registration.');
+    }
+  res.redirect('/register');
   }
 }
 

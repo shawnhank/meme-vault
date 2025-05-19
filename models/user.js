@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
     validate: {
       validator: function (value) {   // pw validator function
         // Must be at least 8 characters, include one letter and one number #regexFTW
-        return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value);
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(value);
       },
-      message: 'Password must be at least 8 characters and include at least one letter and one number.'
+      message: 'Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character.'
     }
   },
   // User bio (optional)
