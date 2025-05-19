@@ -88,9 +88,32 @@ async function updateProfile(req, res) {
   }
 }
 
+// GET /users/:id/change-password → Show the change password form
+async function showChangePasswordForm(req, res) {
+  try {
+    // Find the user by their ID from the route
+    const user = await User.findById(req.params.id);
+
+    // Allow access only if the logged-in user matches the target user
+    if (!user || !req.session.user || user._id.toString() !== req.session.user._id.toString()) {
+      req.flash('error', 'Not authorized.');
+      return res.redirect('/');
+    }
+
+    // Render the password change form view
+    res.render('users/change-password', { user });
+  } catch (err) {
+    // If an error occurs, log it and flash a user-friendly message
+    console.log(err);
+    req.flash('error', 'Could not load password form.');
+    res.redirect('/');
+  }
+}
+
 module.exports = {
   showProfile,
   listUsers,
   editProfileForm,
-  updateProfile
+  updateProfile,
+  showChangePasswordForm
 };
