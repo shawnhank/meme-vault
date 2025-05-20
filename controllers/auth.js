@@ -65,24 +65,33 @@ async function register(req, res) {
       return res.redirect('/register');
     }
 
-    // Confirm that password and confirmation match
+    // Step 1: check if username is taken
+    const existingName = await User.findOne({ name });
+    if (existingName) {
+      req.flash('error', 'Username is already taken.');
+      return res.redirect('/register');
+    }
+
+    // Step 2: check if email is already registered
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      req.flash('error', 'Email is already registered.');
+      return res.redirect('/register');
+    }
+
+    // Step 3: confirm password matches
     if (password !== confirm) {
       req.flash('error', 'Passwords do not match.');
       return res.redirect('/register');
     }
 
-    // Create a new user in the database using submitted fields
+    // Step 4: create user (schema will validate password)
     const user = await User.create({
       name,
       email,
       password,
       bio,
-      social: {
-        instagram,
-        twitter,
-        facebook,
-        linkedin
-      }
+      social: { instagram, twitter, facebook, linkedin }
     });
 
     // Log the user in by saving their full user object in the session
