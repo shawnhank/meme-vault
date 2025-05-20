@@ -3,7 +3,7 @@ const Meme = require('../models/meme');     // Import the Meme model
 // GET /memes → Index view (list all memes)
 async function index(req, res) {
   const memes = await Meme.find();      // Fetch all memes from the database
-  res.render('memes/index', { memes, query: req.query }); // Render the meme index view
+  res.render('memes/index', { memes, mine: false, query: req.query }); // Render the meme index view
 }
 
 async function myMemes(req, res) { // get all user owned memes
