@@ -1,0 +1,33 @@
+  <div class="mb-3">
+    <label for="name" class="form-label">Meme Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      value="<%= meme ? meme.name : '' %>"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea
+      class="form-control"
+      id="description"
+      name="description"
+      rows="15"
+      required
+    ><%= meme ? meme.description : '' %></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Image URL</label>
+    <input
+      type="text"
+      class="form-control"
+      id="image"
+      name="image"
+      value="<%= meme ? meme.image : '' %>"
+    />
+  </div>

@@ -4,20 +4,7 @@
 <h1 class="mb-4">Add a Meme</h1>
 
 <form action="/memes" method="POST" class="mb-5">
-  <div class="mb-3">
-    <label for="name" class="form-label">Meme Name</label>
-    <input type="text" class="form-control" id="name" name="name" required />
-  </div>
-
-  <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <textarea class="form-control" id="description" name="description" rows="15" required></textarea>
-  </div>
-
-  <div class="mb-3">
-    <label for="image" class="form-label">Image URL</label>
-    <input type="text" class="form-control" id="image" name="image" />
-  </div>
+  <%- include('memes/_form') %>
 
   <div class="d-flex gap-2 mt-4">
     <button type="submit" class="btn btn-primary">Add Meme</button>
