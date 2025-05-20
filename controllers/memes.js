@@ -8,9 +8,15 @@ async function index(req, res) {
 
 // GET /memes/new → Show form to create a new meme
 function newForm(req, res) {
-  res.render('memes/new');      // show the empty form to populate on new
-}
+  // If user is not logged in, redirect to register with a message
+  if (!req.session.user) {
+    req.flash('error', 'Please sign up / create an account to add memes.');
+    return res.redirect('/register');
+  }
 
+  // Otherwise render the meme creation form
+  res.render('memes/new');   // show the empty form to populate on new
+}
 
 // POST /memes → create new meme and save owner/creator info
 async function create(req, res) {
