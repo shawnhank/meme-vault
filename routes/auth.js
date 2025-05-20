@@ -10,14 +10,16 @@ router.get('/login', authCtrl.showLoginForm); // Route to show login form (GET /
 
 router.post('/login', authCtrl.login); // Route to handle login form submission (POST /login)
 
-// GET /logout → Clear session and log the user out
+// POST /logout → Clear session and log the user out
 router.post('/logout', (req, res) => {
-  // Flash success message after logout
-  req.flash('success', 'You have been logged out.');
+  // Flash success message BEFORE destroy (session-safe workaround)
+  console.log('flash set BEFORE destroy: You have been logged out.');
+
   // Destroy the current session
   req.session.destroy(() => {
-    // Redirect back to the homepage
-    res.redirect('/');
+    console.log('session destroyed.');
+    // Redirect back to the homepage with logout status in query string
+    res.redirect('/?loggedOut=true');
   });
 });
 
