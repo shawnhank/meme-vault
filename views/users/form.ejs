@@ -1,52 +1,68 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
 <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
-<h1><%= isNew ? 'Create Account' : 'Edit Your Profile' %></h1>
+<div class="container mt-4" style="max-width: 800px;">
+  <h1 class="mb-4"><%= isNew ? 'Create Account' : 'Edit Your Profile' %></h1>
 
+  <form action="<%= isNew ? '/register' : `/users/${user._id}?_method=PUT` %>" method="POST">
 
-<form action="<%= isNew ? '/register' : `/users/${user._id}?_method=PUT` %>" method="POST">
-  <!-- Public display name (username) -->
-  <label for="name">User Name *</label>
-  <input type="text" name="name" id="name" required value="<%= user?.name || '' %>">
+    <!-- Public display name (username) -->
+    <div class="mb-3">
+      <label for="name" class="form-label">User Name *</label>
+      <input type="text" name="name" id="name" required class="form-control" value="<%= user?.name || '' %>">
+    </div>
 
-  <!-- Email address -->
-  <label for="email">Email Address *</label>
-  <input type="email" name="email" id="email" required value="<%= user?.email || '' %>">
+    <!-- Email address -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address *</label>
+      <input type="email" name="email" id="email" required class="form-control" value="<%= user?.email || '' %>">
+    </div>
 
-  
-  <% if (isNew) { %>
-    <!-- Password -->
-    <label for="password">Password *</label>
-    <input type="password" name="password" id="password" required>
+    <% if (isNew) { %>
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password *</label>
+        <input type="password" name="password" id="password" required class="form-control">
+      </div>
 
-    <!-- Confirm Password -->
-    <label for="confirm">Confirm Password *</label>
-    <input type="password" name="confirm" id="confirm" required>
-  <% } %>
-    
-  <!-- Bio -->
-  <label for="bio">Bio</label>
-  <textarea name="bio" id="bio" rows="4"><%= user?.bio || '' %></textarea>
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label for="confirm" class="form-label">Confirm Password *</label>
+        <input type="password" name="confirm" id="confirm" required class="form-control">
+      </div>
+    <% } %>
 
-  <!-- Social Links -->
-  <label for="instagram">Instagram URL</label>
-  <input type="url" name="instagram" id="instagram" value="<%= user?.social?.instagram || '' %>">
+    <!-- Bio -->
+    <div class="mb-3">
+      <label for="bio" class="form-label">Bio</label>
+      <textarea name="bio" id="bio" rows="4" class="form-control"><%= user?.bio || '' %></textarea>
+    </div>
 
-  <label for="twitter">Twitter URL</label>
-  <input type="url" name="twitter" id="twitter" value="<%= user?.social?.twitter || '' %>">
+    <!-- Social Links -->
+    <div class="mb-3">
+      <label for="instagram" class="form-label">Instagram URL</label>
+      <input type="url" name="instagram" id="instagram" class="form-control" value="<%= user?.social?.instagram || '' %>">
+    </div>
 
-  <label for="facebook">Facebook URL</label>
-  <input type="url" name="facebook" id="facebook" value="<%= user?.social?.facebook || '' %>">
+    <div class="mb-3">
+      <label for="twitter" class="form-label">Twitter URL</label>
+      <input type="url" name="twitter" id="twitter" class="form-control" value="<%= user?.social?.twitter || '' %>">
+    </div>
 
-  <label for="linkedin">LinkedIn URL</label>
-  <input type="url" name="linkedin" id="linkedin" value="<%= user?.social?.linkedin || '' %>">
+    <div class="mb-3">
+      <label for="facebook" class="form-label">Facebook URL</label>
+      <input type="url" name="facebook" id="facebook" class="form-control" value="<%= user?.social?.facebook || '' %>">
+    </div>
 
- <button type="submit"><%= isNew ? 'Create Account' : 'Update Account' %></button>
+    <div class="mb-3">
+      <label for="linkedin" class="form-label">LinkedIn URL</label>
+      <input type="url" name="linkedin" id="linkedin" class="form-control" value="<%= user?.social?.linkedin || '' %>">
+    </div>
 
-<a href="/users/<%= user._id %>">
-  <button type="button">Cancel</button>
-</a>
+    <button type="submit" class="btn btn-primary"><%= isNew ? 'Create Account' : 'Update Account' %></button>
+    <a href="/users/<%= user._id %>" class="btn btn-outline-secondary ms-2">Cancel</a>
 
-</form>
+  </form>
+</div>
 
 <%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
