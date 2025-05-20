@@ -79,6 +79,12 @@ app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
+// Catch-all route (404 handler)
+// This must go AFTER all other routes
+app.use((req, res) => {
+  res.status(404).render('404');
+});
+
 
 // Listen for incoming requests on port 3000
 app.listen(port, () => {
