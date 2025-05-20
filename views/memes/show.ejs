@@ -14,7 +14,9 @@
     <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
   <% } %>
 
-  <a href="/memes" class="btn btn-outline-secondary">Back to All Memes</a>
+  <div class="mt-3">
+    <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
+  </div>
 
   <% if (currentUser && meme.createdBy.equals(currentUser._id)) { %>  <!-- show delete button for logged in user only -->
     <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display: inline;">
