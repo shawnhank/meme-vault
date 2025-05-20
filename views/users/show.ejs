@@ -1,37 +1,66 @@
-<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
-<%- include('../partials/flash') %>   <!-- flash messages -->
+  <%- include('../partials/header') %> <!-- Include site-wide header (nav, title, etc) -->
+  <%- include('../partials/flash') %>  <!-- Show flash success/error messages -->
 
-<!-- Show the user name profile -->
-<h1><%= user.name %>'s Profile</h1>
+  <!-- Main container with consistent max width -->
+  <div class="container mt-4" style="max-width: 900px;">
 
-<% if (user._id.toString() === currentUser._id.toString()) { %>
-  <div>
-    <p><strong>Email:</strong> <%= user.email %></p>
-    <p><strong>Bio:</strong> <%= user.bio || '—' %></p>
-    <p><strong>Instagram:</strong> <%= user.instagram || '—' %></p>
-    <p><strong>Twitter:</strong> <%= user.twitter || '—' %></p>
-    <p><strong>Facebook:</strong> <%= user.facebook || '—' %></p>
-    <p><strong>LinkedIn:</strong> <%= user.linkedin || '—' %></p>
+    <!-- Show username as page title -->
+    <h1 class="mb-4"><%= user.name %>'s Profile</h1>
+
+    <!-- Display user's email -->
+    <div class="mb-3">
+      <strong>Email:</strong>
+      <span><%= user.email %></span>
+    </div>
+
+    <!-- Display user's bio -->
+    <div class="mb-3">
+      <strong>Bio:</strong>
+      <span><%= user.bio || '—' %></span>
+    </div>
+
+    <!-- Display user's Instagram -->
+    <div class="mb-3">
+      <strong>Instagram:</strong>
+      <span><%= user.instagram || '—' %></span>
+    </div>
+
+    <!-- Display user's Twitter -->
+    <div class="mb-3">
+      <strong>Twitter:</strong>
+      <span><%= user.twitter || '—' %></span>
+    </div>
+
+    <!-- Display user's Facebook -->
+    <div class="mb-3">
+      <strong>Facebook:</strong>
+      <span><%= user.facebook || '—' %></span>
+    </div>
+
+    <!-- Display user's LinkedIn -->
+    <div class="mb-3">
+      <strong>LinkedIn:</strong>
+      <span><%= user.linkedin || '—' %></span>
+    </div>
+
+    <!-- Only show Edit Profile button if the current user owns the profile -->
+    <% if (currentUser && currentUser._id.toString() === user._id.toString()) { %>
+      <a href="/users/<%= user._id %>/edit" class="btn btn-primary mb-4">Edit Profile</a>
+    <% } %>
+
+    <!-- Divider -->
+    <hr class="my-4" />
+
+    <!-- Section showing all memes created by this user -->
+    <h3>Memes by <%= user.name %></h3>
+    <ul>
+      <% userMemes.forEach(meme => { %>
+        <li>
+          <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
+        </li>
+      <% }) %>
+    </ul>
+
   </div>
-<% } %>
 
-<!-- Show "Edit Profile" button only if the signed-in user is
- viewing their own profile (ownership check) -->
-
-<% if (user && currentUser && user._id.toString() === currentUser._id.toString()) { %>
-  <a href="/users/<%= user._id %>/edit" class="btn btn-primary">Edit Profile</a>
-<% } %>
-
-<!-- Heading for the selected user profile -->
-<h2>Memes by <%= user.name %></h2>
-
-<ul>
-  <% memes.forEach(function(meme) { %>  <!-- Loop through all memes created by this user -->
-    <li>
-      <!-- Link to the individual meme's show page -->
-      <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
-    </li>
-  <% }) %>
-</ul>
-
-<%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
+  <%- include('../partials/footer') %> <!-- site-wide footer (scripts, links, etc) -->

@@ -1,22 +1,25 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
 <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
-<!-- Page title -->
-<h1>Sign In</h1>
+  <!-- Page title -->
+ <h1 class="mb-4">Sign In</h1>
 
-<!-- Login form -->
-<form action="/login" method="POST">
-  
-  <!-- Email input field -->
-  <label for="email">Email:</label>
-  <input type="email" name="email" id="email" required>
-
-  <!-- Password input field -->
-  <label for="password">Password:</label>
-  <input type="password" name="password" id="password" required>
-
+  <!-- Login form -->
+  <form action="/login" method="POST" class="mb-5">
+    <div style="max-width: 400px;">
+      <!-- Email input field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+      </div>
+      <!-- Password input field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+      </div>
+    </div>
   <!-- Submit button -->
-  <button type="submit">Log In</button>
+  <button type="submit" class="btn btn-primary">Log In</button>
 
 </form>
 
