@@ -1,7 +1,13 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
 <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
-<h1>All Memes</h1>
+<h1>
+  <% if (mine) { %>
+    <%= currentUser.name %>'s Memes
+  <% } else { %>
+    All Memes
+  <% } %>
+</h1>
 
 <ul class="list-group">
   <% memes.forEach(function(meme) { %>

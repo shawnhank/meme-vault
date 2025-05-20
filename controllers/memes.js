@@ -9,7 +9,7 @@ async function index(req, res) {
 async function myMemes(req, res) { // get all user owned memes
   try {
     const memes = await Meme.find({ createdBy: req.session.user._id });
-    res.render('memes/index', { memes });
+    res.render('memes/index', { memes, mine: true });
   } catch (err) {
     console.error(err);
     req.flash('error', 'Could not load your memes.');
