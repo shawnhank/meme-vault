@@ -13,7 +13,7 @@ async function showProfile(req, res) {
     const memes = await Meme.find({ createdBy: user._id });
 
     // Render the profile view with user info + their memes
-    res.render('users/show', { user, memes });
+    res.render('users/show', { user, userMemes: memes });
   } catch (err) {
     console.log(err);
     req.flash('error', 'Could not load user profile.');
