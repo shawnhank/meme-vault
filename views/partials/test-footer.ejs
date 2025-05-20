@@ -1,0 +1,54 @@
+<hr class="mt-5">
+
+<footer class="container py-5">
+  <div class="row">
+
+    <!-- Logo + Address -->
+    <div class="col-md-3 mb-3">
+      <h5>Logo</h5>
+      <p><strong>Address:</strong><br>
+        123 Main Street, City<br>
+        State Province, Country
+      </p>
+      <div class="d-flex gap-3">
+        <a href="#"><i class="https://www.instagram.com/ga.meme.vault"></i></a>
+        <a href="https://www.facebook.com/ga.meme.vault"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/ga-meme-vault/"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <!-- Subscribe -->
+    <div class="col-md-5 mb-3">
+      
+    </div>
+
+    <!-- Navigation -->
+    <div class="col-md-2 mb-3">
+      <h6>Navigation</h6>
+      <ul class="nav flex-column">
+        <li><a href="/" class="nav-link p-0 text-muted">Home</a></li>
+        <li><a href="/memes" class="nav-link p-0 text-muted">All Memes</a></li>
+        <li><a href="/community" class="nav-link p-0 text-muted">Community</a></li>
+      </ul>
+    </div>
+
+    <!-- Users -->
+    <div class="col-md-2 mb-3">
+      <h6>Users</h6>
+      <ul class="nav flex-column">
+        <li><a href="/memes/mine" class="nav-link p-0 text-muted">Your Memes</a></li>
+        <li><a href="/users/<%= currentUser?._id %>" class="nav-link p-0 text-muted">Edit Profile</a></li>
+        <li><a href="/users/<%= currentUser?._id %>/change-password" class="nav-link p-0 text-muted">Change Password</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="d-flex justify-content-between pt-4 mt-4 border-top">
+    <p>&copy; 2025 Meme Vault. All rights reserved.</p>
+    <ul class="list-unstyled d-flex gap-3 mb-0">
+      <li><a class="text-muted" href="#">Privacy Policy</a></li>
+      <li><a class="text-muted" href="#">Terms of Service</a></li>
+    </ul>
+  </div>
+</footer>
