@@ -44,7 +44,12 @@
   <label for="linkedin">LinkedIn URL</label>
   <input type="url" name="linkedin" id="linkedin" value="<%= user?.social?.linkedin || '' %>">
 
-  <button type="submit">Create Account</button>
+ <button type="submit"><%= isNew ? 'Create Account' : 'Update Account' %></button>
+
+<a href="/users/<%= user._id %>">
+  <button type="button">Cancel</button>
+</a>
+
 </form>
 
 <%- include('../partials/footer') %>  <!-- Site-wide footer -->
