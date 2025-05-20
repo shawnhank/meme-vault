@@ -4,11 +4,22 @@
 <!-- Show the user name profile -->
 <h1><%= user.name %>'s Profile</h1>
 
-<!-- Show "Edit Profile" button only if the signed-in visitor is
+<% if (user._id.toString() === currentUser._id.toString()) { %>
+  <div>
+    <p><strong>Email:</strong> <%= user.email %></p>
+    <p><strong>Bio:</strong> <%= user.bio || '—' %></p>
+    <p><strong>Instagram:</strong> <%= user.instagram || '—' %></p>
+    <p><strong>Twitter:</strong> <%= user.twitter || '—' %></p>
+    <p><strong>Facebook:</strong> <%= user.facebook || '—' %></p>
+    <p><strong>LinkedIn:</strong> <%= user.linkedin || '—' %></p>
+  </div>
+<% } %>
+
+<!-- Show "Edit Profile" button only if the signed-in user is
  viewing their own profile (ownership check) -->
 
 <% if (user && currentUser && user._id.toString() === currentUser._id.toString()) { %>
-  <a href="/users/<%= user._id %>/edit" class="btn">Edit Profile</a>
+  <a href="/users/<%= user._id %>/edit" class="btn btn-primary">Edit Profile</a>
 <% } %>
 
 <!-- Heading for the selected user profile -->
