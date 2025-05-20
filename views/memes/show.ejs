@@ -9,18 +9,19 @@
   <img src="<%= meme.image %>" alt="<%= meme.name %>" style="max-height: 300px;">
 <% } %>
 
-<div class="d-flex gap-2">
-  <% if (currentUser && meme.createdBy.equals(currentUser._id)) { %>  <!-- show edit button for logged in user only -->
+<div class="d-flex gap-2 mt-3">
+  <!-- Edit button: only show if a user is logged in AND they created this meme -->
+  <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
     <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
   <% } %>
 
-  <div class="mt-3">
-    <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
-  </div>
+  <!-- Back to All Memes: always visible to everyone -->
+  <a href="/memes" class="btn btn-light">Back to All Memes</a>
 
-  <% if (currentUser && meme.createdBy.equals(currentUser._id)) { %>  <!-- show delete button for logged in user only -->
-    <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display: inline;">
-      <button type="submit" class="btn btn-danger">Delete</button>
+  <!-- Delete button: only show if a user is logged in AND they created this meme -->
+  <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
+    <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display:inline;">
+      <button type="submit" class="btn btn-danger">Delete Meme</button>
     </form>
   <% } %>
 </div>
