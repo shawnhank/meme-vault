@@ -8,39 +8,33 @@
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
+
   <nav class="navbar navbar-expand-sm bg-light px-3 py-2 mb-4">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <!-- Left side nav links -->
+      <!-- Left side links (always visible) -->
       <div class="d-flex gap-3 align-items-center">
         <a class="navbar-brand" href="/">🏠 Home</a>
         <a class="navbar-brand" href="/memes">All Memes</a>
         <a class="navbar-brand" href="/memes/new">Add Meme</a>
+      </div>
 
+      <!-- Right side (changes based on auth state) -->
+      <div class="d-flex gap-3 align-items-center">
         <% if (currentUser) { %>
-          <a class="navbar-brand" href="/users/<%= currentUser._id %>">My Profile</a>
-          <a class="navbar-brand" href="/users/<%= currentUser._id %>/edit">Edit</a>
-          <a class="navbar-brand" href="/users/<%= currentUser._id %>/change-password">Password</a>
+          <a class="navbar-brand" href="/users/<%= currentUser._id %>">View/Edit Profile</a>
           <form action="/logout" method="POST" style="display:inline;">
             <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
           </form>
+          <span class="text-muted small">Signed in as <strong><%= currentUser.name %></strong></span>
         <% } else { %>
           <a class="navbar-brand" href="/login">Log In</a>
           <a class="navbar-brand" href="/register">Register</a>
         <% } %>
       </div>
 
-      <!-- Right side: show user name if signed in -->
-      <% if (currentUser) { %>
-        <div class="text-muted small">
-          Signed in as <strong><%= currentUser.name %></strong>
-        </div>
-      <% } %>
-
     </div>
-  </nav>
-
-  <%- include('../partials/flash') %>
+  </nav>  
 
   <main class="container" style="max-width: 900px;">
 
