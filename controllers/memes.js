@@ -6,6 +6,17 @@ async function index(req, res) {
   res.render('memes/index', { memes, query: req.query }); // Render the meme index view
 }
 
+async function myMemes(req, res) { // get all user owned memes
+  try {
+    const memes = await Meme.find({ createdBy: req.session.user._id });
+    res.render('memes/index', { memes });
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Could not load your memes.');
+    res.redirect('/');
+  }
+}
+
 // GET /memes/new → Show form to create a new meme
 function newForm(req, res) {
   // If user is not logged in, redirect to register with a message
@@ -41,7 +52,6 @@ async function create(req, res) {
 }
 
 
-
 // GET /memes/:id → Show details of a single meme
 async function show(req, res) {
   const meme = await Meme.findById(req.params.id);    // Find meme by its unique ID
@@ -67,13 +77,16 @@ async function destroy(req, res) {
   res.redirect('/memes');                                 // Redirect back to index without query string
 }
 
+
+
 // Export all controller functions so routes can use them
 module.exports = {
   index,
+  myMemes,
   newForm,
   create,
   show,
   editForm,
   update,
-  destroy,
+  destroy
 };

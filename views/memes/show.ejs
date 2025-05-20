@@ -16,7 +16,7 @@
   <% } %>
 
   <!-- Back to All Memes: always visible to everyone -->
-  <a href="/memes" class="btn btn-light">Back to All Memes</a>
+  <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
 
   <!-- Delete button: only show if a user is logged in AND they created this meme -->
   <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>

@@ -6,6 +6,8 @@ const { isLoggedIn } = require('../middleware/auth'); // to prevent a visitor fr
 // Index – GET /memes
 router.get('/', memesCtrl.index);
 
+router.get('/mine', isLoggedIn, memesCtrl.myMemes);
+
 // New – GET /memes/new
 router.get('/new', isLoggedIn, memesCtrl.newForm);
 
