@@ -1,46 +1,64 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
 <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
-<h1>Sign Up</h1>
+<div class="container mt-4" style="max-width: 800px;">
+  <h1 class="mb-4">Sign Up</h1>
 
-<form action="/register" method="POST">
-  <!-- Public display name (username) -->
-  <label for="name">User Name *</label>
-  <input type="text" name="name" id="name" required>
+  <form action="/register" method="POST">
+    <!-- Public display name (username) -->
+    <div class="mb-3">
+      <label for="name" class="form-label">User Name *</label>
+      <input type="text" name="name" id="name" required class="form-control">
+    </div>
 
-  <!-- Email address -->
-  <label for="email">Email Address *</label>
-  <input type="email" name="email" id="email" required>
+    <!-- Email address -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address *</label>
+      <input type="email" name="email" id="email" required class="form-control">
+    </div>
 
-  <!-- Password -->
-  <label for="password">Password *</label>
-  <input type="password" name="password" id="password" required>
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password *</label>
+      <input type="password" name="password" id="password" required class="form-control">
+    </div>
 
-  <!-- Confirm Password -->
-  <label for="confirm">Confirm Password *</label>
-  <input type="password" name="confirm" id="confirm" required>
+    <!-- Confirm Password -->
+    <div class="mb-3">
+      <label for="confirm" class="form-label">Confirm Password *</label>
+      <input type="password" name="confirm" id="confirm" required class="form-control">
+    </div>
 
-  <!-- Bio -->
-  <label for="bio">Bio</label>
-  <textarea name="bio" id="bio" rows="4"></textarea>
+    <!-- Bio -->
+    <div class="mb-3">
+      <label for="bio" class="form-label">Bio</label>
+      <textarea name="bio" id="bio" rows="4" class="form-control"></textarea>
+    </div>
 
-  <!-- Social Links -->
-  <label for="instagram">Instagram URL</label>
-  <input type="url" name="instagram" id="instagram">
+    <!-- Social Links -->
+    <div class="mb-3">
+      <label for="instagram" class="form-label">Instagram URL</label>
+      <input type="url" name="instagram" id="instagram" class="form-control">
+    </div>
 
-  <label for="twitter">Twitter URL</label>
-  <input type="url" name="twitter" id="twitter">
+    <div class="mb-3">
+      <label for="twitter" class="form-label">Twitter URL</label>
+      <input type="url" name="twitter" id="twitter" class="form-control">
+    </div>
 
-  <label for="facebook">Facebook URL</label>
-  <input type="url" name="facebook" id="facebook">
+    <div class="mb-3">
+      <label for="facebook" class="form-label">Facebook URL</label>
+      <input type="url" name="facebook" id="facebook" class="form-control">
+    </div>
 
-  <label for="linkedin">LinkedIn URL</label>
-  <input type="url" name="linkedin" id="linkedin">
+    <div class="mb-3">
+      <label for="linkedin" class="form-label">LinkedIn URL</label>
+      <input type="url" name="linkedin" id="linkedin" class="form-control">
+    </div>
 
-  <div class="d-flex gap-2">
     <button type="submit" class="btn btn-primary">Create Account</button>
-    <a href="/" class="btn btn-secondary">Cancel</a>
-  </div>
-</form>
+    <a href="/" class="btn btn-outline-secondary ms-2">Cancel</a>
+  </form>
+</div>
 
 <%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
