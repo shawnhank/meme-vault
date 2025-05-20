@@ -1,54 +1,69 @@
 <hr class="mt-5">
 
-<footer class="container py-5">
+<footer class="container-fluid px-9 py-5">
   <div class="row">
 
-    <!-- Logo + Address -->
-    <div class="col-md-3 mb-3">
-      <img src="/images/logo3b.png" alt="Meme Vault logo" style="max-width: 100px;">
-      <p><strong>Address:</strong><br>
+    <!-- Logo -->
+    <div class="col-md-4 mb-3">
+      <img src="/images/logo3b.png" alt="Meme Vault logo" style="max-width: 100px; margin-bottom: 16px;">
+      <!-- <p><strong>Address:</strong><br>
         123 Main Street<br>
         Boise, Idaho, USA
-      </p>
-      <div class="d-flex gap-3">
-        <a href="#"><i class="https://www.instagram.com/ga.meme.vault"></i></a>
-        <a href="https://www.facebook.com/ga.meme.vault"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/ga-meme-vault/"><i class="fab fa-linkedin"></i></a>
+      </p> -->
+    </div>
+
+    <!-- Right-aligned container for Social + Nav + Users -->
+    <div class="col-md-8 mb-3 d-flex">
+      <div class="ms-5 d-flex gap-4 w-100 justify-content-end">
+        <!-- Social -->
+        <div>
+          <h6 class="fw-bold text-muted">Social</h6>
+          <div class="d-flex flex-column align-items-center gap-2 mt-2">
+            <a href="https://www.instagram.com/ga.meme.vault" target="_blank" class="text-muted fs-5">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/ga.meme.vault" target="_blank" class="text-muted fs-5">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/ga-meme-vault/" target="_blank" class="text-muted fs-5">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <h6 class="fw-bold text-muted">Navigation</h6>
+          <ul class="nav flex-column">
+            <li class="mb-3"><a href="/" class="text-muted">Home</a></li>
+            <li class="mb-3"><a href="/memes" class="text-muted">All Memes</a></li>
+            <li class="mb-3"><a href="/community" class="text-muted">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Users -->
+        <div>
+          <h6 class="fw-bold text-muted">Users</h6>
+          <ul class="nav flex-column">
+            <li class="mb-3"><a href="/memes/mine" class="text-muted">Your Memes</a></li>
+            <li class="mb-3"><a href="/users/<%= currentUser?._id %>" class="text-muted">Edit Profile</a></li>
+            <li class="mb-3"><a href="/users/<%= currentUser?._id %>/change-password" class="text-muted">Change Password</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <!-- Subscribe -->
-    <div class="col-md-5 mb-3">
-      
-    </div>
-
-    <!-- Navigation -->
-    <div class="col-md-2 mb-3">
-      <h6>Navigation</h6>
-      <ul class="nav flex-column">
-        <li><a href="/" class="nav-link p-0 text-muted">Home</a></li>
-        <li><a href="/memes" class="nav-link p-0 text-muted">All Memes</a></li>
-        <li><a href="/community" class="nav-link p-0 text-muted">Community</a></li>
-      </ul>
-    </div>
-
-    <!-- Users -->
-    <div class="col-md-2 mb-3">
-      <h6>Users</h6>
-      <ul class="nav flex-column">
-        <li><a href="/memes/mine" class="nav-link p-0 text-muted">Your Memes</a></li>
-        <li><a href="/users/<%= currentUser?._id %>" class="nav-link p-0 text-muted">Edit Profile</a></li>
-        <li><a href="/users/<%= currentUser?._id %>/change-password" class="nav-link p-0 text-muted">Change Password</a></li>
-      </ul>
     </div>
 
   </div>
 
   <div class="d-flex justify-content-between pt-4 mt-4 border-top">
-    <p>&copy; 2025 Meme Vault. All rights reserved.</p>
-    <ul class="list-unstyled d-flex gap-3 mb-0">
+    <p>&copy; 2025 Meme Vault. All rights reserved.
+      <a href="https://github.com/your-username/your-repo-name" target="_blank" class="ms-2">
+      View on GitHub
+    </a>
+    </p>
+    <!-- <ul class="list-unstyled d-flex gap-3 mb-0">
       <li><a class="text-muted" href="#">Privacy Policy</a></li>
       <li><a class="text-muted" href="#">Terms of Service</a></li>
-    </ul>
+    </ul> -->
   </div>
 </footer>
