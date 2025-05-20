@@ -5,10 +5,16 @@
 
 <!-- If a success message exists, display the first one -->
 <% if (success && success.length) { %>
-  <div class="flash success"><%= success[0] %></div>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 <% } %>
 
 <!-- If an error message exists, display the first one -->
 <% if (error && error.length) { %>
-  <div class="flash error"><%= error[0] %></div>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 <% } %>
