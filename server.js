@@ -54,6 +54,11 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');  // e.g. "Logged in successfully"
   res.locals.error = req.flash('error');      // e.g. "Invalid password"
+  
+  console.log('flash success:', res.locals.success);
+  console.log('flash error:', res.locals.error);
+  
+  res.locals.currentUser = req.session.user;  // make currentUser available in all views
   next();
 });
 
