@@ -37,7 +37,10 @@
   <label for="linkedin">LinkedIn URL</label>
   <input type="url" name="linkedin" id="linkedin">
 
-  <button type="submit">Create Account</button>
+  <div class="d-flex gap-2">
+    <button type="submit" class="btn btn-primary">Create Account</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
+  </div>
 </form>
 
 <%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
