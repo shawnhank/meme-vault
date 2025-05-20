@@ -9,13 +9,18 @@
   <img src="<%= meme.image %>" alt="<%= meme.name %>" style="max-height: 300px;">
 <% } %>
 
-<div class="d-flex gap-3 mt-4">
-  <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
-  <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
+<div class="d-flex gap-2">
+  <% if (currentUser && meme.createdBy.equals(currentUser._id)) { %>  <!-- show edit button for logged in user only -->
+    <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
+  <% } %>
 
-  <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST">
-    <button type="submit" class="btn btn-danger">Delete</button>
-  </form>
+  <a href="/memes" class="btn btn-outline-secondary">Back to All Memes</a>
+
+  <% if (currentUser && meme.createdBy.equals(currentUser._id)) { %>  <!-- show delete button for logged in user only -->
+    <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display: inline;">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  <% } %>
 </div>
 
 <%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
