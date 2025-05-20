@@ -15,7 +15,7 @@ function newForm(req, res) {
   }
 
   // Otherwise render the meme creation form
-  res.render('memes/new');   // show the empty form to populate on new
+  res.render('memes/new', { meme: {} });   // show the empty form to populate on new & pass empty meme object
 }
 
 // POST /memes → create new meme and save owner/creator info
