@@ -1,11 +1,8 @@
-<%- include('../partials/header') %>  <!-- Site-wide header -->
+<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
 <h1><%= isNew ? 'Create Account' : 'Edit Your Profile' %></h1>
 
-<!-- Show flash error message if exists -->
-<% if (error && error.length) { %>
-  <div class="flash error"><%= error[0] %></div>
-<% } %>
 
 <form action="<%= isNew ? '/register' : `/users/${user._id}?_method=PUT` %>" method="POST">
   <!-- Public display name (username) -->
@@ -52,4 +49,4 @@
 
 </form>
 
-<%- include('../partials/footer') %>  <!-- Site-wide footer -->
+<%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->

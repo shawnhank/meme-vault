@@ -1,8 +1,6 @@
 <!-- views/index.ejs -->
-
-<%- include('partials/header') %>
-
-<%- include('partials/flash') %>
+<%- include('/partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+<%- include('/partials/flash') %>   <!-- Show flash success/error messages -->
 
 <div class="text-center mb-4">
   <h1 class="mt-3">Welcome to the Memes App!</h1>
@@ -11,12 +9,12 @@
     <a href="/memes" class="btn btn-outline-success">Browse Memes</a>
     <a href="/memes/new" class="btn btn-outline-primary">Add a New Meme</a>
   </div>
-  <img src="https://www.waca.or.jp/en/wp-content/uploads/2021/03/Hero-Elf4IhEXUAApPJQ.jpeg" alt="Memes" class="img-fluid rounded" style="max-height: 600px;">
+  <img src="https://www.waca.or.jp/en/wp-content/uploads/2021/03/Hero-Elf4IhEXUAApPJQ.jpeg" alt="Princess Bride Meme Image" class="img-fluid rounded" style="max-height: 600px;">
   <p class="mt-2" style="font-size: 0.9rem;">
     Photo by <a href="https://www.waca.or.jp/en/growthhacking/kithow-many-types-of-meme/">WACA</a>
   </p>
 </div>
 
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
  
 <!-- This is the main page of the Memes app. It provides a welcome message and a brief description of & introduction to the app. --> 

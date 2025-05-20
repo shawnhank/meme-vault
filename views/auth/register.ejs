@@ -1,11 +1,7 @@
-<%- include('../partials/header') %>  <!-- Site-wide header -->
+<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
 <h1>Sign Up</h1>
-
-<!-- Show flash error message if exists -->
-<% if (error && error.length) { %>
-  <div class="flash error"><%= error[0] %></div>
-<% } %>
 
 <form action="/register" method="POST">
   <!-- Public display name (username) -->
@@ -44,4 +40,4 @@
   <button type="submit">Create Account</button>
 </form>
 
-<%- include('../partials/footer') %>  <!-- Site-wide footer -->
+<%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->

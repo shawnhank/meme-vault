@@ -1,8 +1,7 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
 <h1 class="mb-4">Edit Meme</h1>
-
-<%- include('../partials/flash') %>
 
 <form action="/memes/<%= meme._id %>?_method=PUT" method="POST" class="mb-5">
   <div class="mb-3">
@@ -35,8 +34,7 @@
       class="form-control"
       id="image"
       name="image"
-      value="<%= meme.image %>"
-    />
+      value="<%= meme.image %>"/>
   </div>
 
   <div class="d-flex gap-2 mt-4">
@@ -45,4 +43,4 @@
   </div>
 </form>
 
-<%- include('../partials/footer') %>
+<%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->

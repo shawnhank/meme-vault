@@ -1,8 +1,7 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
 <h1 class="mb-4">Add a Meme</h1>
-
-<%- include('../partials/flash') %>
 
 <form action="/memes" method="POST" class="mb-5">
   <div class="mb-3">
@@ -26,4 +25,4 @@
   </div>
 </form>
 
-<%- include('../partials/footer') %>
+<%- include('../partials/footer') %>  <!-- site-wide footer (scripts, links, etc) -->
