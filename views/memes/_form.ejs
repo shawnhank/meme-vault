@@ -22,12 +22,26 @@
   </div>
 
   <div class="mb-3">
-    <label for="image" class="form-label">Image URL</label>
-    <input
-      type="text"
-      class="form-control"
-      id="image"
-      name="image"
-      value="<%= meme ? meme.image : '' %>"
-    />
-  </div>
+  <label class="form-label">Image URLs (up to 3)</label>
+  <input
+    type="text"
+    class="form-control mb-2"
+    name="images"
+    value="<%= meme?.images?.[0] || '' %>"
+    placeholder="Image URL 1"
+  />
+  <input
+    type="text"
+    class="form-control mb-2"
+    name="images"
+    value="<%= meme?.images?.[1] || '' %>"
+    placeholder="Image URL 2"
+  />
+  <input
+    type="text"
+    class="form-control"
+    name="images"
+    value="<%= meme?.images?.[2] || '' %>"
+    placeholder="Image URL 3"
+  />
+</div>
