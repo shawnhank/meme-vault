@@ -53,13 +53,23 @@
 
     <!-- Section showing all memes created by this user -->
     <h3>Memes by <%= user.name %></h3>
-    <ul>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
       <% userMemes.forEach(meme => { %>
-        <li>
-          <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
-        </li>
+        <div class="col d-flex align-items-start">
+          <a href="/memes/<%= meme._id %>" class="d-flex align-items-center text-decoration-none">
+            <% if ((meme.images && meme.images[0]) || meme.image) { %>
+              <img
+                src="<%= meme.images?.[0] || meme.image %>"
+                alt="<%= meme.name %>"
+                class="me-3"
+                style="height: 60px; width: auto; object-fit: cover;"
+              />
+            <% } %>
+            <span><%= meme.name %></span>
+          </a>
+        </div>
       <% }) %>
-    </ul>
+    </div>
 
   </div>
 
