@@ -1,4 +1,5 @@
 const Meme = require('../models/meme');     // Import the Meme model
+const Tag = require('../models/tag');       // Import the Tag model
 
 // GET /memes → Index view (list all memes)
 async function index(req, res) {
@@ -45,11 +46,38 @@ async function create(req, res) {
         : [];                                               // No images submitted
 
     // Create a new Meme using form inputs and user ID
+    // Parse and normalize tag input
+    let submittedTags = req.body.tags || '';
+    let tagNames = submittedTags
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length > 0);
+
+    // Capitalize first letter, lowercase rest
+    tagNames = tagNames.map(tag =>
+      tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+    );
+
+    // Remove duplicates
+    tagNames = [...new Set(tagNames)];
+
+    // Look up or create tags, collect _id references
+    const tagIds = [];
+    for (const tagName of tagNames) {
+      let tag = await Tag.findOne({ name: tagName });
+      if (!tag) {
+        tag = await Tag.create({ name: tagName });
+      }
+      tagIds.push(tag._id);
+    }
+
+    // Create the meme and attach tag references
     await Meme.create({
       name: req.body.name,                // Meme title
       description: req.body.description,  // Meme description
       images: images,                     // Array of 1–3 image URLs
-      createdBy: user._id                 // Link meme to logged-in user
+      createdBy: user._id,                // Link meme to logged-in user
+      tags: tagIds                        // Array of tag ObjectIds
     });
 
     // Flash success message and redirect to all memes page
@@ -63,17 +91,25 @@ async function create(req, res) {
   }
 };
 
-
 // GET /memes/:id → Show details of a single meme
 async function show(req, res) {
-  const meme = await Meme.findById(req.params.id).populate('createdBy');    // Find meme by its unique ID
+  const meme = await Meme.findById(req.params.id)
+    .populate('createdBy')     // Find meme by its unique ID
+    .populate('tags');          // Find meme by tags
   res.render('memes/show', { meme });                 // show meme details view/page
 }
 
 // GET /memes/:id/edit → Show edit form for an existing meme
 async function editForm(req, res) {
-  const meme = await Meme.findById(req.params.id);      // Fetch the meme to pre-fill the form
-  res.render('memes/edit', { meme });                   // Render edit form with current meme data
+  const meme = await Meme.findById(req.params.id)     // Fetch the meme to pre-fill the form
+    .populate('tags');                                // Include full tag documents
+
+  // Format tag names as comma-separated string
+  if (meme.tags && meme.tags.length) {
+    meme.tagsFormatted = meme.tags.map(tag => tag.name).join(', ');
+  }
+
+  res.render('memes/edit', { meme });                 // Render edit form with current meme data
 }
 
 // PUT /memes/:id → Update existing meme with new data
@@ -91,10 +127,35 @@ async function update(req, res) {
 
     // Update the meme with new form data:
     // - Replace name, description, and images fields
+    // Parse and normalize tag input
+    let submittedTags = req.body.tags || '';
+    let tagNames = submittedTags
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length > 0);
+
+    tagNames = tagNames.map(tag =>
+      tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+    );
+
+    tagNames = [...new Set(tagNames)];
+
+    // Look up or create tags, collect _id references
+    const tagIds = [];
+    for (const tagName of tagNames) {
+      let tag = await Tag.findOne({ name: tagName });
+      if (!tag) {
+        tag = await Tag.create({ name: tagName });
+      }
+      tagIds.push(tag._id);
+    }
+
+    // Update meme including tags
     await Meme.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       description: req.body.description,
-      images: images
+      images: images,
+      tags: tagIds
     });
 
     // Redirect to the updated meme's show page

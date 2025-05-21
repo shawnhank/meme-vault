@@ -23,7 +23,12 @@ const memeSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }
+  },
+  // Tags (references to Tag documents)
+  tags: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Tag'
+  }],  
 }, { timestamps: true });
 
 // Create Meme model from the schema to access Meme.create(), Meme.find(), etc.

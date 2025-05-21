@@ -27,6 +27,16 @@
   </a>
 <% } %>
 
+<% if (meme.tags && meme.tags.length > 0) { %>
+  <div class="mb-3">
+    <h5>Tags:</h5>
+    <% meme.tags.forEach(tag => { %>
+      <span class="badge text-bg-secondary"><%= tag.name %></span>
+    <% }) %>
+  </div>
+<% } %>
+
+
 <% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
   <p class="text-muted small mt-3">
     Added by <strong><%= meme.createdBy?.name %></strong>
