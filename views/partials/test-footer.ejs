@@ -4,7 +4,7 @@
   <div class="row">
 
     <!-- Logo -->
-    <div class="col-md-4 mb-3" style="max-width: 200px;">
+    <div class="col-md-3 mb-3" style="max-width: 200px;">
       <img src="/images/logo3b.png" alt="Meme Vault logo" style="max-width: 100px; margin-bottom: 16px;">
       <!-- <p><strong>Address:</strong><br>
         123 Main Street<br>
@@ -12,24 +12,22 @@
       </p> -->
     </div>
 
+    <!-- Subscribe -->
+    <div class="col-md-4 mb-3 ps-4">
+      <h5>Subscribe</h5>
+      <p>Simply enter your email below:</p>
+      <form class="d-flex">
+        <input type="email" class="form-control me-2" placeholder="Email Address" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+      <small class="text-muted mt-2 d-block">
+        By subscribing, you agree to receive emails from us and acknowledge our <a href="#">Privacy Policy</a>.
+      </small>
+    </div>
+
     <!-- Right-aligned container for Social + Nav + Users -->
-    <div class="col-md-8 mb-3 d-flex">
-      <div class="ms-5 d-flex gap-4 w-100 justify-content-end" style="min-width: 600px;">
-        <!-- Social -->
-        <div>
-          <h6 class="fw-bold text-muted">Social</h6>
-          <div class="d-flex flex-column align-items-center gap-2 mt-2">
-            <a href="https://www.instagram.com/ga.meme.vault" target="_blank" class="text-muted fs-5">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/ga.meme.vault" target="_blank" class="text-muted fs-5">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/ga-meme-vault/" target="_blank" class="text-muted fs-5">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-        </div>
+    <div class="col-md-5 mb-3 d-flex justify-content-end">
+      <div class="d-flex gap-4">
 
         <!-- Navigation -->
         <div>
@@ -55,17 +53,30 @@
 
   </div>
 
-  <div class="d-flex justify-content-between pt-4 mt-4 border-top">
-    <p>&copy; 2025 Meme Vault. All rights reserved.
-      <a href="https://github.com/shawnhank/meme-vault" target="_blank" class="text-muted ms-2">
-      View on GitHub
-    </a>
+  <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
+    <p class="mb-0">
+      &copy; 2025 Meme Vault. All rights reserved.
     </p>
+
+    <div class="d-flex gap-3">
+      <a href="https://www.instagram.com/ga.meme.vault" target="_blank" class="text-muted fs-5">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/ga.meme.vault" target="_blank" class="text-muted fs-5">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.linkedin.com/company/ga-meme-vault/" target="_blank" class="text-muted fs-5">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/shawnhank/meme-vault" target="_blank" class="text-muted fs-5">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
     <!-- <ul class="list-unstyled d-flex gap-3 mb-0">
       <li><a class="text-muted" href="#">Privacy Policy</a></li>
       <li><a class="text-muted" href="#">Terms of Service</a></li>
     </ul> -->
-  </div>
   <!-- Load Bootstrap JavaScript for alerts, dropdowns, etc. to ensure HTML elements are loaded before JS executes -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
