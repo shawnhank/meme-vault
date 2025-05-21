@@ -7,8 +7,9 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const Meme = require('./models/meme');
 const authRoutes = require('./routes/auth');   // Import login/register/logout routes
-const memeRoutes = require('./routes/memes');  // IMport meme routhes
+const memeRoutes = require('./routes/memes');  // Import meme routes
 const userRoutes = require('./routes/users');  // Import user profile routes
+const tagsRouter = require('./routes/tags');   // Import tags routes
 
 // create app listening port
 const port = process.env.PORT || 3000;
@@ -71,8 +72,9 @@ app.use((req, res, next) => {
 
 // Routers
 app.use('/', authRoutes);       // Mount auth routes at root (e.g. /login, /register, /logout)
-app.use('/users', userRoutes);  // mount user profile routes
-app.use('/memes', memeRoutes);  // mount meme routes
+app.use('/users', userRoutes);  // mount users profile routes
+app.use('/memes', memeRoutes);  // mount memes routes
+app.use('/tags', tagsRouter);   // mount tags routes
 
 // Get /   Memes index (list of all memes)
 app.get("/", async (req, res) => {
