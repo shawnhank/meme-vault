@@ -10,6 +10,7 @@ const authRoutes = require('./routes/auth');   // Import login/register/logout r
 const memeRoutes = require('./routes/memes');  // Import meme routes
 const userRoutes = require('./routes/users');  // Import user profile routes
 const tagsRouter = require('./routes/tags');   // Import tags routes
+const searchRouter = require('./routes/search');  // Import search routes
 
 // create app listening port
 const port = process.env.PORT || 3000;
@@ -75,7 +76,7 @@ app.use('/', authRoutes);       // Mount auth routes at root (e.g. /login, /regi
 app.use('/users', userRoutes);  // mount users profile routes
 app.use('/memes', memeRoutes);  // mount memes routes
 app.use('/tags', tagsRouter);   // mount tags routes
-
+app.use('/search', searchRouter); // mount search routes
 // Get /   Memes index (list of all memes)
 app.get("/", async (req, res) => {
   res.render("index.ejs");

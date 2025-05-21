@@ -23,6 +23,14 @@
 
       <!-- Right side (changes based on auth state) -->
       <div class="d-flex gap-3 align-items-center">
+        <form class="d-flex me-2" role="search" action="/search" method="GET">
+          <input
+            class="form-control form-control-sm"
+            type="search"
+            name="q"
+            placeholder="Search memes, tags, users"
+            aria-label="Search">
+        </form>
         <% if (currentUser) { %>
           <a class="navbar-brand" href="/memes/mine">My Memes</a>
           <a class="navbar-brand" href="/users/community">Community Members</a>
