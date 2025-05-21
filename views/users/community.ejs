@@ -6,13 +6,14 @@
 <!-- Heading for the list of users -->
 <h2>All Users</h2>
 
-<ul>
-  <% users.forEach(function(user) { %>  <!-- Loop through each user -->
-    <li>
-      <!-- Link to this user's profile page -->
-      <a href="/users/<%= user._id %>"><%= user.name %></a>
-    </li>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+  <% users.forEach(user => { %>
+    <div class="col d-flex align-items-center">
+      <a href="/users/<%= user._id %>" class="text-decoration-none fs-5">
+        <%= user.name %>
+      </a>
+    </div>
   <% }) %>
-</ul>
+</div>
 
 <%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->

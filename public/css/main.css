@@ -5,3 +5,29 @@
   text-decoration: underline !important;
   text-decoration-color: #0d6efd !important; /* Bootstrap's primary blue */
 }
+
+/* [data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3,
+[data-bs-theme="dark"] h4,
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] h6,
+[data-bs-theme="dark"] p,
+[data-bs-theme="dark"] small,
+[data-bs-theme="dark"] span,
+[data-bs-theme="dark"] label,
+[data-bs-theme="dark"] li,
+[data-bs-theme="dark"] td,
+[data-bs-theme="dark"] th {
+  color: var(--bs-secondary-color);
+} */
+
+[data-bs-theme="dark"] body .mb3 > label.form-label {
+  color: var(--bs-secondary-color) !important; /* This is Bootstrap’s muted text color */
+}
+
+[data-bs-theme="dark"] label.form-label {
+  color: var(--bs-secondary-color);
+  font-weight: 400;
+}
+
