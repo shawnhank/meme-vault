@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');     // Import the mongoose library;define the schema and model
 
+function arrayLimit(val) {
+  return val.length <= 3;
+}
+
 // Define structure for a Meme doc
 const memeSchema = new mongoose.Schema({
   // Name of the meme (title) — required
@@ -8,8 +12,11 @@ const memeSchema = new mongoose.Schema({
   // Description of the meme — required
   description: { type: String, required: true },
 
-  // Image URL — optional (not required)
-  image: String,
+  // Image URL — optional (not required) array of string, up to 3
+  images: {
+    type: [String],
+    validate: [arrayLimit, '{PATH} exceeds the limit of 3']
+  },  
   
   // User who created the meme
   createdBy: {
