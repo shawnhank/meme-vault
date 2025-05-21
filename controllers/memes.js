@@ -56,7 +56,7 @@ async function create(req, res) {
 async function show(req, res) {
   const meme = await Meme.findById(req.params.id).populate('createdBy');    // Find meme by its unique ID
   res.render('memes/show', { meme });                 // show meme details view/page
-}dcd
+}
 
 // GET /memes/:id/edit → Show edit form for an existing meme
 async function editForm(req, res) {
