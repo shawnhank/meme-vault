@@ -31,7 +31,7 @@
   <div class="mb-3">
     <h5>Tags:</h5>
     <% meme.tags.forEach(tag => { %>
-      <span class="badge text-bg-secondary"><%= tag.name %></span>
+      <a href="/tags/<%= tag.name %>" class="badge text-bg-secondary text-decoration-none"><%= tag.name %></a>
     <% }) %>
   </div>
 <% } %>
