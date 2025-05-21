@@ -9,6 +9,13 @@
   <img src="<%= meme.image %>" alt="<%= meme.name %>" style="max-height: 300px;">
 <% } %>
 
+<% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
+  <p class="text-muted small mt-3">
+    Added by <strong><%= meme.createdBy?.name %></strong>
+    on <%= meme.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %><br>
+    Last updated <%= meme.updatedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+  </p>
+<% } %>
 <div class="d-flex gap-2 mt-3">
   <!-- Edit button: only show if a user is logged in AND they created this meme -->
   <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
