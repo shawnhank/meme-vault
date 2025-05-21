@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
+<body data-bs-theme="light">
 
-  <nav class="navbar navbar-expand-sm bg-light px-3 py-2 mb-4">
+  <nav class="navbar navbar-expand-sm bg-body-tertiary px-3 py-2 mb-4">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <!-- Left side links (always visible) -->
@@ -35,8 +35,11 @@
           <a class="navbar-brand" href="/login">Log In</a>
           <a class="navbar-brand" href="/register">Register</a>
         <% } %>
+        <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>  
       </div>
-
+      
     </div>
   </nav>  
 
