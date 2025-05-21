@@ -29,27 +29,39 @@ function newForm(req, res) {
   res.render('memes/new', { meme: {} });   // show the empty form to populate on new & pass empty meme object
 }
 
-// POST /memes → create new meme and save owner/creator info
+// POST /memes → Create new meme and save owner/creator info
 async function create(req, res) {
   try {
-    const user = req.session.user; // ✅ Get user from session
+    const user = req.session.user; // ✅ Get the currently logged-in user from the session
 
-    // Create a new meme using form data and user ID
-    await Meme.create({           // Create a new meme using the form data
-      name: req.body.name,
-      description: req.body.description,
-      image: req.body.image,
-      createdBy: user._id
+    // Normalize submitted image inputs:
+    // - If multiple fields were submitted, filter out any blank ones
+    // - If only one field was filled, convert it into a one-item array
+    // - If no image fields were filled, use an empty array
+    const images = Array.isArray(req.body.images)
+      ? req.body.images.filter(url => url.trim() !== '')   // Clean out blanks from array
+      : req.body.images
+        ? [req.body.images]                                // Wrap single string into array
+        : [];                                               // No images submitted
+
+    // Create a new Meme using form inputs and user ID
+    await Meme.create({
+      name: req.body.name,                // Meme title
+      description: req.body.description,  // Meme description
+      images: images,                     // Array of 1–3 image URLs
+      createdBy: user._id                 // Link meme to logged-in user
     });
 
+    // Flash success message and redirect to all memes page
     req.flash('success', 'Meme created successfully.');
     res.redirect('/memes');
   } catch (err) {
+    // If something fails, log the error and redirect with error message
     console.log(err);
     req.flash('error', 'Failed to create meme.');
-    res.redirect('/memes/new');   // Redirect to index page after creation
+    res.redirect('/memes/new');
   }
-}
+};
 
 
 // GET /memes/:id → Show details of a single meme
@@ -66,8 +78,33 @@ async function editForm(req, res) {
 
 // PUT /memes/:id → Update existing meme with new data
 async function update(req, res) {
-  await Meme.findByIdAndUpdate(req.params.id, req.body);  // Overwrite existing meme with submitted changes
-  res.redirect(`/memes/${req.params.id}`);                // Redirect to meme’s show page. updates will appear on page.
+  try {
+    // Normalize the submitted image fields:
+    // - If it's an array (3 inputs), filter out any blank ones
+    // - If it's a single string (only one input filled), wrap it as an array
+    // - If nothing is submitted, use an empty array
+    const images = Array.isArray(req.body.images)
+      ? req.body.images.filter(url => url.trim() !== '')   // Filter out blank inputs
+      : req.body.images
+        ? [req.body.images]                                // Single image submitted, make it an array
+        : [];                                               // No images submitted
+
+    // Update the meme with new form data:
+    // - Replace name, description, and images fields
+    await Meme.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      description: req.body.description,
+      images: images
+    });
+
+    // Redirect to the updated meme's show page
+    res.redirect(`/memes/${req.params.id}`);
+  } catch (err) {
+    // If anything fails, log the error and redirect with flash message
+    console.error(err);
+    req.flash('error', 'Failed to update meme.');
+    res.redirect(`/memes/${req.params.id}/edit`);
+  }
 }
 
 // DELETE /memes/:id → Remove a meme from the database
