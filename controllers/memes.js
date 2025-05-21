@@ -54,9 +54,9 @@ async function create(req, res) {
 
 // GET /memes/:id → Show details of a single meme
 async function show(req, res) {
-  const meme = await Meme.findById(req.params.id);    // Find meme by its unique ID
+  const meme = await Meme.findById(req.params.id).populate('createdBy');    // Find meme by its unique ID
   res.render('memes/show', { meme });                 // show meme details view/page
-}
+}dcd
 
 // GET /memes/:id/edit → Show edit form for an existing meme
 async function editForm(req, res) {

@@ -17,7 +17,7 @@ const memeSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   }
-});
+}, { timestamps: true });
 
 // Create Meme model from the schema to access Meme.create(), Meme.find(), etc.
 const Meme = mongoose.model('Meme', memeSchema);
