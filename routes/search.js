@@ -9,14 +9,23 @@ router.get('/', async (req, res) => {
   const query = req.query.q?.trim();
   if (!query) return res.redirect('/memes');
 
-  const regex = new RegExp(query, 'i');
+  const regex = new RegExp(query, 'i');     // case-insensitive partial match
 
-  const matchedUsers = await User.find({ name: regex });
+  // Match users by name, username, or email
+   const matchedUsers = await User.find({
+    $or: [
+      { name: regex },
+      { username: regex },
+      { email: regex }
+    ]
+  });
   const matchedUserIds = matchedUsers.map(u => u._id);
 
+  // Match tags
   const matchedTags = await Tag.find({ name: regex });
   const matchedTagIds = matchedTags.map(t => t._id);
 
+  // Find memes that match title, description, creator, or tag
   const memes = await Meme.find({
     $or: [
       { name: regex },
