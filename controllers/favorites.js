@@ -49,7 +49,7 @@ async function remove(req, res) {
 async function index(req, res) {
   try {
     // Find all favorites for the given user ID and load the full meme data
-    const favorites = await Favorite.find({ user: req.params.userId }).populate('meme');
+    const favorites = await Favorite.find({ user: req.params.id }).populate('meme');
 
     // Render the favorites list page and pass the data to the view
     res.render('favorites/index', { favorites });

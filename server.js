@@ -11,6 +11,7 @@ const memeRoutes = require('./routes/memes');  // Import meme routes
 const userRoutes = require('./routes/users');  // Import user profile routes
 const tagsRouter = require('./routes/tags');   // Import tags routes
 const searchRouter = require('./routes/search');  // Import search routes
+const favoritesRoutes = require('./routes/favorites'); // Import favorites routes
 
 // create app listening port
 const port = process.env.PORT || 3000;
@@ -77,6 +78,8 @@ app.use('/users', userRoutes);  // mount users profile routes
 app.use('/memes', memeRoutes);  // mount memes routes
 app.use('/tags', tagsRouter);   // mount tags routes
 app.use('/search', searchRouter); // mount search routes
+app.use('/favorites', favoritesRoutes); // mount favorites routes
+
 // Get /   Memes index (list of all memes)
 app.get("/", async (req, res) => {
   res.render("index.ejs");

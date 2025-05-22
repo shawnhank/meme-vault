@@ -1,10 +1,14 @@
 const express = require('express'); // Load Express
 const router = express.Router(); // Create the router
 const usersCtrl = require('../controllers/users'); // Import the users controller
+const favoritesCtrl = require('../controllers/favorites'); // Import the favorites controller
 const { isLoggedIn } = require('../middleware/auth'); // to prevent a visitor from editing a form directly
 
 // GET /community → Show all users in the app
 router.get('/community', isLoggedIn, usersCtrl.listUsers); // List all users with links to their profiles
+
+// GET /users/:id/favorites → Show a list of memes this user has favorited
+router.get('/:id/favorites', isLoggedIn, favoritesCtrl.index);
 
 // GET /users/:id/edit → Show profile edit form
 router.get('/:id/edit', isLoggedIn, usersCtrl.editProfileForm);
