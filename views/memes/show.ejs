@@ -3,9 +3,18 @@
 
 <div class="container my-5">
 
-  <h1><%= meme.name %></h1>
+  <h1 class="fw-bold mb-3"><%= meme.name %></h1>
 
-  <p style="white-space: pre-line;"><%= meme.description %></p>
+  <div class="mb-4">
+    <div class="fw-semibold text-muted">Description</div>
+    <div class="fs-6 text-muted" style="white-space: pre-line;">
+      <%- (meme.description || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
+        const hasProtocol = match.startsWith('http://') || match.startsWith('https://');
+        const url = hasProtocol ? match : 'https://' + match;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
+      }) %>
+    </div>
+  </div>
 
   <% if (meme.images && meme.images.length > 0) { %>
     <div class="d-flex flex-wrap align-items-start gap-2 mb-3">

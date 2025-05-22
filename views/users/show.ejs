@@ -9,12 +9,18 @@
   <h1 class="mb-4"><%= user.name %>'s Profile</h1>
 
   <div class="mb-3">
-    <div class="fw-semibold text-muted">Email: &nbsp <%= user.email %></div>
+    <div class="text-muted"><strong>Email &nbsp</strong> <%= user.email %></div>
   </div>
 
   <div class="mb-3">
-    <div class="fw-semibold text-muted">Bio
-    <div class="fs-6"><%= user.bio || '—' %>
+    <div class="text-muted"><strong>Bio</strong></div>
+    <div class="fs-6 text-muted" style="white-space: pre-line;">
+      <%- (user.bio || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
+        const hasProtocol = match.startsWith('http://') || match.startsWith('https://');
+        const url = hasProtocol ? match : 'https://' + match;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
+      }) %>
+    </div>
   </div>
 
   <% const social = [ 
@@ -25,7 +31,7 @@
   ]; %>
 
   <div class="mb-4">
-    <div class="d-flex align-items-center gap-3 flex-wrap fs-5 d-block mt-4 mb-2">Social Links:
+    <div class="d-flex align-items-center gap-3 flex-wrap fs-6 d-block mt-4 mb-2 text-muted"><strong>Social Links:</strong>
       <% social.forEach(({ key, icon }) => { %>
         <% if (user.social?.[key]) { %>
           <a href="<%= user.social[key] %>" target="_blank" rel="noopener noreferrer" title="<%= key.charAt(0).toUpperCase() + key.slice(1) %>">
