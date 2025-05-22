@@ -4,21 +4,19 @@
   <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
 
-  <h1 class="mb-4">Community</h1>
+  <h1 class="mb-4">Community Members</h1>
 
-  <h2 class="mb-3">All Users</h2>
+  <!-- <h2 class="mb-3">All Users</h2> -->
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <% users.forEach(user => { %>
-      <div class="col">
-        <div class="d-flex align-items-center gap-3">
-          <div class="avatar-container" style="width: 64px; height: 64px;">
+      <div class="col text-center">
+        <a href="/users/<%= user._id %>" class="text-decoration-none text-light d-block">
+          <div class="avatar-container mx-auto mb-2" style="width: 96px; height: 96px;">
             <%- user.avatarSvg %>
           </div>
-          <a href="/users/<%= user._id %>" class="fs-5 fw-semibold text-decoration-none">
-            <%= user.name %>
-          </a>
-        </div>
+          <div class="small text-muted"><%= user.name %></div>
+        </a>
       </div>
     <% }) %>
   </div>
