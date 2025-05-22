@@ -1,19 +1,30 @@
-<% // 🎯 My Favorites View — shows all memes favorited by the current user %>
+<%- include('../partials/header') %>
+<%- include('../partials/flash') %>
 
 <h1>My Favorites</h1>
 
-<% // 🕳️ If no favorites exist, show fallback message %>
 <% if (favorites.length === 0) { %>
   <p>You haven't favorited any memes yet.</p>
 <% } else { %>
-
-  <% // 🔁 Loop through each favorite and render a link to the meme %>
-  <ul>
+  <div class="row">
     <% favorites.forEach(fav => { %>
-      <li>
-        <a href="/memes/<%= fav.meme._id %>"><%= fav.meme.name %></a>
-      </li>
+      <% const meme = fav.meme; %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <% if (meme.images && meme.images.length > 0) { %>
+            <img src="<%= meme.images[0] %>" class="card-img-top" alt="<%= meme.name %>">
+          <% } else if (meme.image) { %>
+            <img src="<%= meme.image %>" class="card-img-top" alt="<%= meme.name %>">
+          <% } %>
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
+            </h5>
+          </div>
+        </div>
+      </div>
     <% }) %>
-  </ul>
-
+  </div>
 <% } %>
+
+<%- include('../partials/test-footer') %>
