@@ -1,24 +1,23 @@
-<!-- views/index.ejs -->
 <%- include('partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
 <%- include('partials/flash') %>   <!-- Show flash success/error messages -->
 
-<div class="text-center mb-4">
-  <h1 class="mt-5 mb-4">Welcome to the Meme Vault!</h1>
-  <p class="mb-4">An app for sharing and collecting your favorite memes.</p>
-  <div class="d-flex justify-content-center gap-3 mb-5">
+<div class="container my-5">
+  <h1 class="text-center mb-4">Welcome to the Meme Vault!</h1>
+  <p class="text-center mb-4">An app for sharing and collecting your favorite memes.</p>
+
+  <div class="d-flex justify-content-center gap-3 mb-4">
     <a href="/memes" class="btn btn-success">Browse Memes</a>
     <a href="/memes/new" class="btn btn-primary">Add a New Meme</a>
   </div>
-  <!-- <img src="https://www.waca.or.jp/en/wp-content/uploads/2021/03/Hero-Elf4IhEXUAApPJQ.jpeg" alt="Princess Bride Meme Image" class="img-fluid rounded" style="max-height: 600px;">
-  <p class="mt-2" style="font-size: 0.9rem;">
-    Photo by <a href="https://www.waca.or.jp/en/growthhacking/kithow-many-types-of-meme/">WACA</a>
-  </p> -->
-    <video autoplay muted loop playsinline class="img-fluid rounded" style="max-height: 700px;">
-      <source src="/images/Meme_Hallway_Video_Generation_Complete.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+      <video autoplay muted loop playsinline class="img-fluid rounded w-100" style="max-height: 700px;">
+        <source src="/images/Meme_Hallway_Video_Generation_Complete.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
+</div>
 
 <%- include('partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->
- 
-<!-- This is the main page of the Memes app. It provides a welcome message and a brief description of & introduction to the app. --> 

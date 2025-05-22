@@ -3,16 +3,17 @@
 <%- include('../partials/flash') %>
 <!-- Show flash success/error messages -->
 
-<h1 class="mb-4">Add a Meme</h1>
+<div class="container my-5">
+  <h1 class="mb-4">Add a Meme</h1>
 
-<form action="/memes" method="POST" class="mb-5">
-  <%- include('_form') %>
+  <form action="/memes" method="POST" class="mb-5">
+    <%- include('_form') %>
 
-  <div class="d-flex gap-2 mt-4">
-    <button type="submit" class="btn btn-primary">Add Meme</button>
-    <a href="/memes" class="btn btn-secondary">Cancel</a>
-  </div>
-</form>
-
+    <div class="d-flex gap-2 mt-4">
+      <button type="submit" class="btn btn-primary">Add Meme</button>
+      <a href="/memes" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
 <%- include('../partials/test-footer') %>
 <!-- site-wide footer (scripts, links, etc) -->

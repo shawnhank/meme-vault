@@ -15,7 +15,14 @@
   <div class="container-fluid">
 
     <!-- Brand + Toggle button (mobile) -->
-    <a class="navbar-brand" href="/">🏠 Home</a>
+    <ul class="navbar-nav me-auto mb-2 mb-sm-0 d-flex flex-wrap gap-2">
+      <li class="nav-item d-flex align-items-center">
+        <a href="/" class="nav-link d-flex align-items-center gap-2">
+          <img src="/images/logo3b.png" alt="Meme Vault logo" style="height: 24px;">
+          <span>Home</span>
+        </a>
+      </li>
+    </ul>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,18 +42,17 @@
           <a class="nav-link" href="/memes/mine">My Memes</a>
           <a class="nav-link" href="/users/community">Community</a>
           <a class="nav-link" href="/users/<%= currentUser._id %>">View/Edit Profile</a>
-          <form action="/logout" method="POST" style="display:inline;">
-            <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
-          </form>
-          <span class="text-muted small">Signed in as <strong><%= currentUser.name %></strong></span>
+          <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
+            <i id="theme-icon" class="fas fa-moon"></i>
+          </button>
+          <span class="text-muted small"><strong><%= currentUser.name %></strong></span>
         <% } else { %>
           <a class="nav-link" href="/login">Log In</a>
           <a class="nav-link" href="/register">Register</a>
         <% } %>
-
-        <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
-          <i id="theme-icon" class="fas fa-moon"></i>
-        </button>  
+        <form action="/logout" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
+          </form>  
       </div>
 
     </div>

@@ -1,19 +1,20 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
 <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
-<h1>Community</h1>
+<div class="container my-5">
+  <h1 class="mb-4">Community</h1>
 
-<!-- Heading for the list of users -->
-<h2>All Users</h2>
+  <h2 class="mb-3">All Users</h2>
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-  <% users.forEach(user => { %>
-    <div class="col d-flex align-items-center">
-      <a href="/users/<%= user._id %>" class="text-decoration-none fs-5">
-        <%= user.name %>
-      </a>
-    </div>
-  <% }) %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% users.forEach(user => { %>
+      <div class="col d-flex align-items-center">
+        <a href="/users/<%= user._id %>" class="text-decoration-none fs-5">
+          <%= user.name %>
+        </a>
+      </div>
+    <% }) %>
+  </div>
 </div>
 
 <%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->
