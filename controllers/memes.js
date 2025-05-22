@@ -189,6 +189,7 @@ async function update(req, res) {
     });
 
     // Redirect to the updated meme's show page
+    req.flash('success', 'Meme updated successfully.');
     res.redirect(`/memes/${req.params.id}`);
   } catch (err) {
     // If anything fails, log the error and redirect with flash message
