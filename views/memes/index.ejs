@@ -27,7 +27,7 @@
   <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 justify-content-center">
     <% memes.forEach(function(meme) { %>
       <div class="col">
-        <%- include('../partials/meme-thumbnails', { meme }) %>
+        <%- include('../partials/meme-thumbnails', { meme, size: 'large' }) %>
       </div>
     <% }) %>
   </div>
