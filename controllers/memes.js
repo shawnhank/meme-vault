@@ -4,14 +4,30 @@ const Favorite = require('../models/favorite'); // Import the Favorite model
 
 // GET /memes → Index view (list all memes)
 async function index(req, res) {
-  const memes = await Meme.find();      // Fetch all memes from the database
-  res.render('memes/index', { memes, mine: false, query: req.query }); // Render the meme index view
+  try {
+    const memes = await Meme.find().lean(); // lean gives you plain JS objects
+    const memeData = await Promise.all(memes.map(async meme => {
+      const count = await Favorite.countDocuments({ meme: meme._id });
+      return { ...meme, favoriteCount: count };
+    }));
+
+    res.render('memes/index', { memes: memeData, mine: false, query: req.query });
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Could not load memes.');
+    res.redirect('/');
+  }
 }
 
 async function myMemes(req, res) { // get all user owned memes
   try {
-    const memes = await Meme.find({ createdBy: req.session.user._id });
-    res.render('memes/index', { memes, mine: true });
+    const memes = await Meme.find({ createdBy: req.session.user._id }).lean();
+    const memeData = await Promise.all(memes.map(async meme => {
+      const count = await Favorite.countDocuments({ meme: meme._id });
+      return { ...meme, favoriteCount: count };
+    }));
+
+res.render('memes/index', { memes: memeData, mine: true });
   } catch (err) {
     console.error(err);
     req.flash('error', 'Could not load your memes.');

@@ -48,15 +48,24 @@ async function remove(req, res) {
 // Show all memes that a user has favorited
 async function index(req, res) {
   try {
-    // Find all favorites for the given user ID and load the full meme data
-    const favorites = await Favorite.find({ user: req.params.id }).populate('meme');
+    const rawFavorites = await Favorite.find({ user: req.params.userId }).populate('meme');
 
-    // Render the favorites list page and pass the data to the view
-    res.render('favorites/index', { favorites });
+    const favoritesWithCounts = await Promise.all(
+      rawFavorites.map(async fav => {
+        const meme = fav.meme;
+        if (!meme) return null; // skip if meme was deleted
+        const count = await Favorite.countDocuments({ meme: meme._id });
+        return { ...meme.toObject(), favoriteCount: count };
+      })
+    );
+
+    const validFavorites = favoritesWithCounts.filter(Boolean);
+
+    res.render('favorites/index', { favorites: validFavorites });
 
   } catch (err) {
-    console.log(err); // log any errors
-    res.redirect('/'); // fallback redirect if something goes wrong
+    console.log(err);
+    res.redirect('/');
   }
 }
 
