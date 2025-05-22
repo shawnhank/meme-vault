@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   // User bio (optional)
   bio: { type: String },
+  avatarSeed: { type: String },                   // used to generate avatar
   social: {                                       // Social links
   instagram: String,
   twitter: String,

@@ -1,14 +1,20 @@
 const User = require('../models/user');     // Import User model
 const Meme = require('../models/meme');     // Import Meme model
 const Favorite = require('../models/favorite');  // Import Favorite model
-const multiavatar = require('@multiavatar/multiavatar'); // import avatar model
+const { createAvatar } = require('@dicebear/core');
+const funEmoji = require('@dicebear/fun-emoji');
 
 // GET /users/:id → Show user profile with their memes
 async function showProfile(req, res) {
   try {
     const userId = req.params.id;
 
+    //null check
     const user = await User.findById(userId);
+    if (!user) {
+     req.flash('error', 'User not found.');
+      return res.redirect('/');
+    }
 
     // Get all memes created by this user and attach favoriteCount
     const memes = await Meme.find({ createdBy: user._id }).lean();
@@ -33,9 +39,11 @@ async function showProfile(req, res) {
     // Filter out any nulls (from deleted memes)
     const validFavorites = favoritesWithCounts.filter(Boolean);
 
-    // Generate SVG avatar from seed, fallback to name or ID
-    const avatarSvg = multiavatar(user.avatarSeed || user.name || user._id.toString());
-    
+    const avatarSvg = createAvatar(funEmoji, {
+      seed: user.avatarSeed || user.name || user._id.toString()
+    }).toString();
+    console.log('Generated avatar SVG (first 100 chars):', avatarSvg.slice(0, 100));
+
     res.render('users/show', {
       user,
       userMemes: userMemesWithCounts,
@@ -44,29 +52,31 @@ async function showProfile(req, res) {
     });
 
   } catch (err) {
-    console.log(err);
+    console.error('Error in showProfile:', err);
     req.flash('error', 'Could not load user profile.');
     res.redirect('/');
   }
 }
 
-// GET /community → Show list of all users with avatars
+// GET /community → Show list of all users
 async function listUsers(req, res) {
   try {
-    // Fetch all users from the database
+    // Get all users from the database
     const users = await User.find();
 
-    // For each user, generate an avatar SVG using avatarSeed (if set), or fallback to name or ID
+    // For each user, generate a DiceBear avatar SVG based on avatarSeed, name, or ID
     const usersWithAvatars = users.map(user => ({
-      ...user.toObject(), // convert Mongoose doc to plain object so we can add properties
-      avatarSvg: multiavatar(user.avatarSeed || user.name || user._id.toString())
+      ...user.toObject(), // Convert Mongoose document to plain JS object
+      avatarSvg: createAvatar(funEmoji, {
+        seed: user.avatarSeed || user.name || user._id.toString()
+      }).toString() // Convert avatar object to raw SVG markup
     }));
 
-    // Render the community view, passing users with avatars included
+    // Render the community view and pass all users
     res.render('users/community', { users: usersWithAvatars });
   } catch (err) {
-    // Log error and show flash message on failure
     console.log(err);
+    console.log('First avatar SVG:', usersWithAvatars[0]?.avatarSvg);
     req.flash('error', 'Could not load user list.');
     res.redirect('/');
   }
@@ -139,6 +149,11 @@ async function updateProfile(req, res) {
       facebook: facebook.trim(),
       linkedin: linkedin.trim()
     };
+
+    // If user has no avatarSeed yet, assign a random one
+    if (!user.avatarSeed) {
+      user.avatarSeed = Math.random().toString(36).substring(2, 10); // 8-char random string
+    }
 
     await user.save();
     req.flash('success', 'Profile updated successfully.');

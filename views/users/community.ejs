@@ -10,10 +10,15 @@
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <% users.forEach(user => { %>
-      <div class="col d-flex align-items-center">
-        <a href="/users/<%= user._id %>" class="text-decoration-none fs-5">
-          <%= user.name %>
-        </a>
+      <div class="col">
+        <div class="d-flex align-items-center gap-3">
+          <div class="avatar-container" style="width: 64px; height: 64px;">
+            <%- user.avatarSvg %>
+          </div>
+          <a href="/users/<%= user._id %>" class="fs-5 fw-semibold text-decoration-none">
+            <%= user.name %>
+          </a>
+        </div>
       </div>
     <% }) %>
   </div>
