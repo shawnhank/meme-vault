@@ -1,0 +1,19 @@
+<% // 🎯 My Favorites View — shows all memes favorited by the current user %>
+
+<h1>My Favorites</h1>
+
+<% // 🕳️ If no favorites exist, show fallback message %>
+<% if (favorites.length === 0) { %>
+  <p>You haven't favorited any memes yet.</p>
+<% } else { %>
+
+  <% // 🔁 Loop through each favorite and render a link to the meme %>
+  <ul>
+    <% favorites.forEach(fav => { %>
+      <li>
+        <a href="/memes/<%= fav.meme._id %>"><%= fav.meme.name %></a>
+      </li>
+    <% }) %>
+  </ul>
+
+<% } %>

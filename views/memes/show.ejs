@@ -3,6 +3,26 @@
 
 <h1><%= meme.name %></h1>
 
+<% // 💾 If a user is logged in, show the Favorite/Unfavorite button %>
+<% if (currentUser) { %>
+  <form 
+    method="POST" 
+    action="/favorites/<%= meme._id %>/favorite?_method=<%= isFavorited ? 'DELETE' : 'POST' %>" 
+    class="d-inline"
+  >
+    <button 
+      type="submit" 
+      class="btn btn-sm <%= isFavorited ? 'btn-danger' : 'btn-outline-danger' %>"
+    >
+      <%= isFavorited ? '❤️ Unfavorite' : '🤍 Favorite' %>  <% // Show correct label based on user's status %>
+    </button>
+  </form>
+<% } %>
+
+<% // 💬 Show the total number of users who have favorited this meme %>
+<span><%= favoriteCount %> Favorites</span>
+
+<span><%= favoriteCount %> Favorites</span>
 <p style="white-space: pre-line;"><%= meme.description %></p>
 
 <% if (meme.images && meme.images.length > 0) { %>

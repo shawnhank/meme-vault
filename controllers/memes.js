@@ -1,5 +1,6 @@
 const Meme = require('../models/meme');     // Import the Meme model
 const Tag = require('../models/tag');       // Import the Tag model
+const Favorite = require('../models/favorite'); // Import the Favorite model
 
 // GET /memes → Index view (list all memes)
 async function index(req, res) {
@@ -96,7 +97,20 @@ async function show(req, res) {
   const meme = await Meme.findById(req.params.id)
     .populate('createdBy')     // Find meme by its unique ID
     .populate('tags');          // Find meme by tags
-  res.render('memes/show', { meme });                 // show meme details view/page
+
+  // Count how many users have favorited this meme
+  const favoriteCount = await Favorite.countDocuments({ meme: meme._id });
+
+  // Check if the current user has already favorited this meme
+  let isFavorited = false;
+  if (req.session.user) {
+    isFavorited = await Favorite.exists({
+      user: req.session.user._id,
+      meme: meme._id
+    });
+  }
+
+  res.render('memes/show', { meme, favoriteCount, isFavorited });     // Pass everything to the view page
 }
 
 // GET /memes/:id/edit → Show edit form for an existing meme
