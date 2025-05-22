@@ -6,4 +6,27 @@
   text-decoration-color: #0d6efd !important; /* Bootstrap's primary blue */
 }
 
+.meme-thumb {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.meme-thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.meme-hover-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.meme-thumb:hover .meme-hover-overlay {
+  opacity: 1;
+}

@@ -12,44 +12,44 @@
 <body data-bs-theme="light">
 
   <nav class="navbar navbar-expand-sm bg-body-tertiary px-3 py-2 mb-4">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
+  <div class="container-fluid">
 
-      <!-- Left side links (always visible) -->
-      <div class="d-flex gap-3 align-items-center">
-        <a class="navbar-brand" href="/">🏠 Home</a>
-        <a class="navbar-brand" href="/memes">All Memes</a>
-        <a class="navbar-brand" href="/memes/new">Add Meme</a>
-      </div>
+    <!-- Brand + Toggle button (mobile) -->
+    <a class="navbar-brand" href="/">🏠 Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <!-- Right side (changes based on auth state) -->
-      <div class="d-flex gap-3 align-items-center">
-        <form class="d-flex me-2" role="search" action="/search" method="GET">
-          <input
-            class="form-control form-control-sm"
-            type="search"
-            name="q"
-            placeholder="Search memes, tags, users"
-            aria-label="Search">
-        </form>
+    <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarResponsive">
+
+      <!-- Left side links -->
+      <ul class="navbar-nav me-auto mb-2 mb-sm-0 d-flex flex-wrap gap-2">
+        <li class="nav-item"><a class="nav-link" href="/memes">All Memes</a></li>
+        <li class="nav-item"><a class="nav-link" href="/memes/new">Add Meme</a></li>
+      </ul>
+
+      <!-- Right side -->
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+
         <% if (currentUser) { %>
-          <a class="navbar-brand" href="/memes/mine">My Memes</a>
-          <a class="navbar-brand" href="/users/community">Community</a>
-          <a class="navbar-brand" href="/users/<%= currentUser._id %>">View/Edit Profile</a>
+          <a class="nav-link" href="/memes/mine">My Memes</a>
+          <a class="nav-link" href="/users/community">Community</a>
+          <a class="nav-link" href="/users/<%= currentUser._id %>">View/Edit Profile</a>
           <form action="/logout" method="POST" style="display:inline;">
             <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
           </form>
           <span class="text-muted small">Signed in as <strong><%= currentUser.name %></strong></span>
         <% } else { %>
-          <a class="navbar-brand" href="/login">Log In</a>
-          <a class="navbar-brand" href="/register">Register</a>
+          <a class="nav-link" href="/login">Log In</a>
+          <a class="nav-link" href="/register">Register</a>
         <% } %>
+
         <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
           <i id="theme-icon" class="fas fa-moon"></i>
         </button>  
       </div>
-      
-    </div>
-  </nav>  
 
-  <main class="container" style="max-width: 900px;">
+    </div>
+  </div>
+</nav>
 

@@ -1,0 +1,35 @@
+<% // 📦 Compact grid-style meme preview (image only) %>
+<a href="/memes/<%= meme._id %>" class="d-block text-decoration-none meme-thumb position-relative overflow-hidden">
+
+  <% if (meme.images && meme.images.length > 0) { %>
+    <img 
+      src="<%= meme.images[0] %>" 
+      alt="<%= meme.name %>" 
+      class="img-fluid rounded w-90"
+      style="aspect-ratio: 1 / 1; object-fit: cover;"
+    />
+  <% } else if (meme.image) { %>
+    <img 
+      src="<%= meme.image %>" 
+      alt="<%= meme.name %>" 
+      class="img-fluid rounded w-90"
+      style="aspect-ratio: 1 / 1; object-fit: cover;"
+    />
+  <% } else { %>
+    <div 
+      class="bg-secondary rounded w-90"
+      style="aspect-ratio: 1 / 1;"
+      title="No image provided"
+    ></div>
+  <% } %>
+
+  <!-- Hover overlay -->
+  <div class="meme-hover-overlay text-white d-flex flex-column justify-content-end px-2 pb-2">
+    <div class="fw-semibold"><%= meme.name %></div>
+    <div class="small text-muted"><%= meme.favoriteCount || 0 %> Favorites</div>
+    <% if (meme.avgRating) { %>
+      <div class="small text-muted">⭐ <%= meme.avgRating.toFixed(1) %>/5</div>
+    <% } %>
+  </div>
+
+</a>
