@@ -1,10 +1,10 @@
 <%- include('../partials/header') %>
 <!-- Include site-wide header (nav, title, etc) -->
-<%- include('../partials/flash') %>
-<!-- Show flash success/error messages -->
+
 
 <!-- Main container with consistent max width -->
 <div class="container mt-4" style="max-width: 900px">
+  <%- include('../partials/flash') %>
   <!-- Show username as page title -->
   <h1 class="mb-4"><%= user.name %>'s Profile</h1>
 

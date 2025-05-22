@@ -1,9 +1,8 @@
 <%- include('../partials/header') %>
 <!-- Include site-wide header (nav, title, etc) -->
-<%- include('../partials/flash') %>
-<!-- Show flash success/error messages -->
 
 <div class="container my-5">
+  <%- include('../partials/flash') %>
   <h1 class="mb-4">Add a Meme</h1>
 
   <form action="/memes" method="POST" class="mb-5">

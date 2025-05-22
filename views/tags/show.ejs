@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 
 <div class="container mt-4">
+  <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
   <h2>Memes tagged with "<%= tag.name %>"</h2>
 
   <% if (memes.length === 0) { %>

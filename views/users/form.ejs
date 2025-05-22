@@ -1,7 +1,8 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
-<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
+
 
 <div class="container mt-4" style="max-width: 800px;">
+  <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
   <h1 class="mb-4"><%= isNew ? 'Create Account' : 'Edit Your Profile' %></h1>
 
   <form action="<%= isNew ? '/register' : `/users/${user._id}?_method=PUT` %>" method="POST">

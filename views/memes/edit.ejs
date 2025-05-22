@@ -1,15 +1,16 @@
 <%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
-<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 
+<div class="container my-5"></div>
+<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
 <h1 class="mb-4">Edit Meme</h1>
 
-<form action="/memes/<%= meme._id %>?_method=PUT" method="POST" class="mb-5">
-  <%- include('_form') %>
+  <form action="/memes/<%= meme._id %>?_method=PUT" method="POST" class="mb-5">
+    <%- include('_form') %>
 
-  <div class="d-flex gap-2 mt-4">
-    <button type="submit" class="btn btn-primary">Update Memes</button>
-    <a href="/memes/<%= meme._id %>" class="btn btn-secondary">Cancel</a>
-  </div>
-</form>
-
+    <div class="d-flex gap-2 mt-4">
+      <button type="submit" class="btn btn-primary">Update Memes</button>
+      <a href="/memes/<%= meme._id %>" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
 <%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->

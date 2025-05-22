@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 
 <div class="container mt-4">
+  <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
   <h2>All Tags</h2>
   <div class="d-flex flex-wrap gap-2">
     <% tags.forEach(tag => { %>

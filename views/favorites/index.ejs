@@ -1,30 +1,32 @@
 <%- include('../partials/header') %>
-<%- include('../partials/flash') %>
 
-<h1>My Favorites</h1>
+  <div class="container my-5"></div>
+  <%- include('../partials/flash') %>
+  <h1>My Favorites</h1>
 
-<% if (favorites.length === 0) { %>
-  <p>You haven't favorited any memes yet.</p>
-<% } else { %>
-  <div class="row">
-    <% favorites.forEach(fav => { %>
-      <% const meme = fav.meme; %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <% if (meme.images && meme.images.length > 0) { %>
-            <img src="<%= meme.images[0] %>" class="card-img-top" alt="<%= meme.name %>">
-          <% } else if (meme.image) { %>
-            <img src="<%= meme.image %>" class="card-img-top" alt="<%= meme.name %>">
-          <% } %>
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
-            </h5>
+    <% if (favorites.length === 0) { %>
+      <p>You haven't favorited any memes yet.</p>
+    <% } else { %>
+      <div class="row">
+        <% favorites.forEach(fav => { %>
+          <% const meme = fav.meme; %>
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <% if (meme.images && meme.images.length > 0) { %>
+                <img src="<%= meme.images[0] %>" class="card-img-top" alt="<%= meme.name %>">
+              <% } else if (meme.image) { %>
+                <img src="<%= meme.image %>" class="card-img-top" alt="<%= meme.name %>">
+              <% } %>
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
+                </h5>
+              </div>
+            </div>
           </div>
-        </div>
+        <% }) %>
       </div>
-    <% }) %>
-  </div>
-<% } %>
+    <% } %>
+  </div>  
 
 <%- include('../partials/test-footer') %>
