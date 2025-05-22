@@ -176,6 +176,9 @@ Meme Images and Descriptions courtesy of:
 
 CSS courtesy of [Bootstrap](https://getbootstrap.com/)
 
+- hero video created with AI courtesy of [runway.ml](https://runway.ml)
+- No Image Available image courtesy of [Wikipedia](https://commons.wikimedia.org/wiki/File:No_Image_Available.jpg)
+
 ---
 
 ## Future Improvements:
