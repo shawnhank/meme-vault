@@ -1,97 +1,96 @@
-  <%- include('../partials/header') %> <!-- Include site-wide header (nav, title, etc) -->
-  <%- include('../partials/flash') %>  <!-- Show flash success/error messages -->
+<%- include('../partials/header') %>
+<!-- Include site-wide header (nav, title, etc) -->
+<%- include('../partials/flash') %>
+<!-- Show flash success/error messages -->
 
-  <!-- Main container with consistent max width -->
-  <div class="container mt-4" style="max-width: 900px;">
+<!-- Main container with consistent max width -->
+<div class="container mt-4" style="max-width: 900px">
+  <!-- Show username as page title -->
+  <h1 class="mb-4"><%= user.name %>'s Profile</h1>
 
-    <!-- Show username as page title -->
-    <h1 class="mb-4"><%= user.name %>'s Profile</h1>
-
-    <!-- Display user's email -->
-    <div class="mb-3 fs-5">
-      <strong>Email:</strong>
-      <span><%= user.email %></span>
-    </div>
-
-    <!-- Display user's bio -->
-    <div class="mb-3 fs-5">
-      <strong>Bio:</strong>
-      <span><%= user.bio || '—' %></span>
-    </div>
-
-    <!-- Display user's Instagram -->
-    <div class="mb-3 fs-5">
-      <strong>Instagram:</strong>
-      <span><%= user.instagram || '—' %></span>
-    </div>
-
-    <!-- Display user's Twitter -->
-    <div class="mb-3 fs-5">
-      <strong>Twitter:</strong>
-      <span><%= user.twitter || '—' %></span>
-    </div>
-
-    <!-- Display user's Facebook -->
-    <div class="mb-3 fs-5">
-      <strong>Facebook:</strong>
-      <span><%= user.facebook || '—' %></span>
-    </div>
-
-    <!-- Display user's LinkedIn -->
-    <div class="mb-3 fs-5">
-      <strong>LinkedIn:</strong>
-      <span><%= user.linkedin || '—' %></span>
-    </div>
-
-    <!-- Only show Edit Profile button if the current user owns the profile -->
-    <% if (currentUser && currentUser._id.toString() === user._id.toString()) { %>
-      <a href="/users/<%= user._id %>/edit" class="btn btn-primary mb-4">Edit Profile</a>
-    <% } %>
-
-    <!-- Divider -->
-    <hr class="my-4" />
-
-    <!-- Section showing all memes created by this user -->
-    <h3>Memes by <%= user.name %></h3>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-      <% userMemes.forEach(meme => { %>
-        <div class="col d-flex align-items-start">
-          <a href="/memes/<%= meme._id %>" class="d-flex align-items-center text-decoration-none fs-5">
-            <% if ((meme.images && meme.images[0]) || meme.image) { %>
-              <img
-                src="<%= meme.images?.[0] || meme.image %>"
-                alt="<%= meme.name %>"
-                class="me-3"
-                style="height: 60px; width: auto; object-fit: cover;"
-              />
-            <% } %>
-            <span><%= meme.name %></span>
-          </a>
-        </div>
-      <% }) %>
-    </div>
-
-     <!-- Divider -->
-    <hr class="my-4" />
-    
-    <% // 💾 User Favorites Summary Section - Shows memes this user has favorited %>
-    <div class="row mb-4">
-      <div class="col-12">
-        <h3>Memes I’ve Favorited</h3>
-
-        <% if (favorites.length === 0) { %>
-          <p class="text-muted">This user hasn’t favorited any memes yet.</p>
-        <% } else { %>
-          <p>
-            <a href="/users/<%= user._id %>/favorites" class="btn btn-outline-primary">
-              View <%= favorites.length %> favorite<%= favorites.length !== 1 ? 's' : '' %>
-            </a>
-          </p>
-        <% } %>
-      </div>
-    </div>
-
-
+  <!-- Display user's email -->
+  <div class="mb-3 fs-5">
+    <strong>Email:</strong>
+    <span><%= user.email %></span>
   </div>
 
- <%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->
+  <!-- Display user's bio -->
+  <div class="mb-3 fs-5">
+    <strong>Bio:</strong>
+    <span><%= user.bio || '—' %></span>
+  </div>
+
+  <!-- Display user's Instagram -->
+  <div class="mb-3 fs-5">
+    <strong>Instagram:</strong>
+    <span><%= user.instagram || '—' %></span>
+  </div>
+
+  <!-- Display user's Twitter -->
+  <div class="mb-3 fs-5">
+    <strong>Twitter:</strong>
+    <span><%= user.twitter || '—' %></span>
+  </div>
+
+  <!-- Display user's Facebook -->
+  <div class="mb-3 fs-5">
+    <strong>Facebook:</strong>
+    <span><%= user.facebook || '—' %></span>
+  </div>
+
+  <!-- Display user's LinkedIn -->
+  <div class="mb-3 fs-5">
+    <strong>LinkedIn:</strong>
+    <span><%= user.linkedin || '—' %></span>
+  </div>
+
+  <!-- Only show Edit Profile button if the current user owns the profile -->
+  <% if (currentUser && currentUser._id.toString() === user._id.toString()) { %>
+  <a href="/users/<%= user._id %>/edit" class="btn btn-primary mb-4"
+    >Edit Profile</a
+  >
+  <% } %>
+
+  <!-- Divider -->
+  <hr class="my-4" />
+
+  <!-- Section showing all memes created by this user -->
+  <h3>Memes by <%= user.name %></h3>
+  <div
+    class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mt-3"
+  >
+    <% userMemes.forEach(meme => { %>
+    <div class="col">
+      <%- include('../partials/meme-thumbnails', { meme, size: 'small' }) %>
+    </div>
+    <% }) %>
+  </div>
+
+  <!-- Divider -->
+  <hr class="my-4" />
+
+  <% // 💾 User Favorites Summary Section - Shows memes this user has favorited
+  %>
+  <div class="row mb-4">
+    <div class="col-12">
+      <h3>Memes I’ve Favorited</h3>
+
+      <% if (favorites.length === 0) { %>
+      <p class="text-muted">This user hasn’t favorited any memes yet.</p>
+      <% } else { %>
+      <div
+        class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mt-3"
+      >
+        <% favorites.forEach(meme => { %>
+        <div class="col">
+          <%- include('../partials/meme-thumbnails', { meme, size: 'small' }) %>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/test-footer') %>
+<!-- site-wide footer (scripts, links, etc) -->

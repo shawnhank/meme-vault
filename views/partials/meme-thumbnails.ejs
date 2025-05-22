@@ -1,29 +1,29 @@
 <% // 📦 Compact grid-style meme preview (image only) %>
 <% let resolvedSize = (typeof size !== 'undefined') ? size : 'large'; %>
 
-<a href="/memes/<%= meme._id %>" class="d-block text-decoration-none meme-thumb position-relative overflow-hidden">
+<a href="/memes/<%= meme._id %>" class="d-block text-decoration-none meme-thumb position-relative overflow-hidden <%= size === 'small' ? 'w-75' : 'w-90' %>">
 
   <% if (meme.images && meme.images.length > 0) { %>
     <img 
       src="<%= meme.images[0] %>" 
       alt="<%= meme.name %>" 
-      class="img-fluid rounded <%= size === 'small' ? 'w-75' : 'w-90' %>" 
+      class="img-fluid rounded w-100" 
       style="aspect-ratio: 1 / 1; object-fit: cover;"
-    />
+    >
   <% } else if (meme.image) { %>
     <img 
       src="<%= meme.image %>" 
       alt="<%= meme.name %>" 
-      class="img-fluid rounded <%= size === 'small' ? 'w-75' : 'w-90' %>" 
+      class="img-fluid rounded w-100" 
       style="aspect-ratio: 1 / 1; object-fit: cover;"
-    />
+    >
   <% } else { %>
-    <div 
+    <img 
       src="/images/no_image_available.png"
       alt="No image available"
-      class="img-fluid rounded <%= size === 'small' ? 'w-75' : 'w-90' %>" 
+      class="img-fluid rounded img-muted w-100" 
       style="aspect-ratio: 1 / 1;"
-    ></div>
+    >
   <% } %>
 
   <!-- Hover overlay -->
