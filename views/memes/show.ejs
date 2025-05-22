@@ -1,84 +1,83 @@
-<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
-<%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
+<%- include('../partials/header') %>
+<%- include('../partials/flash') %>
 
-<h1><%= meme.name %></h1>
+<div class="container my-5">
 
-<p style="white-space: pre-line;"><%= meme.description %></p>
+  <h1><%= meme.name %></h1>
 
-<% // 🎯 Display either multiple images or a single image if available %>
-<% if (meme.images && meme.images.length > 0) { %>
-  <div class="d-flex flex-wrap align-items-start gap-2 mb-3">
-    <% meme.images.forEach(function(imgUrl) { %>
+  <p style="white-space: pre-line;"><%= meme.description %></p>
+
+  <% if (meme.images && meme.images.length > 0) { %>
+    <div class="d-flex flex-wrap align-items-start gap-2 mb-3">
+      <% meme.images.forEach(function(imgUrl) { %>
+        <a href="/memes/<%= meme._id %>">
+          <img
+            src="<%= imgUrl %>"
+            alt="<%= meme.name %>"
+            class="img-fluid rounded"
+            style="max-height: 150px;"
+          />
+        </a>
+      <% }) %>
+    </div>
+  <% } else if (meme.image) { %>
+    <div class="mb-3">
       <a href="/memes/<%= meme._id %>">
         <img
-          src="<%= imgUrl %>"
+          src="<%= meme.image %>"
           alt="<%= meme.name %>"
           class="img-fluid rounded"
           style="max-height: 150px;"
         />
       </a>
-    <% }) %>
-  </div>
-<% } else if (meme.image) { %>
-  <div class="mb-3">
-    <a href="/memes/<%= meme._id %>">
-      <img
-        src="<%= meme.image %>"
-        alt="<%= meme.name %>"
-        class="img-fluid rounded"
-        style="max-height: 150px;"
-      />
-    </a>
-  </div>
-<% } %>
-
-  <% // 💾 If a user is logged in, show the Favorite/Unfavorite button %>
-<div class="d-flex flex-column align-items-start mt-2 mb-3">
-  <% if (currentUser) { %>
-    <form 
-      method="POST" 
-      action="/favorites/<%= meme._id %>/favorite<%= isFavorited ? '?_method=DELETE' : '' %>">
-      <button type="submit" class="border-0 bg-transparent p-0 me-1" style="font-size: 1.2rem;">
-        <%= isFavorited ? '❤️ Unfavorite' : '🤍 Favorite' %>
-      </button>
-    </form>
+    </div>
   <% } %>
 
-  <p class="mb-0"><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></p>
+  <div class="d-flex align-items-center gap-3 mt-2 mb-3">
+    <% if (currentUser) { %>
+      <form 
+        method="POST" 
+        action="/favorites/<%= meme._id %>/favorite<%= isFavorited ? '?_method=DELETE' : '' %>">
+        <button type="submit" class="border-0 bg-transparent p-0" style="font-size: 1.0rem;">
+          <%= isFavorited ? '❤️ Unfavorite' : '🤍 Favorite' %>
+        </button>
+      </form>
+    <% } %>
+
+    <p class="mb-0"><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></p>
+  </div>
+
+  <% if (meme.tags && meme.tags.length > 0) { %>
+    <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
+      <h5 class="mb-0">Tags:</h5>
+      <% meme.tags.forEach(tag => { %>
+        <a href="/tags/<%= tag.name %>" class="badge text-bg-secondary text-decoration-none"><%= tag.name %></a>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
+    <p class="text-muted small mt-3">
+      Added by <strong><%= meme.createdBy?.name %></strong>
+      on <%= meme.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %><br>
+      Last updated <%= meme.updatedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+  <% } %>
+
+  <div class="d-flex gap-2 mt-3">
+    <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
+      <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
+    <% } %>
+
+    <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
+
+    <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
+      <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-outline-danger">Delete Meme</button>
+      </form>
+    <% } %>
+  </div>
+
 </div>
 
-<% if (meme.tags && meme.tags.length > 0) { %>
-  <div class="mb-3">
-    <h5>Tags:</h5>
-    <% meme.tags.forEach(tag => { %>
-      <a href="/tags/<%= tag.name %>" class="badge text-bg-secondary text-decoration-none"><%= tag.name %></a>
-    <% }) %>
-  </div>
-<% } %>
-
-
-<% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
-  <p class="text-muted small mt-3">
-    Added by <strong><%= meme.createdBy?.name %></strong>
-    on <%= meme.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %><br>
-    Last updated <%= meme.updatedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-  </p>
-<% } %>
-<div class="d-flex gap-2 mt-3">
-  <!-- Edit button: only show if a user is logged in AND they created this meme -->
-  <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
-    <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
-  <% } %>
-
-  <!-- Back to All Memes: always visible to everyone -->
-  <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
-
-  <!-- Delete button: only show if a user is logged in AND they created this meme -->
-  <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
-    <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display:inline;">
-      <button type="submit" class="btn btn-danger">Delete Meme</button>
-    </form>
-  <% } %>
-</div>
-
-<%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->
+<%- include('../partials/test-footer') %>

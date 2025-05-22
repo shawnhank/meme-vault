@@ -8,40 +8,32 @@
   <!-- Show username as page title -->
   <h1 class="mb-4"><%= user.name %>'s Profile</h1>
 
-  <!-- Display user's email -->
-  <div class="mb-3 fs-5">
-    <strong>Email:</strong>
-    <span><%= user.email %></span>
+  <div class="mb-3">
+    <div class="fw-semibold text-muted">Email: &nbsp <%= user.email %></div>
   </div>
 
-  <!-- Display user's bio -->
-  <div class="mb-3 fs-5">
-    <strong>Bio:</strong>
-    <span><%= user.bio || '—' %></span>
+  <div class="mb-3">
+    <div class="fw-semibold text-muted">Bio
+    <div class="fs-6"><%= user.bio || '—' %>
   </div>
 
-  <!-- Display user's Instagram -->
-  <div class="mb-3 fs-5">
-    <strong>Instagram:</strong>
-    <span><%= user.instagram || '—' %></span>
-  </div>
+  <% const social = [ 
+    { key: 'instagram', icon: 'fab fa-instagram' },
+    { key: 'twitter', icon: 'fab fa-twitter' },
+    { key: 'facebook', icon: 'fab fa-facebook-f' },
+    { key: 'linkedin', icon: 'fab fa-linkedin-in' }
+  ]; %>
 
-  <!-- Display user's Twitter -->
-  <div class="mb-3 fs-5">
-    <strong>Twitter:</strong>
-    <span><%= user.twitter || '—' %></span>
-  </div>
-
-  <!-- Display user's Facebook -->
-  <div class="mb-3 fs-5">
-    <strong>Facebook:</strong>
-    <span><%= user.facebook || '—' %></span>
-  </div>
-
-  <!-- Display user's LinkedIn -->
-  <div class="mb-3 fs-5">
-    <strong>LinkedIn:</strong>
-    <span><%= user.linkedin || '—' %></span>
+  <div class="mb-4">
+    <div class="d-flex align-items-center gap-3 flex-wrap fs-5 d-block mt-4 mb-2">Social Links:
+      <% social.forEach(({ key, icon }) => { %>
+        <% if (user.social?.[key]) { %>
+          <a href="<%= user.social[key] %>" target="_blank" rel="noopener noreferrer" title="<%= key.charAt(0).toUpperCase() + key.slice(1) %>">
+            <i class="<%= icon %> fa-lg"></i>
+          </a>
+        <% } %>
+      <% }) %>
+    </div>
   </div>
 
   <!-- Only show Edit Profile button if the current user owns the profile -->

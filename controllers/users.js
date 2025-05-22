@@ -82,6 +82,32 @@ async function editProfileForm(req, res) {
 
 // PUT /users/:id → Update profile info
 async function updateProfile(req, res) {
+  function isValidUrl(value) {
+    return typeof value === 'string' && /^https?:\/\/[\w.-]+\.[a-z]{2,}([^\s]*)?$/i.test(value.trim());
+  }
+
+  const errors = [];
+  const { instagram, twitter, facebook, linkedin } = req.body;
+
+  // Validate social links if present
+  if (instagram && !isValidUrl(instagram)) {
+    errors.push('Instagram URL is invalid.');
+  }
+  if (twitter && !isValidUrl(twitter)) {
+    errors.push('Twitter URL is invalid.');
+  }
+  if (facebook && !isValidUrl(facebook)) {
+    errors.push('Facebook URL is invalid.');
+  }
+  if (linkedin && !isValidUrl(linkedin)) {
+    errors.push('LinkedIn URL is invalid.');
+  }
+
+  if (errors.length > 0) {
+    req.flash('error', errors.join(' '));
+    return res.redirect(`/users/${req.params.id}/edit`);
+  }
+  
   try {
     const user = await User.findById(req.params.id);
 
@@ -96,10 +122,10 @@ async function updateProfile(req, res) {
     user.email = req.body.email;
     user.bio = req.body.bio;
     user.social = {
-      instagram: req.body.instagram,
-      twitter: req.body.twitter,
-      facebook: req.body.facebook,
-      linkedin: req.body.linkedin
+      instagram: instagram.trim(),
+      twitter: twitter.trim(),
+      facebook: facebook.trim(),
+      linkedin: linkedin.trim()
     };
 
     await user.save();
