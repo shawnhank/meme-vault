@@ -1,6 +1,7 @@
 const User = require('../models/user');     // Import User model
 const Meme = require('../models/meme');     // Import Meme model
 const Favorite = require('../models/favorite');  // Import Favorite model
+const multiavatar = require('@multiavatar/multiavatar'); // import avatar model
 
 // GET /users/:id → Show user profile with their memes
 async function showProfile(req, res) {
@@ -32,10 +33,14 @@ async function showProfile(req, res) {
     // Filter out any nulls (from deleted memes)
     const validFavorites = favoritesWithCounts.filter(Boolean);
 
+    // Generate SVG avatar from seed, fallback to name or ID
+    const avatarSvg = multiavatar(user.avatarSeed || user.name || user._id.toString());
+    
     res.render('users/show', {
       user,
       userMemes: userMemesWithCounts,
-      favorites: validFavorites
+      favorites: validFavorites,
+      avatarSvg
     });
 
   } catch (err) {
@@ -45,15 +50,22 @@ async function showProfile(req, res) {
   }
 }
 
-// GET /community → Show list of all users
+// GET /community → Show list of all users with avatars
 async function listUsers(req, res) {
   try {
-    // Get all users from the database
+    // Fetch all users from the database
     const users = await User.find();
 
-    // Render the community view and pass all users
-    res.render('users/community', { users });
+    // For each user, generate an avatar SVG using avatarSeed (if set), or fallback to name or ID
+    const usersWithAvatars = users.map(user => ({
+      ...user.toObject(), // convert Mongoose doc to plain object so we can add properties
+      avatarSvg: multiavatar(user.avatarSeed || user.name || user._id.toString())
+    }));
+
+    // Render the community view, passing users with avatars included
+    res.render('users/community', { users: usersWithAvatars });
   } catch (err) {
+    // Log error and show flash message on failure
     console.log(err);
     req.flash('error', 'Could not load user list.');
     res.redirect('/');
