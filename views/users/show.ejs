@@ -71,6 +71,24 @@
       <% }) %>
     </div>
 
+    <% // 💾 User Favorites Summary Section - Shows memes this user has favorited %>
+    <div class="row mb-4">
+      <div class="col-12">
+        <h3>Memes I’ve Favorited</h3>
+
+        <% if (favorites.length === 0) { %>
+          <p class="text-muted">This user hasn’t favorited any memes yet.</p>
+        <% } else { %>
+          <p>
+            <a href="/users/<%= user._id %>/favorites" class="btn btn-outline-primary">
+              View <%= favorites.length %> favorite<%= favorites.length !== 1 ? 's' : '' %>
+            </a>
+          </p>
+        <% } %>
+      </div>
+    </div>
+
+
   </div>
 
  <%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->

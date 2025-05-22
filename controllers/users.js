@@ -1,5 +1,6 @@
 const User = require('../models/user');     // Import User model
 const Meme = require('../models/meme');     // Import Meme model
+const Favorite = require('../models/favorite');  // Import Favorite model
 
 // GET /users/:id → Show user profile with their memes
 async function showProfile(req, res) {
@@ -12,8 +13,11 @@ async function showProfile(req, res) {
     // Find all memes created by this user
     const memes = await Meme.find({ createdBy: user._id });
 
+    // Show all memes this user has favorited
+    const favorites = await Favorite.find({ user: user._id });
+
     // Render the profile view with user info + their memes
-    res.render('users/show', { user, userMemes: memes });
+    res.render('users/show', { user, userMemes: memes, favorites });
   } catch (err) {
     console.log(err);
     req.flash('error', 'Could not load user profile.');
