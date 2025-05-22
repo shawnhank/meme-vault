@@ -17,25 +17,29 @@
       </h3>
       <p style="white-space: pre-line;"><%= meme.description %></p>
       <% if (meme.images && meme.images.length > 0) { %>
-        <% meme.images.forEach(function(imgUrl) { %>
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <% meme.images.forEach(function(imgUrl) { %>
+            <a href="/memes/<%= meme._id %>">
+              <img
+                src="<%= imgUrl %>"
+                alt="<%= meme.name %>"
+                class="me-2 mb-2 img-fluid rounded"
+                style="max-height: 150px;"
+              />
+            </a>
+          <% }) %>
+        </div>
+      <% } else if (meme.image) { %>
+        <div class="mb-3">
           <a href="/memes/<%= meme._id %>">
             <img
-              src="<%= imgUrl %>"
+              src="<%= meme.image %>"
               alt="<%= meme.name %>"
-              class="me-2 mb-2 img-fluid rounded"
+              class="mb-2 img-fluid rounded"
               style="max-height: 150px;"
             />
           </a>
-        <% }) %>
-      <% } else if (meme.image) { %>
-        <a href="/memes/<%= meme._id %>">
-          <img
-            src="<%= meme.image %>"
-            alt="<%= meme.name %>"
-            class="mb-2 img-fluid rounded"
-            style="max-height: 150px;"
-          />
-        </a>
+        </div>  
       <% } %>
     </li>
   <% }) %>
