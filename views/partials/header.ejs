@@ -38,18 +38,19 @@
         <% if (currentUser) { %>
           <a class="nav-link" href="/memes/mine">My Memes</a>
           <a class="nav-link" href="/users/community">Community</a>
-          <a class="nav-link" href="/users/<%= currentUser._id %>">View/Edit Profile</a>
-          <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
-            <i id="theme-icon" class="fas fa-moon"></i>
-          </button>
-          <span class="text-muted small"><strong><%= currentUser.name %></strong></span>
+          <a class="nav-link" href="/users/<%= currentUser._id %>" title="View/Edit Profile">
+            <%= currentUser.name %>
+          </a>
         <% } else { %>
           <a class="nav-link" href="/login">Log In</a>
           <a class="nav-link" href="/register">Register</a>
         <% } %>
         <form action="/logout" method="POST" style="display:inline;">
-            <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
-          </form>  
+          <button type="submit" class="btn btn-outline-danger btn-sm">Log Out</button>
+        </form>  
+        <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
       </div>
     </div>
   </div>
