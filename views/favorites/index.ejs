@@ -1,32 +1,25 @@
 <%- include('../partials/header') %>
 
-  <div class="container my-5"></div>
-  <%- include('../partials/flash') %>
-  <h1>My Favorites</h1>
+  <div class="container my-5">
+    <%- include('../partials/flash') %>
+    <h1>My Favorites</h1>
 
-    <% if (favorites.length === 0) { %>
-      <p>You haven't favorited any memes yet.</p>
-    <% } else { %>
-      <div class="row">
-        <% favorites.forEach(fav => { %>
-          <% const meme = fav.meme; %>
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <% if (meme.images && meme.images.length > 0) { %>
-                <img src="<%= meme.images[0] %>" class="card-img-top" alt="<%= meme.name %>">
-              <% } else if (meme.image) { %>
-                <img src="<%= meme.image %>" class="card-img-top" alt="<%= meme.name %>">
-              <% } %>
-              <div class="card-body">
-                <h5 class="card-title">
-                  <a href="/memes/<%= meme._id %>"><%= meme.name %></a>
-                </h5>
+      <% if (favorites.length === 0) { %>
+        <p>You haven't favorited any memes yet.</p>
+      <% } else { %>
+        <div class="row">
+          <!-- print the number of favorites you’re looping through and give a raw preview of what favorites actually contains -->
+          <p class="text-muted">Favorites count: <%= favorites.length %></p>
+          <!-- <pre><%= JSON.stringify(favorites, null, 2) %></pre> -->
+          <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mt-3">
+            <% favorites.forEach(meme => { %>
+              <div class="col">
+                <%- include('../partials/meme-thumbnails', { meme, size: 'small' }) %>
               </div>
-            </div>
+            <% }) %>
           </div>
-        <% }) %>
-      </div>
-    <% } %>
+        </div>
+      <% } %>
   </div>  
 
 <%- include('../partials/test-footer') %>
