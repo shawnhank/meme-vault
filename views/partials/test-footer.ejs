@@ -2,7 +2,7 @@
 
       
       <% if (!hideCTA && !currentUser) { %>
-        <!-- CTA Banner -->
+        
         <div class="container text-center mb-5 mt-5">
           <h4 class="fw-semibold">Ready to Share Your First Meme?</h4>
           <p class="text-muted">Sign up now and start collecting your favorites!</p>
@@ -12,17 +12,14 @@
       
       <hr class="my-4 border-top border-3 border-secondary">
       
-      <!-- Grid Content -->
       <div class="container mt-5">
         <div class="row text-center text-md-start align-items-start row-cols-1 row-cols-md-3 g-4">
 
-          <!-- Logo + Tagline -->
           <div class="text-center">
             <img src="/images/logo3b.png" alt="Meme Vault logo" width="80" class="mb-2 mx-auto d-block">
             <p class="text-muted small mt-3">Meme Vault is a place to collect, share, <br> enjoy and celebrate Internet culture.</p>
           </div>
 
-          <!-- Navigation -->
         <div class="text-center">
             <h6 class="fw-bold text-body fs-5 mb-4">Explore</h6>
             <div class="d-grid" style="grid-template-columns: repeat(2, auto); column-gap: 1.0rem; row-gap: 1.5rem; justify-content: center;">
@@ -33,7 +30,6 @@
             </div>
           </div>
 
-          <!-- Social / Contact -->
         <div class="text-center">
             <h6 class="fw-bold text-body fs-5 mb-4">Follow</h6>
             <div class="d-grid" style="grid-template-columns: repeat(2, auto); column-gap: 1.0rem; row-gap: 0.50rem; justify-content: center;">
@@ -46,17 +42,14 @@
         </div>
       </div>
 
-      <!-- Bottom Note -->
       <div class="text-center text-muted small mt-4 border-top pt-3">
         &copy; 2025 Meme Vault &nbsp&nbsp | &nbsp&nbsp All rights reserved &nbsp&nbsp | &nbsp&nbsp  Built by <a href="https://github.com/shawnhank/meme-vault" target="_blank">Shawn Hank</a> &nbsp&nbsp | &nbsp&nbsp A <a href="https://generalassemb.ly/students/courses/software-engineering-bootcamp" target="_blank">General Assembly</a> SEB Project   
       </div>
       <script>
-        
-        // Theme toggle button
+
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         
-        // Load saved theme preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
           document.body.setAttribute('data-bs-theme', savedTheme);
@@ -67,7 +60,6 @@
           }
         }
 
-        // Theme toggle click handler
         if (themeToggle && themeIcon) {
           themeToggle.addEventListener('click', () => {
             const currentTheme = document.body.getAttribute("data-bs-theme");
@@ -75,13 +67,11 @@
             document.body.setAttribute("data-bs-theme", newTheme);
             localStorage.setItem("theme", newTheme); 
             
-            // Swap icons
             themeIcon.classList.toggle("fa-sun", newTheme === "dark");
             themeIcon.classList.toggle("fa-moon", newTheme === "light");
           });
         }
 
-        // Enable Bootstrap tooltips
         const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
       </script>

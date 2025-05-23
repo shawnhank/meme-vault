@@ -1,57 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Memes App</title>
-  <link rel="icon" href="/images/favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memes App</title>
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body data-bs-theme="light">
+    <header>
+      <nav
+        class="navbar navbar-expand-sm bg-body-tertiary px-4 py-4 mb-4 w-100"
+      >
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-  <header>
-    <nav class="navbar navbar-expand-sm bg-body-tertiary px-4 py-4 mb-4 w-100">
-      <div class="container-fluid">
+          <div
+            class="collapse navbar-collapse justify-content-between align-items-center"
+            id="navbarResponsive"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <a href="/" class="logo-link">
+                <img
+                  src="/images/logo3b.png"
+                  alt="Meme Vault logo"
+                  style="height: 32px"
+                />
+              </a>
 
-        <!-- Mobile toggle -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarResponsive">
-
-          <!-- Left section -->
-          <div class="d-flex align-items-center gap-3">
-            <a href="/" class="logo-link">
-              <img src="/images/logo3b.png" alt="Meme Vault logo" style="height: 32px;">
-            </a>
-
-            <a href="/" class="nav-link fw-semibold fs-5 nav-text-link">
-              <span>Meme Vault</span>
-            </a>
-          </div>
-
-          <!-- Right section -->
-          <div class="d-flex flex-wrap gap-4 align-items-center">
-            <% if (currentUser) { %>
-              <a class="nav-link fs-5" href="/users/community">Community</a>
-            <% } %>
-            <div class="nav-item position-relative">
-              <a class="nav-link fs-5" href="#">Memes</a>
-              <div class="position-absolute bg-body-tertiary submenu py-2;" style="min-width: 150px;">
-                <a href="/memes/new" class="d-block text-body text-decoration-none py-1">Add a Meme</a>
-                <a href="/memes" class="d-block text-body text-decoration-none py-1">Browse Memes</a>  
-                <% if (currentUser) { %>
-                  <a href="/memes/mine" class="d-block text-body text-decoration-none py-2">My Memes</a>
-                  <a href="/users/<%= currentUser._id %>/favorites" class="d-block text-body text-decoration-none py-2">My Favorites</a>
-                <% } %>         
-              </div>
+              <a href="/" class="nav-link fw-semibold fs-5 nav-text-link">
+                <span>Meme Vault</span>
+              </a>
             </div>
-            <% if (currentUser) { %>
+
+            <div class="d-flex flex-wrap gap-4 align-items-center">
+              <% if (currentUser) { %>
+              <a class="nav-link fs-5" href="/users/community">Community</a>
+              <% } %>
               <div class="nav-item position-relative">
-                <a href="/users/<%= currentUser._id %>" class="nav-link d-flex align-items-center gap-2 fs-5">
+                <a class="nav-link fs-5" href="#">Memes</a>
+                <div
+                  class="position-absolute bg-body-tertiary submenu py-2;"
+                  style="min-width: 150px"
+                >
+                  <a
+                    href="/memes/new"
+                    class="d-block text-body text-decoration-none py-1"
+                    >Add a Meme</a
+                  >
+                  <a
+                    href="/memes"
+                    class="d-block text-body text-decoration-none py-1"
+                    >Browse Memes</a
+                  >
+                  <% if (currentUser) { %>
+                  <a
+                    href="/memes/mine"
+                    class="d-block text-body text-decoration-none py-2"
+                    >My Memes</a
+                  >
+                  <a
+                    href="/users/<%= currentUser._id %>/favorites"
+                    class="d-block text-body text-decoration-none py-2"
+                    >My Favorites</a
+                  >
+                  <% } %>
+                </div>
+              </div>
+              <% if (currentUser) { %>
+              <div class="nav-item position-relative">
+                <a
+                  href="/users/<%= currentUser._id %>"
+                  class="nav-link d-flex align-items-center gap-2 fs-5"
+                >
                   <span><%= currentUser.name %></span>
                   <img
                     src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=<%= currentUser.avatarSeed %>"
@@ -59,31 +95,52 @@
                     width="24"
                     height="24"
                     class="rounded"
-                  >
+                  />
                 </a>
-                <div class="submenu bg-body-tertiary rounded py-2" style="min-width: 150px;">
-                  <a href="/users/<%= currentUser._id %>" class="d-block text-body text-decoration-none px-3 py-2">Edit Profile</a>
-                  <a href="/users/<%= currentUser._id %>/change-password" class="d-block text-body text-decoration-none px-3 py-2">Change Password</a>
+                <div
+                  class="submenu bg-body-tertiary rounded py-2"
+                  style="min-width: 150px"
+                >
+                  <a
+                    href="/users/<%= currentUser._id %>"
+                    class="d-block text-body text-decoration-none px-3 py-2"
+                    >Edit Profile</a
+                  >
+                  <a
+                    href="/users/<%= currentUser._id %>/change-password"
+                    class="d-block text-body text-decoration-none px-3 py-2"
+                    >Change Password</a
+                  >
                   <form action="/logout" method="POST" class="m-0">
                     <button type="submit" class="logout-link">Log Out</button>
                   </form>
                 </div>
               </div>
-            <% } else { %>
+              <% } else { %>
               <div class="nav-item position-relative">
                 <a class="nav-link fs-5" href="/login">Log In</a>
-                  <div class="position-absolute bg-body-tertiary submenu py-2;" style="min-width: 150px;">
-                    <a class="nav-link fs-5" href="/register">Create Account</a>
-                  </div>
-              </div>    
-            <% } %>
+                <div
+                  class="position-absolute bg-body-tertiary submenu py-2;"
+                  style="min-width: 150px"
+                >
+                  <a class="nav-link fs-5" href="/register">Create Account</a>
+                </div>
+              </div>
+              <% } %>
 
-            <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">
-              <i id="theme-icon" class="fas fa-moon fs-5"></i>
-            </button>
+              <button
+                id="theme-toggle"
+                class="btn btn-sm"
+                aria-label="Toggle theme"
+                data-bs-toggle="tooltip"
+                title="Toggle Dark Mode"
+              >
+                <i id="theme-icon" class="fas fa-moon fs-5"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  </header>
-
+      </nav>
+    </header>
+  </body>
+</html>

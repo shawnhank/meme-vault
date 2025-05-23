@@ -1,31 +1,41 @@
-<!-- 
-  flash.ejs partial renders success or error messages from req.flash()
-  These messages are stored in res.locals.success and res.locals.error
--->
-
-<!-- If a success message exists, display the first one -->
 <% if (success && success.length) { %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert" data-auto-dismiss="true">
-    <%= success[0] %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+<div
+  class="alert alert-success alert-dismissible fade show"
+  role="alert"
+  data-auto-dismiss="true"
+>
+  <%= success[0] %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %> <% if (error && error.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+  data-auto-dismiss="true"
+>
+  <%= error[0] %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
 <% } %>
 
-<!-- If an error message exists, display the first one -->
-<% if (error && error.length) { %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert" data-auto-dismiss="true">
-    <%= error[0] %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% } %>
-
-<!-- Auto-dismiss script for all flash messages -->
 <script>
   setTimeout(() => {
-    document.querySelectorAll('.alert[data-auto-dismiss="true"]').forEach(alert => {
-      alert.classList.remove('show');
-      alert.classList.add('fade');
-      setTimeout(() => alert.remove(), 500);
-    });
-  }, 5000); // Adjust timing (ms) here if needed
+    document
+      .querySelectorAll('.alert[data-auto-dismiss="true"]')
+      .forEach((alert) => {
+        alert.classList.remove('show');
+        alert.classList.add('fade');
+        setTimeout(() => alert.remove(), 500);
+      });
+  }, 5000);
 </script>
