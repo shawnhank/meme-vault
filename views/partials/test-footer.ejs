@@ -52,6 +52,16 @@
         &copy; 2025 Meme Vault &nbsp&nbsp | &nbsp&nbsp All rights reserved &nbsp&nbsp | &nbsp&nbsp  Built by <a href="https://github.com/shawnhank">Shawn Hank</a> &nbsp&nbsp | &nbsp&nbsp A <a href="https://generalassemb.ly/students/courses/software-engineering-bootcamp">General Assembly</a> SEB Project   
       </div>
       <script>
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.body.setAttribute('data-bs-theme', savedTheme);
+
+          if (savedTheme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+          }
+        }
         // Theme toggle button
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
@@ -61,7 +71,8 @@
             const currentTheme = document.body.getAttribute("data-bs-theme");
             const newTheme = currentTheme === "dark" ? "light" : "dark";
             document.body.setAttribute("data-bs-theme", newTheme);
-
+            localStorage.setItem("theme", newTheme); 
+            
             // Swap icons
             themeIcon.classList.toggle("fa-sun", newTheme === "dark");
             themeIcon.classList.toggle("fa-moon", newTheme === "light");
