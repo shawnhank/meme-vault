@@ -6,90 +6,112 @@
 
   <div class="mb-4">
     <div class="fw-semibold text-muted">Description</div>
-    <div class="fs-6 text-muted" style="white-space: pre-line;">
-      <%- (meme.description || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
-        const hasProtocol = match.startsWith('http://') || match.startsWith('https://');
-        const url = hasProtocol ? match : 'https://' + match;
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
-      }) %>
+    <div class="fs-6 text-muted" style="white-space: pre-line">
+      <%- (meme.description ||
+      '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi,
+      function(match) { const hasProtocol = match.startsWith('http://') ||
+      match.startsWith('https://'); const url = hasProtocol ? match : 'https://'
+      + match; return `<a
+        href="${url}"
+        target="_blank"
+        rel="noopener noreferrer"
+        >${match}</a
+      >`; }) %>
     </div>
   </div>
 
   <% if (meme.images && meme.images.length > 0) { %>
-    <div class="d-flex flex-wrap align-items-start gap-2 mb-3">
-      <% meme.images.forEach(function(imgUrl) { %>
-        <a href="/memes/<%= meme._id %>">
-          <img
-            src="<%= imgUrl %>"
-            alt="<%= meme.name %>"
-            class="img-fluid rounded"
-            style="max-height: 150px;"
-          />
-        </a>
-      <% }) %>
-    </div>
+  <div class="d-flex flex-wrap align-items-start gap-2 mb-3">
+    <% meme.images.forEach(function(imgUrl) { %>
+    <a href="/memes/<%= meme._id %>">
+      <img
+        src="<%= imgUrl %>"
+        alt="<%= meme.name %>"
+        class="img-fluid rounded"
+        style="max-height: 150px"
+      />
+    </a>
+    <% }) %>
+  </div>
   <% } else if (meme.image) { %>
-    <div class="mb-3">
-      <a href="/memes/<%= meme._id %>">
-        <img
-          src="<%= meme.image %>"
-          alt="<%= meme.name %>"
-          class="img-fluid rounded"
-          style="max-height: 150px;"
-        />
-      </a>
-    </div>
+  <div class="mb-3">
+    <a href="/memes/<%= meme._id %>">
+      <img
+        src="<%= meme.image %>"
+        alt="<%= meme.name %>"
+        class="img-fluid rounded"
+        style="max-height: 150px"
+      />
+    </a>
+  </div>
   <% } %>
 
   <div class="d-flex align-items-center fs-6 flex-wrap gap-5 mb-3">
-    
     <% if (currentUser) { %>
-      <form 
-        method="POST" 
-        action="/favorites/<%= meme._id %>/favorite<%= isFavorited ? '?_method=DELETE' : '' %>">
-        <button type="submit" class="border-0 bg-transparent p-0">
-          <span class="fs-6">
-            <%= isFavorited ? '❤️  Unfavorite' : '🤍  Favorite' %>
-          </span>
-        </button>
-      </form>
+    <form
+      method="POST"
+      action="/favorites/<%= meme._id %>/favorite<%= isFavorited ? '?_method=DELETE' : '' %>"
+    >
+      <button type="submit" class="border-0 bg-transparent p-0">
+        <span class="fs-6">
+          <%= isFavorited ? '❤️ Unfavorite' : '🤍 Favorite' %>
+        </span>
+      </button>
+    </form>
     <% } %>
 
-    <span class="fw-medium"><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></span>
-
+    <span class="fw-medium"
+      ><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></span
+    >
   </div>
 
   <% if (meme.tags && meme.tags.length > 0) { %>
-    <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
-      <h5 class="mb-0">Tags:</h5>
-      <% meme.tags.forEach(tag => { %>
-        <a href="/tags/<%= tag.name %>" class="badge text-bg-secondary text-decoration-none"><%= tag.name %></a>
-      <% }) %>
-    </div>
-  <% } %>
-
-  <% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
-    <p class="text-muted small mt-3">
-      Added by <a href="/users/<%= meme.createdBy._id %>" class="text-decoration-none fw-semibold"><%= meme.createdBy.name %></a>
-      on <%= meme.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %><br>
-      Last updated <%= meme.updatedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
+  <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
+    <h5 class="mb-0">Tags:</h5>
+    <% meme.tags.forEach(tag => { %>
+    <a
+      href="/tags/<%= tag.name %>"
+      class="badge text-bg-secondary text-decoration-none"
+      ><%= tag.name %></a
+    >
+    <% }) %>
+  </div>
+  <% } %> <% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
+  <p class="text-muted small mt-3">
+    Added by
+    <a
+      href="/users/<%= meme.createdBy._id %>"
+      class="text-decoration-none fw-semibold"
+      ><%= meme.createdBy.name %></a
+    >
+    on <%= meme.createdAt.toLocaleDateString('en-US', { year: 'numeric', month:
+    'long', day: 'numeric' }) %><br />
+    Last updated <%= meme.updatedAt.toLocaleDateString('en-US', { year:
+    'numeric', month: 'long', day: 'numeric' }) %>
+  </p>
   <% } %>
 
   <div class="d-flex gap-2 mt-2 mb-5">
-    <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
-      <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
+    <% if (currentUser && meme.createdBy &&
+    meme.createdBy.equals(currentUser._id)) { %>
+    <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary"
+      >Edit Meme</a
+    >
     <% } %>
 
     <a href="/memes" class="btn btn-secondary">Back to All Memes</a>
 
-    <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
-      <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST" style="display:inline;">
-        <button type="submit" class="btn btn-outline-danger">Delete Meme</button>
-      </form>
+    <% if (currentUser && meme.createdBy &&
+    meme.createdBy.equals(currentUser._id)) { %>
+    <form
+      action="/memes/<%= meme._id %>?_method=DELETE"
+      method="POST"
+      style="display: inline"
+    >
+      <button type="submit" class="btn btn-outline-danger">Delete Meme</button>
+    </form>
     <% } %>
   </div>
-
 </div>
 
 <%- include('../partials/test-footer') %>

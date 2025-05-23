@@ -1,27 +1,29 @@
-  <div class="mb-3">
-    <label for="name" class="form-label">Meme Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="name"
-      name="name"
-      value="<%= meme ? meme.name : '' %>"
-      required
-    />
-  </div>
+<div class="mb-3">
+  <label for="name" class="form-label">Meme Name</label>
+  <input
+    type="text"
+    class="form-control"
+    id="name"
+    name="name"
+    value="<%= meme ? meme.name : '' %>"
+    required
+  />
+</div>
 
-  <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <textarea
-      class="form-control"
-      id="description"
-      name="description"
-      rows="15"
-      required
-    ><%= meme ? meme.description : '' %></textarea>
-  </div>
+<div class="mb-3">
+  <label for="description" class="form-label">Description</label>
+  <textarea
+    class="form-control"
+    id="description"
+    name="description"
+    rows="15"
+    required
+  >
+<%= meme ? meme.description : '' %></textarea
+  >
+</div>
 
-  <div class="mb-3">
+<div class="mb-3">
   <label for="tags" class="form-label">Tags (comma-separated)</label>
   <input
     type="text"
@@ -29,30 +31,31 @@
     name="tags"
     id="tags"
     placeholder="e.g. Funny, Sarcastic, 90s"
-    value="<%= typeof meme !== 'undefined' && meme.tagsFormatted ? meme.tagsFormatted : '' %>">
-  </div> 
+    value="<%= typeof meme !== 'undefined' && meme.tagsFormatted ? meme.tagsFormatted : '' %>"
+  />
+</div>
 
-  <div class="mb-3">
-    <label class="form-label">Image URLs (up to 3)</label>
-    <input
-      type="text"
-      class="form-control mb-2"
-      name="images"
-      value="<%= meme?.images?.[0] || '' %>"
-      placeholder="Image URL 1"
-    />
-    <input
-      type="text"
-      class="form-control mb-2"
-      name="images"
-      value="<%= meme?.images?.[1] || '' %>"
-      placeholder="Image URL 2"
-    />
-    <input
-      type="text"
-      class="form-control"
-      name="images"
-      value="<%= meme?.images?.[2] || '' %>"
-      placeholder="Image URL 3"
-    />
+<div class="mb-3">
+  <label class="form-label">Image URLs (up to 3)</label>
+  <input
+    type="text"
+    class="form-control mb-2"
+    name="images"
+    value="<%= meme?.images?.[0] || '' %>"
+    placeholder="Image URL 1"
+  />
+  <input
+    type="text"
+    class="form-control mb-2"
+    name="images"
+    value="<%= meme?.images?.[1] || '' %>"
+    placeholder="Image URL 2"
+  />
+  <input
+    type="text"
+    class="form-control"
+    name="images"
+    value="<%= meme?.images?.[2] || '' %>"
+    placeholder="Image URL 3"
+  />
 </div>
