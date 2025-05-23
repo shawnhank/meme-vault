@@ -130,6 +130,7 @@ async function updateProfile(req, res) {
     user.name = req.body.name;
     user.email = req.body.email;
     user.bio = req.body.bio;
+    user.avatarSeed = req.body.avatarSeed;
     user.social = {
       instagram: instagram.trim(),
       twitter: twitter.trim(),
@@ -139,6 +140,9 @@ async function updateProfile(req, res) {
 
 
     await user.save();
+    req.session.user.avatarSeed = user.avatarSeed;
+    req.session.user.name = user.name;
+    req.session.user.email = user.email;
     req.flash('success', 'Profile updated successfully.');
     res.redirect(`/users/${user._id}`);
   } catch (err) {

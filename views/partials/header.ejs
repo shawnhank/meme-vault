@@ -51,7 +51,16 @@
             </div>
             <% if (currentUser) { %>
               <div class="nav-item position-relative">
-                <span class="nav-link fs-5"><%= currentUser.name %></span>
+                <a href="/users/<%= currentUser._id %>" class="nav-link d-flex align-items-center gap-2 fs-5">
+                  <span><%= currentUser.name %></span>
+                  <img
+                    src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=<%= currentUser.avatarSeed %>"
+                    alt="Avatar"
+                    width="24"
+                    height="24"
+                    class="rounded"
+                  >
+                </a>
                 <div class="submenu bg-body-tertiary rounded py-2" style="min-width: 150px;">
                   <a href="/users/<%= currentUser._id %>" class="d-block text-body text-decoration-none px-3 py-2">Edit Profile</a>
                   <a href="/users/<%= currentUser._id %>/change-password" class="d-block text-body text-decoration-none px-3 py-2">Change Password</a>

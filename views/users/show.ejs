@@ -1,15 +1,21 @@
 <%- include('../partials/header') %>
 <!-- Include site-wide header (nav, title, etc) -->
 
-
 <!-- Main container with consistent max width -->
 <div class="container mt-4" style="max-width: 900px">
   <%- include('../partials/flash') %>
-  <!-- Show username as page title -->
+  <!-- Show avatar & username as page title -->
   <div class="d-flex align-items-center gap-3 mb-4">
-    
-    <h1 class="mb-0"><%= user.name %>'s Profile</h1>
-  </div>
+  <img
+    src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=<%= user.avatarSeed %>"
+    alt="Avatar"
+    width="60"
+    height="60"
+    class="rounded"
+  >
+
+  <h1 class="mb-0"><%= user.name %>'s Profile</h1>
+</div>
 
   <div class="mb-3">
     <div class="text-muted"><strong>Email &nbsp</strong> <%= user.email %></div>

@@ -33,6 +33,25 @@
       </div>
     <% } %>
 
+    <!-- Random Avatar String -->
+    <div class="mb-3">
+      <label for="avatarSeed" class="form-label">Random Avatar String</label>
+      <input
+        type="text"
+        id="avatarSeed"
+        name="avatarSeed"
+        value="<%= user.avatarSeed %>"
+        class="form-control"
+      >
+      <div class="form-text">
+        This random string generates your avatar style.
+        <button type="button" class="btn btn-sm btn-outline-secondary mt-2"
+          onclick="document.getElementById('avatarSeed').value = Math.random().toString(36).slice(2, 10);">
+          Randomize Avatar
+        </button>
+      </div>
+    </div>
+
     <!-- Bio -->
     <div class="mb-3">
       <label for="bio" class="form-label">Bio</label>

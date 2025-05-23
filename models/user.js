@@ -20,6 +20,13 @@ const userSchema = new mongoose.Schema({
       message: 'Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character.'
     }
   },
+  
+  avatarSeed: {
+    type: String,
+    required: true,
+    default: () => Math.random().toString(36).slice(2, 10)
+  },
+
   // User bio (optional)
   bio: { type: String },
   social: {                                       // Social links
