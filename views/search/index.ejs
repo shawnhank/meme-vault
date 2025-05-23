@@ -1,26 +1,34 @@
 <%- include('../partials/header') %>
 
 <div class="container mt-4">
-  <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
+  <%- include('../partials/flash') %>
   <h2>Search results for "<%= query %>"</h2>
 
   <% if (memes.length === 0) { %>
-    <p>No matching memes found.</p>
+  <p>No matching memes found.</p>
   <% } else { %>
-    <div class="row">
-      <% memes.forEach(meme => { %>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="<%= meme.images[0] %>" class="card-img-top" alt="<%= meme.name %>">
-            <div class="card-body">
-              <h5 class="card-title"><%= meme.name %></h5>
-              <p class="card-text"><%= meme.description %></p>
-              <a href="/memes/<%= meme._id %>" class="btn btn-sm btn-outline-primary">View Meme</a>
-            </div>
-          </div>
+  <div class="row">
+    <% memes.forEach(meme => { %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img
+          src="<%= meme.images[0] %>"
+          class="card-img-top"
+          alt="<%= meme.name %>"
+        />
+        <div class="card-body">
+          <h5 class="card-title"><%= meme.name %></h5>
+          <p class="card-text"><%= meme.description %></p>
+          <a
+            href="/memes/<%= meme._id %>"
+            class="btn btn-sm btn-outline-primary"
+            >View Meme</a
+          >
         </div>
-      <% }) %>
+      </div>
     </div>
+    <% }) %>
+  </div>
   <% } %>
 </div>
 

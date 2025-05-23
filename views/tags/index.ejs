@@ -1,13 +1,16 @@
 <%- include('../partials/header') %>
 
 <div class="container mt-4">
-  <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
+  <%- include('../partials/flash') %>
   <h2>All Tags</h2>
   <div class="d-flex flex-wrap gap-2">
     <% tags.forEach(tag => { %>
-      <a href="/tags/<%= tag.name %>" class="badge text-bg-primary text-decoration-none">
-        <%= tag.name %>
-      </a>
+    <a
+      href="/tags/<%= tag.name %>"
+      class="badge text-bg-primary text-decoration-none"
+    >
+      <%= tag.name %>
+    </a>
     <% }) %>
   </div>
 </div>
