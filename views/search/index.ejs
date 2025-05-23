@@ -3,33 +3,18 @@
 <div class="container mt-4">
   <%- include('../partials/flash') %>
   <h2>Search results for "<%= query %>"</h2>
-
-  <% if (memes.length === 0) { %>
-  <p>No matching memes found.</p>
-  <% } else { %>
-  <div class="row">
-    <% memes.forEach(meme => { %>
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img
-          src="<%= meme.images[0] %>"
-          class="card-img-top"
-          alt="<%= meme.name %>"
-        />
-        <div class="card-body">
-          <h5 class="card-title"><%= meme.name %></h5>
-          <p class="card-text"><%= meme.description %></p>
-          <a
-            href="/memes/<%= meme._id %>"
-            class="btn btn-sm btn-outline-primary"
-            >View Meme</a
-          >
-        </div>
+    <% if (memes.length > 0) { %>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mt-3 mb-6">
+        <% memes.forEach(meme => { %>
+          <div class="col">
+            <%- include('../partials/meme-thumbnails', { meme, size: 'small' }) %>
+          </div>
+        <% }) %>
       </div>
-    </div>
-    <% }) %>
+    <% } else { %>
+      <p>No matching memes found.</p>
+    <% } %>
   </div>
-  <% } %>
 </div>
 
 <%- include('../partials/test-footer') %>
