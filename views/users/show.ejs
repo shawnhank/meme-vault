@@ -24,16 +24,10 @@
   <div class="mb-3">
     <div class="text-muted"><strong>Bio</strong></div>
     <div class="fs-6 text-muted" style="white-space: pre-line">
-      <%- (user.bio ||
-      '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi,
-      function(match) { const hasProtocol = match.startsWith('http://') ||
-      match.startsWith('https://'); const url = hasProtocol ? match : 'https://'
-      + match; return `<a
-        href="${url}"
-        target="_blank"
-        rel="noopener noreferrer"
-        >${match}</a
-      >`; }) %>
+      <%- (user.bio || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
+        const url = match.startsWith('http') ? match : 'https://' + match;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
+      }) %>
     </div>
   </div>
 
