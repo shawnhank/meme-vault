@@ -41,14 +41,26 @@ with a couple of DNS aliases to my own domain:
 
 
 # 📸 Screenshots
-*Placeholders — swap in final screenshots* [Landing Page - Dark Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_22.png)
-[Landing Page - Light Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots-24.png) [All Memes Index View](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_12.png)
-[Meme Detail View](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_25.png) [User Profile](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_19.png)
+[Landing Page - Dark Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_22.png)
+
+[Landing Page - Light Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots-24.png)
+
+[All Memes Index View](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_12.png)
+
+[Meme Detail View](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_25.png)
+
+[User Profile](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_19.png)
+
 [Edit Profile]([meme-vault-app-screenshots_26](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_26.png))
+
 [Favorites View - Dark](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_15.png)
+
 [Favorites View - Light](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_14.png)
+
 [View by Tags/Categories](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_10.png)
+
 [404](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_6.png)
+
 
 # 🧠 Key Features
 ### ✅ Core MVP
@@ -86,6 +98,39 @@ with a couple of DNS aliases to my own domain:
 # 🗂 Project Structure
 This project uses a standard MEN stack layout with some opinionated enhancements for clarity and reusability.
 See: [Project Structure & Layout](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-project-structure.md)
+
+🧠 Meme Vault – Server-Side Architecture Overview
+
+Meme Vault is a full-stack Node/Express application built on the **MEN stack (MongoDB, Express, Node.js)** with EJS for server-side rendering and session-based user authentication. The app is organized using a modular, MVC-inspired folder structure to support maintainability and feature scaling.
+
+### 🗂️ App Structure Breakdown
+* **server.js**: The central entry point. It configures middleware (like session, flash, method-override), connects to MongoDB, sets up global variables (res.locals), mounts all route files, and handles 404 fallbacks.
+	
+* **models/**: Contains all Mongoose schemas.
+  * User stores account info and hashed passwords.
+  * Meme is the core content model.
+  * Favorite, Rating, Comment, and TagAssignment manage user interactions with memes.
+  * Tag enables categorization and filtering.
+
+* **controllers/**: Each feature has its own controller (e.g., memes.js, users.js, auth.js, favorites.js, tags.js, ratings.js, comments.js). Controllers handle logic like DB reads/writes, session checks, ownership validation, and view rendering.
+
+* **routes/**: Mirrors the controller setup. Each route file defines RESTful routes and uses middleware like isLoggedIn or isOwner for access control.
+
+* **middleware/**: Houses auth and ownership guards. isLoggedIn checks for a valid session; isOwner ensures users can only modify their own content. Additional utilities (e.g., add-user-to-req-and-locals.js) attach user data to all requests and templates.
+
+* **views/**: Structured by feature (memes/, users/, auth/, partials/). Uses EJS templates for dynamic rendering. Partial files (_form.ejs, flash.ejs, header.ejs, etc.) provide reusable layout components.
+
+* **public/**: Contains static files like CSS, client-side JS, and uploaded assets. The main stylesheet applies global styling using Bootstrap with optional overrides.
+
+### 🔁 Request Flow Summary
+1. A user visits a route (/memes, /login, etc.).
+2. Express routes match the URL and invoke the relevant controller.
+3. Middleware runs first (auth checks, session parsing).
+4. Controllers query the database using Mongoose models.
+5. Results are passed to a view (EJS) or returned as a redirect/response.
+6. Views use partials to render content conditionally based on session and ownership.
+7. Flash messages display success or error states across redirects.
+
 
 # 🔄 Data Relationships
 This project uses all three major relationship types:
@@ -145,6 +190,11 @@ Track the original planning and user stories: [Trello – Meme Vault Board](ht
 * **Image Sources**: Giphy, Tenor, Know Your Meme, Wikipedia
 * **Cloudflare / Cloudflared**: secure HTTPS tunneling
 * **OpenAI: ChatCPT, Sora**: for logo and favicon
+* **Images and Descriptions:**
+> [Wikipedia](https://wikipedia.com)
+> [Giphy](https://giphy.com)
+> [Tenor](https://tenor.com) & Google Search for Image and Descriptions Content
+* **[Know Your Meme**:](https://knowyourmeme.com/)
 
 ⠀
 # 🎯 Next Steps
