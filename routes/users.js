@@ -1,6 +1,6 @@
 const express = require('express'); // Load Express
 const router = express.Router(); // Create the router
-import * as usersCtrl from '../controllers/users.js'; // Import the users controller
+const usersCtrl = require('../controllers/users'); // Import the users controller
 const favoritesCtrl = require('../controllers/favorites'); // Import the favorites controller
 const { isLoggedIn } = require('../middleware/auth'); // to prevent a visitor from editing a form directly
 
