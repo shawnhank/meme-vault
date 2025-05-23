@@ -28,16 +28,16 @@ Fun fact: the landing page video was AI-generated with runway.ml!
 
 # 🚀 Free Live Demo
 You can access Meme Vault at:
-* ~[https://memevault.thisdemo.rocks](https://memevault.thisdemo.rocks/)~
-* ~[https://mv.thisdemo.rocks](https://mv.thisdemo.rocks/)~
+* [https://memevault.thisdemo.rocks](https://memevault.thisdemo.rocks/)
+* [https://mv.thisdemo.rocks](https://mv.thisdemo.rocks/)
 ⠀These are hosted on a personal VPS with strict HTTPS security via Cloudflare tunnels.
 
 ⠀Hosted on Heroku as well
-* ~[https://ga-meme-vault-7f99ef07fc82.herokuapp.com](https://ga-meme-vault-7f99ef07fc82.herokuapp.com/)~
+* [https://ga-meme-vault-7f99ef07fc82.herokuapp.com](https://ga-meme-vault-7f99ef07fc82.herokuapp.com/)
 
 with a couple of DNS aliases to my own domain:
-* ~[https://ga-meme-vault.thisdemo.rocks](https://ga-meme-vault.thisdemo.rocks/)~
-* ~[https://ga-mv-thisdemo.rocks](https://ga-mv-thisdemo.rocks/)~
+* [https://ga-meme-vault.thisdemo.rocks](https://ga-meme-vault.thisdemo.rocks/)
+* [https://ga-mv-thisdemo.rocks](https://ga-mv-thisdemo.rocks/)
 
 
 # 📸 Screenshots
@@ -71,7 +71,7 @@ with a couple of DNS aliases to my own domain:
 * 404 page with friendly fallback
 
 
-⠀See the ~[Full Feature Tracker](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-feature-tracker.md)~ for even more enhancements.
+⠀See the [Full Feature Tracker](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-feature-tracker.md) for even more enhancements.
 
 # 🧱 Tech Stack
 * **MongoDB + Mongoose**: data models, relations, and population
@@ -85,7 +85,7 @@ with a couple of DNS aliases to my own domain:
 ⠀
 # 🗂 Project Structure
 This project uses a standard MEN stack layout with some opinionated enhancements for clarity and reusability.
-See: ~[Project Structure & Layout](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-project-structure.md)~
+See: [Project Structure & Layout](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-project-structure.md)
 
 # 🔄 Data Relationships
 This project uses all three major relationship types:
@@ -96,11 +96,11 @@ This project uses all three major relationship types:
   * Memes ↔ Users (via Favorites)
   * (Future) Memes ↔ Ratings, Comments
 
-⠀See: ~[Data Model Diagram](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-data-models.png)~ and the [Add Meme Workflow Diagram](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/add-meme-full-flow-diagram.png)
+⠀See: [Data Model Diagram](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-data-models.png) and the [Add Meme Workflow Diagram](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/add-meme-full-flow-diagram.png)
 
 # 📊 RESTful Routes + Access Control
 Meme Vault uses standard RESTful conventions with method-override and ownership protection.
-See: ~[Full Routes Map ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-restful-routes.md)~
+See: [Full Routes Map ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-restful-routes.md)
 
 # 🧪 Manual QA Checklist
 This project was tested using a full scenario-based manual QA system:
@@ -112,7 +112,7 @@ This project was tested using a full scenario-based manual QA system:
 * User navigation + community view
 * 404 handling and fallback behavior
 
-⠀More in ~[Testing & QA Docs ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-manual-test-eval-checklist.md)~
+⠀More in [Testing & QA Docs ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-manual-test-eval-checklist.md)
 
 # 🛠 Setup & Local Development
 ```
@@ -136,12 +136,12 @@ More info in  the [Hosting Meme Vault Locally with Cloudflare Tunnels doc  ➝](
 
 
 # 🧭 Trello Board
-Track the original planning and user stories: ~[Trello – Meme Vault Board](https://trello.com/b/fUwClIB4)~
+Track the original planning and user stories: [Trello – Meme Vault Board](https://trello.com/b/fUwClIB4)
 
 # 🙌 Attributions
-* **DiceBear Avatars**: ~[https://avatars.dicebear.com/](https://avatars.dicebear.com/)~
-* **Bootstrap**: ~[https://getbootstrap.com](https://getbootstrap.com/)~
-* **RunwayML** (hero video): ~[https://runwayml.com](https://runwayml.com/)~
+* **DiceBear Avatars**: [https://avatars.dicebear.com/](https://avatars.dicebear.com/)
+* **Bootstrap**: [https://getbootstrap.com](https://getbootstrap.com/)
+* **RunwayML** (hero video): [https://runwayml.com](https://runwayml.com/)
 * **Image Sources**: Giphy, Tenor, Know Your Meme, Wikipedia
 * **Cloudflare / Cloudflared**: secure HTTPS tunneling
 * **OpenAI: ChatCPT, Sora**: for logo and favicon
@@ -154,7 +154,7 @@ Track the original planning and user stories: ~[Trello – Meme Vault Board](h
 * Global sort + filter controls
 * Image carousel on meme detail page
 
-⠀See: ~[Roadmap & Icebox ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-icebox.md)~
+⠀See: [Roadmap & Icebox ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-icebox.md)
 
 # ✨ Creator Note
 This app was a blast to build. It pulls together everything I’ve learned in the bootcamp so far: from full-stack architecture to UI/UX polish and even AI-assisted creative assets. It’s my most complete and expressive work to date.
