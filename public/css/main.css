@@ -3,7 +3,6 @@
 .navbar-brand:hover,
 
 .nav-link:hover {
-  width: 100%;
   background-color: #0d6efd; /* Bootstrap primary blue */
   color: #fff;
   text-decoration: none;
