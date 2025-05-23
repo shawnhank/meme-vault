@@ -1,5 +1,5 @@
 {
-  "name": "04.-men-stack-crud-lab",
+  "name": "meme-vault",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -11,9 +11,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@dicebear/core": "^9.2.2",
-    "@dicebear/fun-emoji": "^9.2.2",
-    "@dicebear/shapes": "^9.2.2",
     "bcrypt": "^6.0.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.5.0",

@@ -1,8 +1,7 @@
 const User = require('../models/user');     // Import User model
 const Meme = require('../models/meme');     // Import Meme model
 const Favorite = require('../models/favorite');  // Import Favorite model
-const { createAvatar } = require('@dicebear/core');
-const funEmoji = require('@dicebear/fun-emoji');
+
 
 // GET /users/:id → Show user profile with their memes
 async function showProfile(req, res) {
@@ -39,16 +38,12 @@ async function showProfile(req, res) {
     // Filter out any nulls (from deleted memes)
     const validFavorites = favoritesWithCounts.filter(Boolean);
 
-    const avatarSvg = createAvatar(funEmoji, {
-      seed: user.avatarSeed || user.name || user._id.toString()
-    }).toString();
-    console.log('Generated avatar SVG (first 100 chars):', avatarSvg.slice(0, 100));
+    
 
     res.render('users/show', {
       user,
       userMemes: userMemesWithCounts,
-      favorites: validFavorites,
-      avatarSvg
+      favorites: validFavorites
     });
 
   } catch (err) {
@@ -64,19 +59,11 @@ async function listUsers(req, res) {
     // Get all users from the database
     const users = await User.find();
 
-    // For each user, generate a DiceBear avatar SVG based on avatarSeed, name, or ID
-    const usersWithAvatars = users.map(user => ({
-      ...user.toObject(), // Convert Mongoose document to plain JS object
-      avatarSvg: createAvatar(funEmoji, {
-        seed: user.avatarSeed || user.name || user._id.toString()
-      }).toString() // Convert avatar object to raw SVG markup
-    }));
 
     // Render the community view and pass all users
-    res.render('users/community', { users: usersWithAvatars });
+    res.render('users/community', { users });
   } catch (err) {
     console.log(err);
-    console.log('First avatar SVG:', usersWithAvatars[0]?.avatarSvg);
     req.flash('error', 'Could not load user list.');
     res.redirect('/');
   }
@@ -150,10 +137,6 @@ async function updateProfile(req, res) {
       linkedin: linkedin.trim()
     };
 
-    // If user has no avatarSeed yet, assign a random one
-    if (!user.avatarSeed) {
-      user.avatarSeed = Math.random().toString(36).substring(2, 10); // 8-char random string
-    }
 
     await user.save();
     req.flash('success', 'Profile updated successfully.');
