@@ -37,10 +37,10 @@
         <div class="text-center">
             <h6 class="fw-bold text-body fs-5 mb-4">Follow</h6>
             <div class="d-grid" style="grid-template-columns: repeat(2, auto); column-gap: 2rem; row-gap: 0.75rem; justify-content: center;">
-              <a href="https://www.instagram.com/ga.meme.vault" class="text-body fs-4"><i class="fab fa-instagram"></i></a>
-              <a href="https://www.facebook.com/ga.meme.vault" class="text-body fs-4"><i class="fab fa-facebook"></i></a>
-              <a href="https://github.com/shawnhank/meme-vault" class="text-body fs-4"><i class="fab fa-github"></i></a>
-              <a href="https://www.linkedin.com/company/ga-meme-vault/" class="text-body fs-4"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/ga.meme.vault" target="_blank" class="text-body fs-4"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/ga.meme.vault" target="_blank" class="text-body fs-4"><i class="fab fa-facebook"></i></a>
+              <a href="https://github.com/shawnhank/meme-vault" target="_blank" class="text-body fs-4"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/company/ga-meme-vault/" target="_blank" class="text-body fs-4"><i class="fab fa-linkedin"></i></a>
             </div>
           </div>
 
@@ -49,9 +49,14 @@
 
       <!-- Bottom Note -->
       <div class="text-center text-muted small mt-4 border-top pt-3">
-        &copy; 2025 Meme Vault &nbsp&nbsp | &nbsp&nbsp All rights reserved &nbsp&nbsp | &nbsp&nbsp  Built by <a href="https://github.com/shawnhank">Shawn Hank</a> &nbsp&nbsp | &nbsp&nbsp A <a href="https://generalassemb.ly/students/courses/software-engineering-bootcamp">General Assembly</a> SEB Project   
+        &copy; 2025 Meme Vault &nbsp&nbsp | &nbsp&nbsp All rights reserved &nbsp&nbsp | &nbsp&nbsp  Built by <a href="https://github.com/shawnhank/meme-vault" target="_blank">Shawn Hank</a> &nbsp&nbsp | &nbsp&nbsp A <a href="https://generalassemb.ly/students/courses/software-engineering-bootcamp" target="_blank">General Assembly</a> SEB Project   
       </div>
       <script>
+        
+        // Theme toggle button
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
         // Load saved theme preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -62,10 +67,8 @@
             themeIcon.classList.add('fa-sun');
           }
         }
-        // Theme toggle button
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
 
+        // Theme toggle click handler
         if (themeToggle && themeIcon) {
           themeToggle.addEventListener('click', () => {
             const currentTheme = document.body.getAttribute("data-bs-theme");
