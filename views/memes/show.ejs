@@ -66,7 +66,7 @@
 
   <% if (meme.createdAt && meme.updatedAt && meme.createdBy) { %>
     <p class="text-muted small mt-3">
-      Added by <strong><%= meme.createdBy?.name %></strong>
+      Added by <a href="/users/<%= meme.createdBy._id %>" class="text-decoration-none fw-semibold"><%= meme.createdBy.name %></a>
       on <%= meme.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %><br>
       Last updated <%= meme.updatedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
     </p>
