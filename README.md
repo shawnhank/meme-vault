@@ -1,194 +1,163 @@
-# Memes App — Full CRUD Project with Styling
+# 
+#ga/seb/projects/unit2/meme-vault-men-stack
 
-## Overview
+# Meme Vault
+A place for the memes. Your memes. The weird ones, the cursed ones, the ones that live rent-free in your brain. Meme Vault is your gateway to community-curated meme collections. Tag, rate, favorite, and share your humor with the world.
 
-This project is a full-stack web application using Node.js, Express, MongoDB, and EJS to
-manage a resource called "memes." It supports all CRUD operations (Create, Read, Update,
-Delete) and follows best practices in file organization, route design, and Bootstrap-based
-styling.
+## What is this?
 
----
+A fully functional MEN Stack CRUD app (MongoDB + Express + Node.js) that lets users:
+	•	🖼️ Upload/Create, Collect and Share your best memes
+	•	🏷️ Tag them with moods like “relatable” or “chaotic good”
+	•	💥 Delete them when they stop being funny
 
-## Technology Stack
+All wrapped in a sweet, minimalist Bootstrap UI that makes your memes look as good as they probably don’t deserve. Be sure to check out Dark Mode for that home theater vibe.
 
-* Node.js + Express.js
-* MongoDB + Mongoose
-* EJS (Embedded JavaScript Templates)
-* Bootstrap 5 (via CDN)
 
----
+[Inigo Montoya](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/Hero-Elf4IhEXUAApPJQ.jpeg)<!-- {"preview":"true"} -->
 
-## Folder Structure
 
+# 🔥 Project Overview
+Meme Vault is a full-stack content-sharing platform built with the MEN stack (MongoDB, Express, Node.js) and EJS. Users can sign up for a free account, post memes, explore community creations, and interact through favorites, tags, and (soon) ratings. It mixes classic CRUD (Create, Read, Updaet and Delete) features  with modern UX to create a playful yet structured app for all things meme.
+
+I built Meme Vault to push my software development skills, blending authentication, session control, real-time data relationships, and responsive UI polish. It's the most complete project I've shipped to date.
+
+This app was built based on requirements for the General Assembly Software Engineering Bootcamp. Here are the [Project Requirements  ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/MEN%20Stack%20CRUD%20App%20Project%20Requirements.md)
+
+
+Fun fact: the landing page video was AI-generated with runway.ml!
+
+
+# 🚀 Free Live Demo
+You can access Meme Vault at:
+* ~[https://memevault.thisdemo.rocks](https://memevault.thisdemo.rocks/)~
+* ~[https://mv.thisdemo.rocks](https://mv.thisdemo.rocks/)~
+⠀These are hosted on a personal VPS with strict HTTPS security via Cloudflare tunnels.
+
+⠀Hosted on Heroku as well
+* ~[https://ga-meme-vault-7f99ef07fc82.herokuapp.com](https://ga-meme-vault-7f99ef07fc82.herokuapp.com/)~
+
+with a couple of DNS aliases to my own domain:
+* ~[https://ga-meme-vault.thisdemo.rocks](https://ga-meme-vault.thisdemo.rocks/)~
+* ~[https://ga-mv-thisdemo.rocks](https://ga-mv-thisdemo.rocks/)~
+
+
+# 📸 Screenshots
+*Placeholders — swap in final screenshots* [Landing Page - Dark Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_22.png)
+[Landing Page - Light Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots-24.png) [All Memes Index View](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_12.png)
+[Meme Detail View](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_25.png) [User Profile](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_19.png)
+[Edit Profile]([meme-vault-app-screenshots_26](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_26.png))
+[Favorites View - Dark](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_15.png)
+[Favorites View - Light](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_14.png)
+[View by Tags/Categories](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_10.png)
+[404](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_6.png)
+
+# 🧠 Key Features
+### ✅ Core MVP
+* Full auth system with bcrypt, session-based login
+* Meme CRUD: create, view, edit, delete
+* Flash (disappering) status messages
+* Profile pages with meme ownership display
+* Community directory with profile navigation & Avatars courtesy of DiceBear
+* Search bar with keyword matching (Memes, Tags, Users)
+* Responsive layout using Bootstrap 5 (wiith Dark Mode)
+
+
+⠀✨ Bonus Features
+* Favorites: users can save memes and view a personalized collection
+* Tags: owner-defined tags per meme + tag browser
+* Thumbnail image grid layout with hover overlya interactivity
+* Multi-image support (up to 3 per meme)
+* DiceBear avatars tied to each user
+* Creator/Owner profile links from every meme
+* 404 page with friendly fallback
+
+
+⠀See the ~[Full Feature Tracker](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-feature-tracker.md)~ for even more enhancements.
+
+# 🧱 Tech Stack
+* **MongoDB + Mongoose**: data models, relations, and population
+* **Express + Node.js**: routes, controllers, session config
+* **EJS**: server-rendered views with Bootstrap styling
+- **HTML, CSS & JavaScript**
+* **Bootstrap 5**: grid layout, responsive forms, navs, and buttons
+* **RunwayML**: used for hero video creation
+* **Cloudflare + Cloudflared**: DNS, Tunneling App Access to VPS
+- **Multer (future enhancment)**: setup ready for local file uploads
+⠀
+# 🗂 Project Structure
+This project uses a standard MEN stack layout with some opinionated enhancements for clarity and reusability.
+See: ~[Project Structure & Layout](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-project-structure.md)~
+
+# 🔄 Data Relationships
+This project uses all three major relationship types:
+* **One-to-One**: each user has one avatar seed
+* **One-to-Many**: users create many memes
+* **Many-to-Many** (via join models):
+  * Memes ↔ Tags (through TagAssignment)
+  * Memes ↔ Users (via Favorites)
+  * (Future) Memes ↔ Ratings, Comments
+
+⠀See: ~[Data Model Diagram](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-data-models.png)~ and the [Add Meme Workflow Diagram](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/add-meme-full-flow-diagram.png)
+
+# 📊 RESTful Routes + Access Control
+Meme Vault uses standard RESTful conventions with method-override and ownership protection.
+See: ~[Full Routes Map ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-restful-routes.md)~
+
+# 🧪 Manual QA Checklist
+This project was tested using a full scenario-based manual QA system:
+* Auth flow (register, login, logout)
+* CRUD on memes w/ success/failure flash
+* Favorites UX + profile integration
+* Tags display + tag-based filtering
+* Ownership-based edit/delete protection
+* User navigation + community view
+* 404 handling and fallback behavior
+
+⠀More in ~[Testing & QA Docs ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-manual-test-eval-checklist.md)~
+
+# 🛠 Setup & Local Development
 ```
-views/
-├── index.ejs
-├── partials/
-│   ├── header.ejs
-│   └── footer.ejs
-├── memes/
-│   ├── index.ejs
-│   ├── new.ejs
-│   ├── edit.ejs
-│   └── show.ejs
-public/
-├── css/
-│   └── main.css
-models/
-├── meme.js
+git clone https://github.com/shawnhank/meme-vault.git
+cd meme-vault
+npm install
+cp .env.example .env
 ```
 
----
+Fill in your .env file:
+```PORT=3000
+MONGODB_URI=mongodb://localhost:27017/meme-vault (local)
+MONGODB_URI=ONGODB_URI=mongodb+srv://user:password@cluster#.4040404.mongodb.net/memes?retryWrites=true&w=majority&appName=cluster0 (hosted in the cloud Atlas, AWS, Azure, GCP, etc.)
+SESSION_SECRET=shhhthisissecret
+```
 
-## CRUD Functionality Map
+Then run:
+```npm start```
 
-| Action          | HTTP Method | Route             | View      | Description                            |
-| --------------- | ----------- | ----------------- | --------- | -------------------------------------- |
-| Create (Form)   | GET         | /memes/new       | new\.ejs  | Show form to add a new meme           |
-| Create (Submit) | POST        | /memes           | —         | Save new meme and redirect            |
-| Read (Index)    | GET         | /memes           | index.ejs | Show all memes                        |
-| Read (Show)     | GET         | /memes/\:id      | show\.ejs | Show one meme's details               |
-| Update (Form)   | GET         | /memes/\:id/edit | edit.ejs  | Show edit form with pre-filled data    |
-| Update (Submit) | PUT         | /memes/\:id      | —         | Update meme and redirect to show page |
-| Delete          | DELETE      | /memes/\:id      | —         | Delete meme and redirect to index     |
+More info in  the [Hosting Meme Vault Locally with Cloudflare Tunnels doc  ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/hosting-meme-vault-locally.md)
 
----
 
-## CRUD Functionality
+# 🧭 Trello Board
+Track the original planning and user stories: ~[Trello – Meme Vault Board](https://trello.com/b/fUwClIB4)~
 
-### CREATE (POST)
+# 🙌 Attributions
+* **DiceBear Avatars**: ~[https://avatars.dicebear.com/](https://avatars.dicebear.com/)~
+* **Bootstrap**: ~[https://getbootstrap.com](https://getbootstrap.com/)~
+* **RunwayML** (hero video): ~[https://runwayml.com](https://runwayml.com/)~
+* **Image Sources**: Giphy, Tenor, Know Your Meme, Wikipedia
+* **Cloudflare / Cloudflared**: secure HTTPS tunneling
+* **OpenAI: ChatCPT, Sora**: for logo and favicon
 
-* Route: `GET /memes/new`
-* View: `views/memes/new.ejs`
-* Form submits to: `POST /memes`
-* Action: Creates a new meme document in MongoDB and redirects to `/memes`
-* Includes Cancel button that links back to `/memes`
+⠀
+# 🎯 Next Steps
+* Add ratings (1–5 stars, average rating per meme)
+* Implement comment threads (nested, editable)
+* Admin tools for moderation (stretch)
+* Global sort + filter controls
+* Image carousel on meme detail page
 
-### READ (GET)
+⠀See: ~[Roadmap & Icebox ➝](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-icebox.md)~
 
-* List All Memes:
-
-  * Route: `GET /memes`
-  * View: `views/memes/index.ejs`
-  * Displays name and image of each meme using Bootstrap `list-group`
-  * Each name and image link to that meme’s show page
-
-* Show One Meme:
-
-  * Route: `GET /memes/:id`
-  * View: `views/memes/show.ejs`
-  * Displays full details of a single meme
-  * Includes Edit, Delete, and Back buttons
-
-### UPDATE (PUT)
-
-* Route: `GET /memes/:id/edit`
-* View: `views/memes/edit.ejs`
-* Form pre-filled with existing data
-* Submits to: `PUT /memes/:id`
-* Action: Updates the meme document and redirects to `/memes/:id`
-* Cancel button returns user to show page without saving changes
-
-### DELETE (DELETE)
-
-* Route: `DELETE /memes/:id`
-* Action: Deletes meme and redirects to `/memes`
-* Success feedback message shown conditionally using query string: `?deleted=true`
-
----
-
-## Visual Styling Decisions
-
-### Global Layout
-
-* `main` element wrapped in Bootstrap `container` with `max-width: 900px`
-* Ensures content doesn’t stretch full width
-* Consistent margins and horizontal padding on all views
-* Layout remains fully responsive due to Bootstrap’s grid and container system
-
-### Navigation
-
-* Implemented using Bootstrap `navbar`
-* Aligned left using `justify-content-start` and `gap-3`
-* Nav items styled with `navbar-brand` and `nav-link`
-* Appears consistently on every page
-
-### Index View
-
-* Uses `ul.list-group` with `li.list-group-item` for clean framed entries
-* Links wrapped around both the name and image
-* Success message after delete styled with `alert alert-success`
-
-### Show View
-
-* Meme image shown at top*
-* Below image: buttons for Edit, Delete, and Back* grouped in a `d-flex gap-3` row
-* Description displayed using `white-space: pre-line` to preserve paragraphs
-* Entire content optionally wrapped in `bg-body border rounded p-4` card style
-
-### Forms (New / Edit)
-
-* Forms use Bootstrap `form-control`, `form-label`, and spacing classes
-* Description textarea uses `rows="15"` for better visibility
-* Submit and Cancel buttons grouped using `d-flex gap-2 mt-4`
-* Form does not stretch full-width due to container wrapper
-
----
-
-## Final Touches
-
-* Hero section added to homepage with Unsplash image and proper attribution
-* Navigation buttons centered and cleanly grouped
-* All views use `partials/header` and `partials/footer` for consistency
-* Layout fully responsive across screen sizes using Bootstrap defaults
-
----
-
-## Manual Testing Checklist
-
-* Add new meme from `/memes/new`
-* View all memes via `/memes`
-* View individual meme via `/memes/:id`
-* Edit meme via `/memes/:id/edit`
-* Cancel from Edit returns without changes
-* Delete meme via `/memes/:id`
-* After delete, success message appears
-
----
-
-## Future Improvements
-
-* Undo delete feature (requires soft delete or flash logic)
-* Session-based flash messages instead of query strings
-* Dynamic sort/filter/search in index view
-* File upload support for custom meme images
-
----
-
-## Attributions
-
-Hero image courtesy of [WACA](https://www.waca.or.jp/en/growthhacking/kithow-many-types-of-meme/)
-
-Meme Images and Descriptions courtesy of: 
-- [Giphy](https://giphy.com)
-- [Tenor](htttps://tenor.com)
-- [Know Your Meme](https://knowyourmeme.com/)
-
-CSS courtesy of [Bootstrap](https://getbootstrap.com/)
-
-- hero video created with AI courtesy of [runway.ml](https://runway.ml)
-- No Image Available image courtesy of [Wikipedia](https://commons.wikimedia.org/wiki/File:No_Image_Available.jpg)
-
----
-
-## Future Improvements:
-
-[] Undo Delete Functionality
-
-[] User Auth (login/logout)
-
-[] Tagging/Comments/Ratings
-
-[] Dark mode UI option
-
-[] Add multiple image links (array vs string)
+# ✨ Creator Note
+This app was a blast to build. It pulls together everything I’ve learned in the bootcamp so far: from full-stack architecture to UI/UX polish and even AI-assisted creative assets. It’s my most complete and expressive work to date.
+Thanks for checking it out — feedback welcome!
