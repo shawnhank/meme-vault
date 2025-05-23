@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body data-bs-theme="dark">
+<body data-bs-theme="light">
 
   <header>
     <nav class="navbar navbar-expand-sm bg-body-tertiary px-4 py-4 mb-4 w-100">
@@ -58,7 +58,12 @@
                 </div>
               </div>
             <% } else { %>
-              <a class="nav-link fs-5" href="/login">Log In</a>
+              <div class="nav-item position-relative">
+                <a class="nav-link fs-5" href="/login">Log In</a>
+                  <div class="position-absolute bg-dark submenu py-2;" style="min-width: 150px;">
+                    <a class="nav-link fs-5" href="/register">Create Account</a>
+                  </div>
+              </div>    
             <% } %>
 
             <button id="theme-toggle" class="btn btn-sm" aria-label="Toggle theme" data-bs-toggle="tooltip" title="Toggle Dark Mode">

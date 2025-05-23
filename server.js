@@ -62,7 +62,7 @@ app.use((req, res, next) => {
   // console.log('flash error:', res.locals.error);
   
   res.locals.currentUser = req.session.user;  // make currentUser available in all views
-  
+  res.locals.hideCTA = false;  // default value so footer partial doesn't break
   // Allow logout message via query param if session was destroyed
   if (req.query.loggedOut === 'true') {
     res.locals.success = ['You have been logged out.'];

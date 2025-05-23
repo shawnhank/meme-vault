@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');            // For comparing hashed passwords
 
 // Show login form page
 function showLoginForm(req, res) {
-  res.render('auth/login');                 // Render the login form EJS view
+  res.render('auth/login', { hideCTA: true });                 // Render the login form EJS view
 }
 
 // Handle login POST request
@@ -117,7 +117,7 @@ async function register(req, res) {
 
 // Show the registration form view
 function showRegisterForm(req, res) {
-  res.render('auth/register');  // Render the signup form
+  res.render('auth/register', { hideCTA: true });  // Render the signup form
 }
 
 // Export controller functions used in auth routes
