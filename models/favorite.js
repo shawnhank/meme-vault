@@ -15,8 +15,7 @@ const favoriteSchema = new mongoose.Schema({
   timestamps: true
 });
 
-favoriteSchema.index({ user: 1, meme: 1 }, { unique: true });  // prevents duplicate favorites per user
-
+favoriteSchema.index({ user: 1, meme: 1 }, { unique: true });
 
 module.exports = mongoose.model('Favorite', favoriteSchema);
 
