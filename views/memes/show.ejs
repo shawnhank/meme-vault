@@ -2,9 +2,9 @@
 
 <div class="container my-5 mb-3">
   <%- include('../partials/flash') %>
-  <h1 class="fw-bold mb-3"><%= meme.name %></h1>
+  <h1 class="fw-bold mb-2"><%= meme.name %></h1>
 
-  <div class="">
+  <div class="mb-4">
     <div class="fw-semibold text-muted">Description</div>
     <div class="fs-6 text-muted" style="white-space: pre-line;">
       <%- (meme.description || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
@@ -41,18 +41,35 @@
     </div>
   <% } %>
 
-  <div class="d-flex align-items-center gap-3 mt-1 mb-3">
+  <div class="d-flex align-items-center fs-6 flex-wrap gap-5 mb-3">
+    
     <% if (currentUser) { %>
       <form 
         method="POST" 
         action="/favorites/<%= meme._id %>/favorite<%= isFavorited ? '?_method=DELETE' : '' %>">
-        <button type="submit" class="border-0 bg-transparent p-0" style="font-size: 1.0rem;">
-          <%= isFavorited ? '❤️ Unfavorite' : '🤍 Favorite' %>
+        <button type="submit" class="border-0 bg-transparent p-0">
+          <span class="fs-6">
+            <%= isFavorited ? '❤️  Unfavorite' : '🤍  Favorite' %>
+          </span>
         </button>
       </form>
     <% } %>
 
-    <p class="mb-0"><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></p>
+    <span class="fw-medium"><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></span>
+
+    <div id="star-rating" 
+        data-meme-id="<%= meme._id %>" 
+        data-user-rating="<%= userRating ? userRating.value : 0 %>">
+      <% for (let i = 1; i <= 5; i++) { %>
+        <span class="star" data-value="<%= i %>">★</span>
+      <% } %>
+    </div>
+
+    <span class="fs-6">
+      <%= avgRating || '—' %> / 5 avg
+    </span>
+    
+
   </div>
 
   <% if (meme.tags && meme.tags.length > 0) { %>
@@ -87,5 +104,7 @@
   </div>
 
 </div>
+
+<script src="/js/ratings.js"></script>
 
 <%- include('../partials/test-footer') %>

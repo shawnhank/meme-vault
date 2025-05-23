@@ -99,3 +99,21 @@
   height: 100%;
   display: block;
 }
+
+#star-rating {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.star {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star.hover,
+.star.selected {
+  color: gold;
+}

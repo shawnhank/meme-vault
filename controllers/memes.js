@@ -1,6 +1,7 @@
 const Meme = require('../models/meme');     // Import the Meme model
 const Tag = require('../models/tag');       // Import the Tag model
 const Favorite = require('../models/favorite'); // Import the Favorite model
+const Rating = require('../models/rating');  // Import the Rating model
 
 // GET /memes → Index view (list all memes)
 async function index(req, res) {
@@ -10,7 +11,6 @@ async function index(req, res) {
       const count = await Favorite.countDocuments({ meme: meme._id });
       return { ...meme, favoriteCount: count };
     }));
-
     res.render('memes/index', { memes: memeData, mine: false, query: req.query });
   } catch (err) {
     console.error(err);
@@ -110,24 +110,50 @@ async function create(req, res) {
 
 // GET /memes/:id → Show details of a single meme
 async function show(req, res) {
-  const meme = await Meme.findById(req.params.id)
-    .populate('createdBy')     // Find meme by its unique ID
-    .populate('tags');          // Find meme by tags
+  try {
+    const meme = await Meme.findById(req.params.id)
+      .populate('createdBy')
+      .populate('tags');
 
-  // Count how many users have favorited this meme
-  const favoriteCount = await Favorite.countDocuments({ meme: meme._id });
+    const favoriteCount = await Favorite.countDocuments({ meme: meme._id });
 
-  // Check if the current user has already favorited this meme
-  let isFavorited = false;
-  if (req.session.user) {
-    isFavorited = await Favorite.exists({
-      user: req.session.user._id,
-      meme: meme._id
+    let isFavorited = false;
+    if (req.session.user) {
+      isFavorited = await Favorite.exists({
+        user: req.session.user._id,
+        meme: meme._id
+      });
+    }
+
+    // Load all ratings for this meme
+    const ratings = await Rating.find({ meme: meme._id });
+
+    // Calculate average rating
+    const avgRating = ratings.length
+      ? (ratings.reduce((sum, r) => sum + r.value, 0) / ratings.length).toFixed(1)
+      : null;
+
+    // Get the current user's rating if logged in
+    let userRating = null;
+    if (req.session.user) {
+      userRating = ratings.find(r => r.user.equals(req.session.user._id));
+    }
+
+    // Final render with all props
+    res.render('memes/show', {
+      meme,
+      favoriteCount,
+      isFavorited,
+      avgRating,
+      userRating
     });
+
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'Could not load meme.');
+    res.redirect('/memes');
   }
-  // Pass all user favorites to the user/:id/favorites view page
-  res.render('memes/show', { meme, favoriteCount, isFavorited });
-}
+};
 
 // GET /memes/:id/edit → Show edit form for an existing meme
 async function editForm(req, res) {
