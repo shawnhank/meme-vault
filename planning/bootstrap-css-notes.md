@@ -5,7 +5,7 @@ nav layout and what each one does:
 
 ## Bootstrap Nav Class Breakdown
 
-```<nav class="navbar navbar-expand-sm bg-light px-3 py-2 mb-4">```
+```<nav class="navbar navbar-expand-sm bg-body px-3 py-2 mb-4">```
 
  navbar
 	•	Initializes Bootstrap’s navbar component
@@ -15,7 +15,7 @@ nav layout and what each one does:
 	•	Allows the navbar to expand into horizontal layout starting at “small” (sm) screen size and up
 	•	On smaller screens, it would collapse into a vertical stack or hamburger menu (if toggling added)
 
- bg-light
+ bg-body
 	•	Gives the navbar a light gray background
 	•	Uses Bootstrap’s predefined “light” background class
 

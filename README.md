@@ -124,7 +124,7 @@ models/
 * Meme image shown at top*
 * Below image: buttons for Edit, Delete, and Back* grouped in a `d-flex gap-3` row
 * Description displayed using `white-space: pre-line` to preserve paragraphs
-* Entire content optionally wrapped in `bg-light border rounded p-4` card style
+* Entire content optionally wrapped in `bg-body border rounded p-4` card style
 
 ### Forms (New / Edit)
 

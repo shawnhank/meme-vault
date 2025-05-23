@@ -37,21 +37,21 @@
             <% } %>
             <div class="nav-item position-relative">
               <a class="nav-link fs-5" href="#">Memes</a>
-              <div class="position-absolute bg-dark submenu py-2;" style="min-width: 150px;">
-                <a href="/memes/new" class="d-block text-light text-decoration-none py-1">Add a Meme</a>
-                <a href="/memes" class="d-block text-light text-decoration-none py-1">Browse Memes</a>  
+              <div class="position-absolute bg-body-tertiary submenu py-2;" style="min-width: 150px;">
+                <a href="/memes/new" class="d-block text-body text-decoration-none py-1">Add a Meme</a>
+                <a href="/memes" class="d-block text-body text-decoration-none py-1">Browse Memes</a>  
                 <% if (currentUser) { %>
-                  <a href="/memes/mine" class="d-block text-light text-decoration-none py-2">My Memes</a>
-                  <a href="/users/<%= currentUser._id %>/favorites" class="d-block text-light text-decoration-none py-2">My Favorites</a>
+                  <a href="/memes/mine" class="d-block text-body text-decoration-none py-2">My Memes</a>
+                  <a href="/users/<%= currentUser._id %>/favorites" class="d-block text-body text-decoration-none py-2">My Favorites</a>
                 <% } %>         
               </div>
             </div>
             <% if (currentUser) { %>
               <div class="nav-item position-relative">
                 <span class="nav-link fs-5"><%= currentUser.name %></span>
-                <div class="submenu bg-dark rounded py-2" style="min-width: 150px;">
-                  <a href="/users/<%= currentUser._id %>" class="d-block text-light text-decoration-none px-3 py-2">Edit Profile</a>
-                  <a href="/users/<%= currentUser._id %>/change-password" class="d-block text-light text-decoration-none px-3 py-2">Change Password</a>
+                <div class="submenu bg-body-tertiary rounded py-2" style="min-width: 150px;">
+                  <a href="/users/<%= currentUser._id %>" class="d-block text-body text-decoration-none px-3 py-2">Edit Profile</a>
+                  <a href="/users/<%= currentUser._id %>/change-password" class="d-block text-body text-decoration-none px-3 py-2">Change Password</a>
                   <form action="/logout" method="POST" class="m-0">
                     <button type="submit" class="logout-link">Log Out</button>
                   </form>
@@ -60,7 +60,7 @@
             <% } else { %>
               <div class="nav-item position-relative">
                 <a class="nav-link fs-5" href="/login">Log In</a>
-                  <div class="position-absolute bg-dark submenu py-2;" style="min-width: 150px;">
+                  <div class="position-absolute bg-body-tertiary submenu py-2;" style="min-width: 150px;">
                     <a class="nav-link fs-5" href="/register">Create Account</a>
                   </div>
               </div>    
