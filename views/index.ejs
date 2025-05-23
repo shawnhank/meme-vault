@@ -1,10 +1,11 @@
-<%- include('partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
-
+<%- include('partials/header') %>
 
 <div class="container">
-  <%- include('partials/flash') %>   <!-- Show flash success/error messages -->
+  <%- include('partials/flash') %>
   <h1 class="text-center mb-4">Welcome to the Meme Vault!</h1>
-  <p class="text-center mb-5">An app for sharing and collecting your favorite memes.</p>
+  <p class="text-center mb-5">
+    An app for sharing and collecting your favorite memes.
+  </p>
 
   <div class="d-flex justify-content-center gap-3 mb-5">
     <a href="/memes" class="btn btn-success">Browse Memes</a>
@@ -13,12 +14,22 @@
 
   <div class="row justify-content-center">
     <div class="col-12 col-md-10">
-      <video autoplay muted loop playsinline class="img-fluid rounded w-100" style="max-height: 700px;">
-        <source src="/images/Meme_Hallway_Video_Generation_Complete.mp4" type="video/mp4">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="img-fluid rounded w-100"
+        style="max-height: 700px"
+      >
+        <source
+          src="/images/Meme_Hallway_Video_Generation_Complete.mp4"
+          type="video/mp4"
+        />
         Your browser does not support the video tag.
       </video>
     </div>
   </div>
 </div>
 
-<%- include('partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->
+<%- include('partials/test-footer') %>

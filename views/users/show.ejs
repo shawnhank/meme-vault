@@ -1,27 +1,21 @@
-<%- include('../partials/header') %> <!-- Include site-wide header (nav, title, etc) -->
-
-<!-- split string to get first name from user.name. -->
+<%- include('../partials/header') %>
 <% const firstName = user.name?.split(' ')[0]; %>
-
-<!-- currentUser and meme owner comparison -->
 <% const isOwner = currentUser && currentUser._id.toString() === user._id.toString(); %>
 
-
-<!-- Main container with consistent max width -->
 <div class="container mt-4" style="max-width: 900px">
   <%- include('../partials/flash') %>
-  <!-- Show avatar & username as page title -->
   <div class="d-flex align-items-center gap-3 mb-4">
-  <img
-    src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=<%= user.avatarSeed %>"
-    alt="Avatar"
-    width="60"
-    height="60"
-    class="rounded"
-  >
-
-  <h1 class="mb-0"><%= isOwner ? 'My Profile' : user.name + "'s Profile" %></h1>
-</div>
+    <img
+      src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=<%= user.avatarSeed %>"
+      alt="Avatar"
+      width="60"
+      height="60"
+      class="rounded"
+    />
+    <h1 class="mb-0">
+      <%= isOwner ? 'My Profile' : user.name + "'s Profile" %>
+    </h1>
+  </div>
 
   <div class="mb-3">
     <div class="text-muted"><strong>Email &nbsp</strong> <%= user.email %></div>
@@ -29,45 +23,50 @@
 
   <div class="mb-3">
     <div class="text-muted"><strong>Bio</strong></div>
-    <div class="fs-6 text-muted" style="white-space: pre-line;">
-      <%- (user.bio || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
-        const hasProtocol = match.startsWith('http://') || match.startsWith('https://');
-        const url = hasProtocol ? match : 'https://' + match;
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
-      }) %>
+    <div class="fs-6 text-muted" style="white-space: pre-line">
+      <%- (user.bio ||
+      '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi,
+      function(match) { const hasProtocol = match.startsWith('http://') ||
+      match.startsWith('https://'); const url = hasProtocol ? match : 'https://'
+      + match; return `<a
+        href="${url}"
+        target="_blank"
+        rel="noopener noreferrer"
+        >${match}</a
+      >`; }) %>
     </div>
   </div>
 
-  <% const social = [ 
-    { key: 'instagram', icon: 'fab fa-instagram' },
-    { key: 'twitter', icon: 'fab fa-twitter' },
-    { key: 'facebook', icon: 'fab fa-facebook-f' },
-    { key: 'linkedin', icon: 'fab fa-linkedin-in' }
-  ]; %>
+  <% const social = [ { key: 'instagram', icon: 'fab fa-instagram' }, { key:
+  'twitter', icon: 'fab fa-twitter' }, { key: 'facebook', icon: 'fab
+  fa-facebook-f' }, { key: 'linkedin', icon: 'fab fa-linkedin-in' } ]; %>
 
   <div class="mb-4">
-    <div class="d-flex align-items-center gap-3 flex-wrap fs-6 d-block mt-4 mb-2 text-muted"><strong>Social Links:</strong>
-      <% social.forEach(({ key, icon }) => { %>
-        <% if (user.social?.[key]) { %>
-          <a href="<%= user.social[key] %>" target="_blank" rel="noopener noreferrer" title="<%= key.charAt(0).toUpperCase() + key.slice(1) %>">
-            <i class="<%= icon %> fa-lg"></i>
-          </a>
-        <% } %>
-      <% }) %>
+    <div
+      class="d-flex align-items-center gap-3 flex-wrap fs-6 d-block mt-4 mb-2 text-muted"
+    >
+      <strong>Social Links:</strong>
+      <% social.forEach(({ key, icon }) => { %> <% if (user.social?.[key]) { %>
+      <a
+        href="<%= user.social[key] %>"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="<%= key.charAt(0).toUpperCase() + key.slice(1) %>"
+      >
+        <i class="<%= icon %> fa-lg"></i>
+      </a>
+      <% } %> <% }) %>
     </div>
   </div>
 
-  <!-- Only show Edit Profile button if the current user owns the profile -->
   <% if (currentUser && currentUser._id.toString() === user._id.toString()) { %>
   <a href="/users/<%= user._id %>/edit" class="btn btn-primary mb-4"
     >Edit Profile</a
   >
   <% } %>
 
-  <!-- Divider -->
   <hr class="my-4" />
 
-  <!-- Section showing all memes created by this user -->
   <h3 class="mt-2"><%= isOwner ? 'My Memes' : firstName + "'s Memes" %></h3>
   <div
     class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mt-3"
@@ -79,15 +78,13 @@
     <% }) %>
   </div>
 
-  <!-- Divider -->
   <hr class="my-4" />
 
-  <% // 💾 User Favorites Summary Section - Shows memes this user has favorited
-  %>
   <div class="row mb-4">
     <div class="col-12">
-      <h3 class="mt-2"><%= isOwner ? 'My Favorites' : firstName + "'s Favorites" %></h3>
-
+      <h3 class="mt-2">
+        <%= isOwner ? 'My Favorites' : firstName + "'s Favorites" %>
+      </h3>
       <% if (favorites.length === 0) { %>
       <p class="text-muted">This user hasn’t favorited any memes yet.</p>
       <% } else { %>
@@ -106,4 +103,3 @@
 </div>
 
 <%- include('../partials/test-footer') %>
-<!-- site-wide footer (scripts, links, etc) -->
