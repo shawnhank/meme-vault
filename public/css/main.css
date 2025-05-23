@@ -6,6 +6,49 @@
   text-decoration-color: #0d6efd !important; /* Bootstrap's primary blue */
 }
 
+.nav-item:hover .submenu {
+  display: block;
+  z-index: 999;
+}
+
+.submenu {
+  top: 100%;
+  left: 0;
+  position: absolute;
+  display: none;
+}
+
+.submenu a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.submenu a:hover {
+  width: 100%;
+  background-color: #0d6efd; /* Bootstrap primary blue */
+  color: #fff;
+  text-decoration: none;
+}
+
+.logout-link {
+  background-color: transparent;
+  color: #dc3545;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  display: block;
+  text-align: left;
+  border: none;
+}
+
+.logout-link:hover {
+  background-color: #dc3545;
+  color: #fff;
+  text-decoration: none;
+}
+
 .meme-thumb {
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
