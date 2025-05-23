@@ -1,5 +1,3 @@
-# 
-#ga/seb/projects/unit2/meme-vault-men-stack
 
 # Meme Vault
 A place for the memes. Your memes. The weird ones, the cursed ones, the ones that live rent-free in your brain. Meme Vault is your gateway to community-curated meme collections. Tag, rate, favorite, and share your humor with the world.
