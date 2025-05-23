@@ -56,7 +56,7 @@
   <hr class="my-4" />
 
   <!-- Section showing all memes created by this user -->
-  <h3>Memes by <%= user.name %></h3>
+  <h3><%= user.name %>'s Memes</h3>
   <div
     class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mt-3"
   >
@@ -74,7 +74,7 @@
   %>
   <div class="row mb-4">
     <div class="col-12">
-      <h3>Memes I’ve Favorited</h3>
+      <h3><%= user.name %>'s Favorite Memes</h3>
 
       <% if (favorites.length === 0) { %>
       <p class="text-muted">This user hasn’t favorited any memes yet.</p>

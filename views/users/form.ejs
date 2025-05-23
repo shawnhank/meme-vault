@@ -60,11 +60,12 @@
       <input type="url" name="linkedin" id="linkedin" class="form-control" value="<%= user?.social?.linkedin || '' %>">
     </div>
 
-    <button type="submit" class="btn btn-primary"><%= isNew ? 'Create Account' : 'Update Account' %></button>
-    <a href="/users/<%= user._id %>" class="btn btn-secondary ms-2">Cancel</a>
-    
-    <a href="/users/<%= user._id %>/change-password" class="btn btn-outline-danger ms-2">Change Password</a>
-  </form>
+    <div class="mb-5">
+      <button type="submit" class="btn btn-primary"><%= isNew ? 'Create Account' : 'Update Account' %></button>
+      <a href="/users/<%= user._id %>" class="btn btn-secondary ms-2">Cancel</a>
+      <a href="/users/<%= user._id %>/change-password" class="btn btn-outline-danger ms-2">Change Password</a>
+      </div>
+    </form>
 </div>
 
 <%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->

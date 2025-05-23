@@ -125,8 +125,8 @@ async function show(req, res) {
       meme: meme._id
     });
   }
-
-  res.render('memes/show', { meme, favoriteCount, isFavorited });     // Pass everything to the view page
+  // Pass all user favorites to the user/:id/favorites view page
+  res.render('memes/show', { meme, favoriteCount, isFavorited });
 }
 
 // GET /memes/:id/edit → Show edit form for an existing meme
@@ -205,8 +205,6 @@ async function destroy(req, res) {
   req.flash('success', 'Meme deleted successfully.');     // Flash success message for feedback
   res.redirect('/memes');                                 // Redirect back to index without query string
 }
-
-
 
 // Export all controller functions so routes can use them
 module.exports = {

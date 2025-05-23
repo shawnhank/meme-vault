@@ -4,7 +4,7 @@
   <%- include('../partials/flash') %>
   <h1 class="fw-bold mb-3"><%= meme.name %></h1>
 
-  <div class="mb-4">
+  <div class="">
     <div class="fw-semibold text-muted">Description</div>
     <div class="fs-6 text-muted" style="white-space: pre-line;">
       <%- (meme.description || '—').replace(/((https?:\/\/)?[\w.-]+\.[a-z]{2,}([^\s]*)?)/gi, function(match) {
@@ -41,7 +41,7 @@
     </div>
   <% } %>
 
-  <div class="d-flex align-items-center gap-3 mt-2 mb-3">
+  <div class="d-flex align-items-center gap-3 mt-1 mb-3">
     <% if (currentUser) { %>
       <form 
         method="POST" 
@@ -72,7 +72,7 @@
     </p>
   <% } %>
 
-  <div class="d-flex gap-2 mt-3">
+  <div class="d-flex gap-2 mt-2 mb-5">
     <% if (currentUser && meme.createdBy && meme.createdBy.equals(currentUser._id)) { %>
       <a href="/memes/<%= meme._id %>/edit" class="btn btn-secondary">Edit Meme</a>
     <% } %>
