@@ -56,19 +56,6 @@
     <% } %>
 
     <span class="fw-medium"><%= favoriteCount %> Favorite<%= favoriteCount === 1 ? '' : 's' %></span>
-    
-    <div id="star-rating" 
-        data-meme-id="<%= meme._id %>" 
-        data-user-rating="<%= userRating ? userRating.value : 0 %>">
-      <% for (let i = 1; i <= 5; i++) { %>
-        <span class="star" data-value="<%= i %>">★</span>
-      <% } %>
-    </div>
-    
-    <span class="fs-6">
-      <%= avgRating || '—' %> / 5 avg
-    </span>
-    
 
   </div>
 
@@ -104,7 +91,5 @@
   </div>
 
 </div>
-
-<script src="/js/ratings.js"></script>
 
 <%- include('../partials/test-footer') %>

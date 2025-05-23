@@ -1,7 +1,6 @@
 const Meme = require('../models/meme');
 const Tag = require('../models/tag');
 const Favorite = require('../models/favorite');
-const Rating = require('../models/rating');
 
 async function index(req, res) {
   try {
@@ -114,25 +113,10 @@ async function show(req, res) {
       });
     }
 
-    const ratings = await Rating.find({ meme: meme._id });
-
-    const avgRating = ratings.length
-      ? (ratings.reduce((sum, r) => sum + r.value, 0) / ratings.length).toFixed(
-          1
-        )
-      : null;
-
-    let userRating = null;
-    if (req.session.user) {
-      userRating = ratings.find((r) => r.user.equals(req.session.user._id));
-    }
-
     res.render('memes/show', {
       meme,
       favoriteCount,
-      isFavorited,
-      avgRating,
-      userRating,
+      isFavorited
     });
   } catch (err) {
     req.flash('error', 'Could not load meme.');
