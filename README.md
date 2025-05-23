@@ -25,6 +25,7 @@ This app was built based on requirements for the General Assembly Software Engin
 
 Fun fact: the landing page video was AI-generated with runway.ml!
 
+---
 
 # 🚀 Free Live Demo
 You can access Meme Vault at:
@@ -39,6 +40,7 @@ with a couple of DNS aliases to my own domain:
 * [https://ga-meme-vault.thisdemo.rocks](https://ga-meme-vault.thisdemo.rocks/)
 * [https://ga-mv-thisdemo.rocks](https://ga-mv-thisdemo.rocks/)
 
+---
 
 # 📸 Screenshots
 [Landing Page - Dark Mode](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_22.png)
@@ -61,6 +63,7 @@ with a couple of DNS aliases to my own domain:
 
 [404](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/public/images/screenshots/meme-vault-app-screenshots_6.png)
 
+---
 
 # 🧠 Key Features
 ### ✅ Core MVP
@@ -82,8 +85,13 @@ with a couple of DNS aliases to my own domain:
 * Creator/Owner profile links from every meme
 * 404 page with friendly fallback
 
+---
 
-⠀See the [Full Feature Tracker](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-feature-tracker.md) for even more enhancements.
+Check out some of the [coolest features](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-cool-features.md)
+
+I learned quite a bit about the [Power of Partials](https://github.com/shawnhank/meme-vault/blob/main/docs/meme-vault-partials.md)
+
+See the [Full Feature Tracker](https://raw.githubusercontent.com/shawnhank/meme-vault/refs/heads/main/docs/meme-vault-feature-tracker.md) for even more enhancements.
 
 # 🧱 Tech Stack
 * **MongoDB + Mongoose**: data models, relations, and population
