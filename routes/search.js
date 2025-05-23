@@ -11,25 +11,23 @@ router.get('/', async (req, res) => {
   const regex = new RegExp(query, 'i');
 
   const matchedUsers = await User.find({
-    $or: [
-      { name: regex },
-      { username: regex },
-      { email: regex }
-    ]
+    $or: [{ name: regex }, { username: regex }, { email: regex }],
   });
-  const matchedUserIds = matchedUsers.map(u => u._id);
+  const matchedUserIds = matchedUsers.map((u) => u._id);
 
   const matchedTags = await Tag.find({ name: regex });
-  const matchedTagIds = matchedTags.map(t => t._id);
+  const matchedTagIds = matchedTags.map((t) => t._id);
 
   const memes = await Meme.find({
     $or: [
       { name: regex },
       { description: regex },
       { createdBy: { $in: matchedUserIds } },
-      { tags: { $in: matchedTagIds } }
-    ]
-  }).populate('createdBy').populate('tags');
+      { tags: { $in: matchedTagIds } },
+    ],
+  })
+    .populate('createdBy')
+    .populate('tags');
 
   res.render('search/index', { query, memes });
 });

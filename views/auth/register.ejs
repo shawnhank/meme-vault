@@ -1,60 +1,71 @@
-<%- include('../partials/header') %>  <!-- Include site-wide header (nav, title, etc) -->
+<%- include('../partials/header') %>
 
-
-<div class="container mt-4 mb-4" style="max-width: 800px;">
-  <%- include('../partials/flash') %>   <!-- Show flash success/error messages -->
+<div class="container mt-4 mb-4" style="max-width: 800px">
+  <%- include('../partials/flash') %>
   <h1 class="mb-4">Sign Up</h1>
 
   <form action="/register" method="POST">
-    <!-- Public display name (username) -->
     <div class="mb-3">
       <label for="name" class="form-label">User Name *</label>
-      <input type="text" name="name" id="name" required class="form-control">
+      <input type="text" name="name" id="name" required class="form-control" />
     </div>
 
-    <!-- Email address -->
     <div class="mb-3">
       <label for="email" class="form-label">Email Address *</label>
-      <input type="email" name="email" id="email" required class="form-control">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        class="form-control"
+      />
     </div>
 
-    <!-- Password -->
     <div class="mb-3">
       <label for="password" class="form-label">Password *</label>
-      <input type="password" name="password" id="password" required class="form-control">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+        class="form-control"
+      />
     </div>
 
-    <!-- Confirm Password -->
     <div class="mb-3">
       <label for="confirm" class="form-label">Confirm Password *</label>
-      <input type="password" name="confirm" id="confirm" required class="form-control">
+      <input
+        type="password"
+        name="confirm"
+        id="confirm"
+        required
+        class="form-control"
+      />
     </div>
 
-    <!-- Bio -->
     <div class="mb-3">
       <label for="bio" class="form-label">Bio</label>
       <textarea name="bio" id="bio" rows="4" class="form-control"></textarea>
     </div>
 
-    <!-- Social Links -->
     <div class="mb-3">
       <label for="instagram" class="form-label">Instagram URL</label>
-      <input type="url" name="instagram" id="instagram" class="form-control">
+      <input type="url" name="instagram" id="instagram" class="form-control" />
     </div>
 
     <div class="mb-3">
       <label for="twitter" class="form-label">Twitter URL</label>
-      <input type="url" name="twitter" id="twitter" class="form-control">
+      <input type="url" name="twitter" id="twitter" class="form-control" />
     </div>
 
     <div class="mb-3">
       <label for="facebook" class="form-label">Facebook URL</label>
-      <input type="url" name="facebook" id="facebook" class="form-control">
+      <input type="url" name="facebook" id="facebook" class="form-control" />
     </div>
 
     <div class="mb-3">
       <label for="linkedin" class="form-label">LinkedIn URL</label>
-      <input type="url" name="linkedin" id="linkedin" class="form-control">
+      <input type="url" name="linkedin" id="linkedin" class="form-control" />
     </div>
 
     <button type="submit" class="btn btn-primary">Create Account</button>
@@ -62,4 +73,4 @@
   </form>
 </div>
 
-<%- include('../partials/test-footer') %>  <!-- site-wide footer (scripts, links, etc) -->
+<%- include('../partials/test-footer') %>
