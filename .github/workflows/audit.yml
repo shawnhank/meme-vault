@@ -1,0 +1,35 @@
+name: Security Audit
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # weekly, Sunday midnight UTC
+  workflow_dispatch:       # manual trigger from GitHub UI
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate || true
+
+      - name: Auto-fix vulnerabilities
+        run: |
+          npm audit fix || true
+          git config user.name "Dizz"
+          git config user.email "9089985f43e00c8e79f0515e571621f64e6cac73a05bc294fe145cf9c8830fa9@users.noreply.github.com"
+          git add package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "fix: auto-fix vulnerabilities via weekly audit"
+            git push origin main
+          fi
